@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboarding_info_1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clipToOutline="true"
+    android:background="@drawable/onboarding">
+
+    <ImageView
+        android:id="@+id/onboarding_info_3_image"
+        android:layout_width="410dp"
+        android:layout_height="399dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="77dp"
+        app:srcCompat="@drawable/onboarding_info_3_image"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/onboarding_info_3_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="450dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="-8sp"
+        android:text="@string/onboarding_info_3_heading"
+        android:textAppearance="@style/onboarding_info_heading" />
+
+    <TextView
+        android:id="@+id/onboarding_info_3_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="494dp"
+        android:layout_marginEnd="37dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="6sp"
+        android:text="@string/onboarding_info_3_text"
+        android:textAppearance="@style/onboarding_info_text"
+        android:translationY="-2.9sp" />
+
+    <ImageView
+        android:id="@+id/onboarding_info_3_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="568dp"
+        app:srcCompat="@drawable/onboarding_info_3_page"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/onboarding_info_3_button"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="598dp"
+        android:elevation="4dp"
+        android:text="@string/onboarding_info_next"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+</RelativeLayout>

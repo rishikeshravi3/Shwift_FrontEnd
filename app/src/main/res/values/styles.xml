@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="onboarding_Tag_Line">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="onboarding_get_shift_button_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="onboarding_info_heading">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">#6D23B6</item>
+    </style>
+    <style name="onboarding_info_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#585858</item>
+    </style>
+</resources>
