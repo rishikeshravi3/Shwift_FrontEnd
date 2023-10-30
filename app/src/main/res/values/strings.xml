@@ -9,4 +9,5 @@
     <string name="createNewPass_TxtView">New password</string>
     <string name="renterNewPass_TxtView">Re-enter password</string>
     <string name="continueBtn">Continue</string>
+    <string name="passwordResetMsg">Password Reset Message</string>
 </resources>
