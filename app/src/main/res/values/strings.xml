@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Shwift</string>
+    <string name="select_email">An email will be sent to the email-id mentioned below</string>
+    <string name="user_email">testMail@doomain.com</string>
+    <string name="sendOTP">Send OTP</string>
+    <string name="code_has_been">Please enter the code that was sent to the specified e-mail.</string>
+    <string name="resend_code">Resend the code in 50 s</string>
+    <string name="verifyOTP">Verify OTP</string>
+    <string name="createNewPass_TxtView">New password</string>
+    <string name="renterNewPass_TxtView">Re-enter password</string>
+    <string name="continueBtn">Continue</string>
 </resources>
