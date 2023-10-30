@@ -38,6 +38,19 @@
             android:exported="false" />
         <activity
             android:name=".CreateAccountActivity"
+        android:theme="@style/Theme.MyApplication">
+        </activity>
+        <activity
+            android:name=".onboarding_info_3"
+            android:exported="false" />
+        <activity
+            android:name=".onboarding_info_2"
+            android:exported="true" />
+        <activity
+            android:name=".onboarding_info_1"
+            android:exported="true" />
+        <activity
+            android:name=".onboarding"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,17 +75,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="true">-->
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+<!--            &lt;!&ndash; <intent-filter> &ndash;&gt;-->
+<!--            &lt;!&ndash; <action android:name="android.intent.action.MAIN" /> &ndash;&gt;-->
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+<!--            &lt;!&ndash; <category android:name="android.intent.category.LAUNCHER" /> &ndash;&gt;-->
+<!--            &lt;!&ndash; </intent-filter> &ndash;&gt;-->
+<!--        </activity>-->
     </application>
 
 </manifest>

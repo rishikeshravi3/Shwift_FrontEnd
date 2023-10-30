@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboarding"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clipToOutline="true"
+    android:background="@drawable/onboarding">
+    <ImageView
+        android:id="@+id/onboarding_logo"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
+        app:srcCompat="@drawable/shwift_logo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/onboarding_tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/onboarding_logo"
+        android:text="@string/onboarding_logo_tagline"
+        android:textAppearance="@style/onboarding_Tag_Line"
+        android:gravity="center_horizontal|top"
+        />
+
+    <TextView
+        android:id="@+id/onboarding_get_shift_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="370dp"
+        android:text="@string/onboarding_get_shift_line"
+        android:textSize="32sp"
+        android:textColor="#6D23B6"
+        android:lineSpacingExtra="-8sp"
+        android:gravity="center_horizontal|top"
+        />
+
+    <Button
+        android:id="@+id/onboarding_get_shift_button"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="504dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/onboarding_get_shift_button_text"
+        android:layout_width="93dp"
+        android:layout_height="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="515dp"
+        android:gravity="center_horizontal|top"
+        android:text="@string/onboarding_get_shift_button_text"
+        android:textAppearance="@style/onboarding_get_shift_button_text"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageView
+        android:id="@+id/onboarding_get_shift_button_arrow"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignEnd="@id/onboarding_get_shift_button"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="519dp"
+        app:srcCompat="@drawable/onboarding_get_shift_button_arrow"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
