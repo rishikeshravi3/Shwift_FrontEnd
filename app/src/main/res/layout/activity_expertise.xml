@@ -44,9 +44,10 @@
         android:id="@+id/chip3"
         android:layout_width="306dp"
         android:layout_height="57dp"
+        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.294" />
@@ -56,70 +57,107 @@
         android:layout_width="288dp"
         android:layout_height="58dp"
         android:text=" Accounting and finance"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="193dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.288" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip4"
         android:layout_width="306dp"
         android:layout_height="57dp"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="524dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.777" />
 
     <CheckBox
         android:id="@+id/checkBox1"
         android:layout_width="306dp"
         android:layout_height="57dp"
         android:text=" Engineering"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="524dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.777" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip5"
         android:layout_width="306dp"
         android:layout_height="57dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="448dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664" />
 
     <CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="306dp"
         android:layout_height="57dp"
         android:text=" IT and Software"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="448dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip6"
         android:layout_width="306dp"
         android:layout_height="57dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="364dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
 
     <CheckBox
         android:id="@+id/checkBox3"
         android:layout_width="306dp"
         android:layout_height="57dp"
         android:text="Media and Design"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="364dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip7"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="276dp" />
+        android:layout_width="317dp"
+        android:layout_height="62dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.409" />
 
     <CheckBox
         android:id="@+id/checkBox4"
         android:layout_width="306dp"
         android:layout_height="57dp"
         android:text="Sales and Marketing"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="276dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.409" />
+
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/expertcontinuebtn"
         android:layout_width="349dp"
         android:layout_height="52dp"
         android:layout_marginBottom="16dp"

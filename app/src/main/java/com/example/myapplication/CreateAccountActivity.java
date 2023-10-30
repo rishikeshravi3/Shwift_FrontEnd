@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,5 +45,11 @@ public class CreateAccountActivity extends AppCompatActivity {
             Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
             startActivity(intent);
         });
+        Button to_accountsetup = findViewById(R.id.button_create_account);
+        to_accountsetup.setOnClickListener(v -> {
+            Intent intent=new Intent(this, AccountSetupHome.class);
+            startActivity(intent);
+        });
+
     }
 }
