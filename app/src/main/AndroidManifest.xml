@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".passwordReset_Mode_Selection" />
         <activity
             android:name=".Sign_up_screen"
             android:exported="true">
@@ -35,6 +38,23 @@
             android:exported="false" />
         <activity
             android:name=".CreateAccountActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".create_New_Password"
+            android:exported="false"
+            android:parentActivityName=".passwordReset_Mode_Selection"/>
+        <activity
+            android:name=".passwordReset_OTP_Validation"
+            android:exported="false"
+            android:parentActivityName=".passwordReset_Mode_Selection"/>
+        <activity
+            android:name=".passwordReset_Mode_Selection"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
