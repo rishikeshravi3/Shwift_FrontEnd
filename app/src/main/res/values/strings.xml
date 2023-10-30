@@ -7,4 +7,8 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="create_account">Create Account</string>
     <string name="login">Login</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account_sign_in">Already have an account? <b><font color='#6D23B6'>Login</font></b></string>
+    <string name="login_to_your_account">Login to Your Account</string>
+    <string name="don_t_have_account_sign_up">Don’t have an account? <b><font color='#6D23B6'>Sign up</font></b></string>
 </resources>

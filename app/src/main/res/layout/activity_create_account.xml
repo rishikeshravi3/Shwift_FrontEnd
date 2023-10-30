@@ -94,17 +94,41 @@
     <View style="@style/Divider.Horizontal"
         android:layout_marginHorizontal="40dp"/>
 
-    <CheckBox
-        android:id="@+id/remember_me"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/remember_me"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:buttonTint="@color/purple"
-        android:textSize="16sp"/>
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/lock_icon"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:layout_marginHorizontal="10dp"
+            android:inputType="textPassword"
+            android:hint="@string/confirm_password"/>
+
+        <ImageView
+            android:id="@+id/show_confirm_password"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/eye_regular"
+            app:tint="@color/gray"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <View style="@style/Divider.Horizontal"
+        android:layout_marginHorizontal="40dp"/>
 
     <Button
         android:id="@+id/button_create_account"
@@ -114,19 +138,23 @@
         android:background="@drawable/rounded_rectangle"
         android:text="@string/create_account"
         android:textSize="20sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center" />
 
+
     <TextView
-        android:id="@+id/forgot_pass"
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
         android:layout_marginTop="20dp"
-        android:text="@string/forgot_password"
+        android:text="@string/already_have_an_account_sign_in"
+        android:textAlignment="center"
+        android:textColor="#585858"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/purple"
-        android:textAlignment="center"/>
+        android:gravity="center_horizontal|center"
+        />
+
 
 </LinearLayout>
 
