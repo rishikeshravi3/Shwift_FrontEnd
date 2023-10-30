@@ -28,7 +28,13 @@
             android:name=".expertise_activity"
             android:exported="false" />
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".AccountSetupHome"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccountActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

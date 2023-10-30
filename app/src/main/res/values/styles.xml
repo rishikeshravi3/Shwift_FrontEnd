@@ -29,6 +29,21 @@
     </style>
 
     <style name="please_sele">
-        <item name="android:textSize">15sp</item> <item name="android:textColor">#585858</item>
+        <item name="android:textSize">15sp</item>
+    <item name="android:textColor">#585858</item>
+    </style>
+    <style name="Divider">
+        <item name="android:background">#969595</item>
+    </style>
+
+    <style name="Divider.Horizontal" parent="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item> // You can change thickness here.
+
+    </style>
+
+    <style name="Divider.Vertical" parent="Divider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 </resources>
