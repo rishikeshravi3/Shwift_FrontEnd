@@ -1,6 +1,9 @@
 package com.example.myapplication;
-import static android.provider.Settings.Secure.getString;
-import com.example.myapplication.R; // Replace with your actual package name
+
+
+
+import com.google.android.material.chip.Chip;
+
 import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,10 +41,20 @@ import java.util.List;
             holder.textViewTitle.setText(filterItem.getTitle());
             holder.textViewTitle.setTextSize(30);
 
+
             // Customize this part to populate each filter item with its specific options
             // For example, you can add a Spinner, SeekBar, CheckBox, etc.
             // based on the type of filter (location & salary, work type, etc.).
             Log.i("HAM",filterItem.getTitle());
+
+            holder.textViewTitle.setOnCheckedChangeListener((buttonView, isChecked) ->{
+                if(isChecked){
+                    holder.textViewTitle.setCloseIconResource(android.R.drawable.arrow_up_float);
+                }else{
+                    holder.textViewTitle.setCloseIconResource(android.R.drawable.arrow_down_float);
+                }
+            });
+
             holder.radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
                 // Handle the selected radio button for the specific item
                 if(checkedId ==R.id.radioButton2){
@@ -88,7 +101,8 @@ import java.util.List;
         }
 
         static class FilterViewHolder extends RecyclerView.ViewHolder {
-            TextView textViewTitle;
+            Chip textViewTitle;
+
             LinearLayout expandableLayout;
             LinearLayout  expandableLayout1;
             LinearLayout expandableLayout2;
@@ -105,6 +119,8 @@ import java.util.List;
                 radioGroup = itemView.findViewById(R.id.radioGroup);
                 RadioButton = itemView.findViewById(R.id.radioButton);
                 RadioButton2 = itemView.findViewById(R.id.radioButton2);
+
+
 
 
             }

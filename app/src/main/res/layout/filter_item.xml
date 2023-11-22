@@ -14,9 +14,13 @@
 
     <com.google.android.material.chip.Chip
         android:id="@+id/textViewFilterTitle"
-        android:layout_width="336dp"
-        android:layout_height="107dp"
+        android:layout_width="338dp"
+        android:layout_height="88dp"
+        android:checkable="true"
+        android:checked="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:checkedIconEnabled="false"
+        app:chipIconEnabled="false"
         app:chipStrokeColor="@color/black"
         app:chipStrokeWidth="1dp"
         app:closeIcon="@android:drawable/arrow_down_float"
