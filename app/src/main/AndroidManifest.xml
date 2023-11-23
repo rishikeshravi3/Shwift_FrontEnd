@@ -13,21 +13,34 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".Profile.ProjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.EducationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.WorkExperienceActivity"
+            android:exported="false" />
+        <activity
             android:name=".Profile.ProfileSummaryActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".Profile.ContactInformationActivity"
             android:exported="false" />
         <activity
             android:name=".Profile.ProfileActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SavedJobsActivity"
             android:exported="false" />
         <activity
             android:name=".JobListingActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -63,11 +76,7 @@
         <activity
             android:name=".onboarding"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".create_New_Password"

@@ -13,6 +13,7 @@ import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -40,19 +41,14 @@ public class ProfileActivity extends AppCompatActivity {
             return false;
         });
 
-        ArrayList<String> test = new ArrayList<>();
-        test.add("Test 1");
-        test.add("Test 2");
-        test.add("Test 3");
-        test.add("Test 4");
-        test.add("Test 5");
-
-        // set up the RecyclerView
+        List<ProfileOptionModel> profileOptions = getProfileOptions();
         RecyclerView recyclerView = findViewById(R.id.profileOptionsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ProfileOptionsAdapter adapter = new ProfileOptionsAdapter(test);
+        ProfileOptionsAdapter adapter = new ProfileOptionsAdapter(this, profileOptions);
         recyclerView.setAdapter(adapter);
 
+
+        // set up the RecyclerView
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -62,6 +58,17 @@ public class ProfileActivity extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    public List<ProfileOptionModel> getProfileOptions() {
+        List<ProfileOptionModel> options = new ArrayList<ProfileOptionModel>();
+        options.add(new ProfileOptionModel((int)ProfileOptionType.CONTACT_INFO.ordinal(), "Contact Information"));
+        options.add(new ProfileOptionModel((int)ProfileOptionType.SUMMARY.ordinal(), "Summary"));
+        options.add(new ProfileOptionModel((int)ProfileOptionType.WORK_EXP.ordinal(), "Work Experience"));
+        options.add(new ProfileOptionModel((int)ProfileOptionType.EDUCATION.ordinal(), "Education"));
+        options.add(new ProfileOptionModel((int)ProfileOptionType.PROJECTS.ordinal(), "Projects"));
+        options.add(new ProfileOptionModel((int)ProfileOptionType.SKILLS.ordinal(), "Skills"));
+        return options;
     }
 
     protected void onResume() {

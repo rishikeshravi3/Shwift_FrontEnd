@@ -152,6 +152,7 @@
         android:text="@string/save"
         android:textSize="20sp"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginVertical="20dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"/>
 
 </LinearLayout>

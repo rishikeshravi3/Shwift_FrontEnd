@@ -37,9 +37,10 @@
             android:text="@string/summary"/>
 
         <ImageView
+            android:id="@+id/openPage"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/add_icon"
+            android:src="@drawable/right_arrow"
             android:layout_marginRight="10dp"
             android:layout_gravity="center"/>
 
