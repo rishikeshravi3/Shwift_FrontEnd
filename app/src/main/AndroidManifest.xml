@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-
         <activity
             android:name=".Apply_Job"
             android:exported="false"/>
@@ -43,6 +42,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ApplicationStagesActivity"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".ApplicantViewJobDescription"
+            android:exported="true">
+        </activity>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -52,7 +59,6 @@
             android:name=".Sign_up_screen"
             android:exported="false">
         </activity>
-
         <activity
             android:name=".account_setup_user_info"
             android:exported="false" />
@@ -79,11 +85,11 @@
             android:exported="true" />
         <activity
             android:name=".onboarding"
-            android:exported="true">
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".create_New_Password"

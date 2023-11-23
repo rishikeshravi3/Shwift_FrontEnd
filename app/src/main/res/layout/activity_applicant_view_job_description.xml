@@ -1,0 +1,212 @@
+
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/job_details"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clipToOutline="true"
+        >
+        <ImageView
+            android:id="@+id/applicant_view_job_description_back_arrow"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="27dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/back_arrow"
+            tools:ignore="ContentDescription" />
+
+        <RelativeLayout
+            android:id="@+id/applicant_view_job_description_detail_card_relative_layout"
+            android:layout_width="280dp"
+            android:layout_height="228dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/applicant_view_job_description_back_arrow"
+            android:layout_marginTop="58dp"
+            />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_job_description_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/applicant_view_job_description_job_description_heading"
+            android:textAppearance="@style/applicant_view_job_description_heading_style"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/applicant_view_job_description_detail_card_relative_layout"
+            android:layout_marginTop="17dp"
+            />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_job_description_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/applicant_view_job_description_job_description_heading"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:lineSpacingExtra="2sp"
+            android:justificationMode="inter_word"
+            android:textAppearance="@style/applicant_view_job_description_body_style"
+            tools:ignore="VisualLintLongText" />
+        <TextView
+            android:id="@+id/applicant_view_job_description_requirement_skill_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/applicant_view_job_description_requirement_skills_heading"
+            android:textAppearance="@style/applicant_view_job_description_heading_style"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/applicant_view_job_description_job_description_body"
+            android:layout_marginTop="17dp"
+            />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_requirement_skill_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/applicant_view_job_description_requirement_skill_heading"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:lineSpacingExtra="2sp"
+            android:justificationMode="inter_word"
+            android:textAppearance="@style/applicant_view_job_description_body_style"
+            tools:ignore="VisualLintLongText" />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_education_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/applicant_view_job_description_education_heading"
+            android:textAppearance="@style/applicant_view_job_description_heading_style"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/applicant_view_job_description_requirement_skill_body"
+            android:layout_marginTop="17dp"
+            />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_education_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/applicant_view_job_description_education_heading"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:lineSpacingExtra="2sp"
+            android:justificationMode="inter_word"
+            android:textAppearance="@style/applicant_view_job_description_body_style"
+            tools:ignore="VisualLintLongText" />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_key_skills_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/applicant_view_job_description_key_skills_heading"
+            android:textAppearance="@style/applicant_view_job_description_heading_style"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/applicant_view_job_description_education_body"
+            android:layout_marginTop="17dp"
+            />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/applicant_view_job_description_key_skills_body"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/applicant_view_job_description_key_skills_heading"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:flexWrap="wrap"
+            app:alignItems="stretch"
+            app:alignContent="stretch">
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_job_summary_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/applicant_view_job_description_job_summary_heading"
+            android:textAppearance="@style/applicant_view_job_description_heading_style"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/applicant_view_job_description_key_skills_body"
+            android:layout_marginTop="17dp"
+            />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_job_summary_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/applicant_view_job_description_job_summary_heading"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="2sp"
+            android:textAppearance="@style/applicant_view_job_description_body_style"
+            tools:ignore="VisualLintLongText,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_about_company_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/applicant_view_job_description_about_company_heading"
+            android:textAppearance="@style/applicant_view_job_description_heading_style"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/applicant_view_job_description_job_summary_body"
+            android:layout_marginTop="17dp"
+            />
+
+        <TextView
+            android:id="@+id/applicant_view_job_description_about_company_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/applicant_view_job_description_about_company_heading"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:lineSpacingExtra="2sp"
+            android:justificationMode="inter_word"
+            android:textAppearance="@style/applicant_view_job_description_body_style"
+            tools:ignore="VisualLintLongText" />
+
+        <Button
+            android:id="@+id/applicant_view_job_description_apply_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/applicant_view_job_description_about_company_body"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="22dp"
+            android:text="@string/apply"
+            android:textAppearance="@style/button_text_white_20sp_style"
+            tools:ignore="VisualLintButtonSize" />
+
+    </RelativeLayout>
+</ScrollView>
+

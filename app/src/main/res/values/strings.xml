@@ -40,6 +40,7 @@
     <string name="onboarding_info_2_text">Use the built in profile builder to highlight your skills and abilities</string>
     <string name="onboarding_info_3_heading">Explore Your Potential!</string>
     <string name="onboarding_info_3_text">Start your professional journey with Shwift and discover your inner self</string>
+<<<<<<< HEAD
     <string name="good_morning">Good morning</string>
     <string name="john_doe">John Doe</string>
     <string name="search_for_a_job_or_company">Search for a job or company</string>
@@ -64,4 +65,15 @@
     <string name="phone_number">Phone Number</string>
     <string name="email">Email</string>
     <string name="summary_max_500_characters">Summary (Max. 500 characters)</string>
+=======
+    <string name="applicant_view_job_description_job_description_heading"><b>Job Description :</b></string>
+    <string name="applicant_view_job_description_requirement_skills_heading"><b>Requirement and Skills :</b></string>
+    <string name="applicant_view_job_description_education_heading"><b>Education :</b></string>
+    <string name="applicant_view_job_description_key_skills_heading"><b>Key Skills :</b></string>
+    <string name="applicant_view_job_description_job_summary_heading"><b>Job Summary :</b></string>
+    <string name="applicant_view_job_description_about_company_heading"><b>About Company :</b></string>
+    <string name="apply"><b>Apply</b></string>
+    <string name="application_stages_heading"><b>Applications</b></string>
+    <string name="application_stages_search_tab_hint">Search</string>
+>>>>>>> eed0e830665e7df89a272528b68c5624b0b1bd36
 </resources>
