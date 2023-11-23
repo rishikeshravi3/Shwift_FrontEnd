@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+
         <activity
             android:name=".Apply_Job"
             android:exported="false"/>
@@ -20,6 +21,24 @@
             android:name=".Filter"
             android:exported="false">
             </activity>
+
+        <activity
+            android:name=".Profile.ProfileSummaryActivity"
+            android:exported="false"
+        />
+        <activity
+            android:name=".Profile.ContactInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SavedJobsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobListingActivity"
+            android:exported="false">
+        </activity>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -29,6 +48,7 @@
             android:name=".Sign_up_screen"
             android:exported="false">
         </activity>
+
         <activity
             android:name=".account_setup_user_info"
             android:exported="false" />
