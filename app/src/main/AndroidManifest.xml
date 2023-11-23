@@ -12,13 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".Profile.ProfileSummaryActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".Profile.ContactInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SavedJobsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobListingActivity"
+            android:exported="false">
+        </activity>
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".passwordReset_Mode_Selection" />
+
         <activity
             android:name=".Sign_up_screen"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".account_setup_user_info"
             android:exported="false" />
@@ -33,8 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".CreateAccountActivity"
-        android:theme="@style/Theme.MyApplication">
-        </activity>
+            android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".onboarding_info_3"
             android:exported="false" />
@@ -56,15 +72,14 @@
         <activity
             android:name=".create_New_Password"
             android:exported="false"
-            android:parentActivityName=".passwordReset_Mode_Selection"/>
+            android:parentActivityName=".passwordReset_Mode_Selection" />
         <activity
             android:name=".passwordReset_OTP_Validation"
             android:exported="false"
-            android:parentActivityName=".passwordReset_Mode_Selection"/>
+            android:parentActivityName=".passwordReset_Mode_Selection" />
         <activity
             android:name=".passwordReset_Mode_Selection"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
