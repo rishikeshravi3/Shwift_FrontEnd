@@ -40,4 +40,13 @@
     <string name="onboarding_info_2_text">Use the built in profile builder to highlight your skills and abilities</string>
     <string name="onboarding_info_3_heading">Explore Your Potential!</string>
     <string name="onboarding_info_3_text">Start your professional journey with Shwift and discover your inner self</string>
+    <string name="applicant_view_job_description_job_description_heading"><b>Job Description :</b></string>
+    <string name="applicant_view_job_description_requirement_skills_heading"><b>Requirement and Skills :</b></string>
+    <string name="applicant_view_job_description_education_heading"><b>Education :</b></string>
+    <string name="applicant_view_job_description_key_skills_heading"><b>Key Skills :</b></string>
+    <string name="applicant_view_job_description_job_summary_heading"><b>Job Summary :</b></string>
+    <string name="applicant_view_job_description_about_company_heading"><b>About Company :</b></string>
+    <string name="apply"><b>Apply</b></string>
+    <string name="application_stages_heading"><b>Applications</b></string>
+    <string name="application_stages_search_tab_hint">Search</string>
 </resources>
