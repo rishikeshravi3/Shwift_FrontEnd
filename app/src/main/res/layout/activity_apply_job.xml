@@ -43,7 +43,8 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#ACACAC"
-        android:paddingStart="16dp"/>
+        android:paddingStart="16dp"
+        />
 
 
     <TextView
