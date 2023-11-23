@@ -19,11 +19,6 @@
         <activity
             android:name=".Filter"
             android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
             </activity>
 
         <meta-data
@@ -32,13 +27,7 @@
 
         <activity
             android:name=".Sign_up_screen"
-            android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
+            android:exported="false">
         </activity>
         <activity
             android:name=".account_setup_user_info"
@@ -67,13 +56,10 @@
         <activity
             android:name=".onboarding"
             android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity
             android:name=".create_New_Password"
