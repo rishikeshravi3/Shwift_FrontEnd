@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+        <LinearLayout
+            android:id="@+id/HeaderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/back_arrow"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="Profile"
+                android:layout_gravity="end|bottom"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+        <ImageButton
+            android:id="@+id/imageView1"
+            android:layout_width="173dp"
+            android:layout_height="131dp"
+            android:layout_below="@id/HeaderLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/custom_uploiadimage_button"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/txt_firstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@id/imageView1"
+            android:text="First Name"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/FirstName_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/txt_firstname"
+            android:background="@drawable/chip_background"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC"
+            />
+        <TextView
+            android:id="@+id/txt_MiddleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@id/FirstName_profile"
+            android:text="Middle Name"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MiddleName_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/txt_MiddleName"
+            android:background="@drawable/chip_background"
+            android:hint="Middle Name"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC"
+            />
+
+        <TextView
+            android:id="@+id/txt_LastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@id/MiddleName_profile"
+            android:text="Last Name"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/LastName_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/txt_LastName"
+            android:background="@drawable/chip_background"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC"
+            />
+
+
+
+
+
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/GenderInputLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/PhoneNumber_signup"-->
+        <!--            android:layout_marginTop="17dp"-->
+        <!--            app:boxBackgroundMode="none"-->
+        <!--            app:startIconTint="#ACACAC">-->
+
+        <TextView
+            android:id="@+id/txt_CurrentPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@id/LastName_profile"
+            android:text="Current Position"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Current_position_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/txt_CurrentPosition"
+            android:background="@drawable/chip_background"
+            android:drawableEnd="@drawable/custom_arrow_icon"
+            android:dropDownVerticalOffset="2dp"
+            android:hint="Current Position"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC" />
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <Button
+            android:id="@+id/profileDetails_savebtn"
+            android:background="@drawable/custom_background_button"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/Current_position_profile"
+            android:text="Save"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+
+    </RelativeLayout>
+</ScrollView>
