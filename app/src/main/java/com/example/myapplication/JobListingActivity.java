@@ -13,10 +13,13 @@ import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -60,10 +63,14 @@ public class JobListingActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     String s =  response.body().string();
-
+                    Gson g = new Gson();
+                    List<JobModel> ss = g.fromJson(s, new TypeToken<List<JobModel>>(){}.getType());
+                    JobModel p = g.fromJson(s, JobModel.class);
                     System.out.println(s);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
