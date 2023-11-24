@@ -12,7 +12,9 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -21,6 +23,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListPopupWindow;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Intent;
@@ -70,8 +74,12 @@ public class Sign_up_screen extends Activity {
             }
         });
 
-        Toasttemp.setOnClickListener(v->{
-            Toast.makeText(this, "Implementation in Progress...", Toast.LENGTH_LONG).show();
+        Toasttemp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopup(v);
+
+            }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,5 +205,34 @@ public class Sign_up_screen extends Activity {
         canvas.drawBitmap(bitmap, rect, rect, paint);
 
         return output;
+    }
+
+    private void showPopup(View anchorView) {
+        // Inflate the popup_layout.xml
+        View popupView = LayoutInflater.from(this).inflate(R.layout.popup_layout, null);
+
+        // Create a PopupWindow
+        PopupWindow popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // Set a focusable flag to make it respond to touch events outside of the popup
+        popupWindow.setFocusable(true);
+        int[] location = new int[2];
+        anchorView.getLocationOnScreen(location);
+        int anchorX = location[0] + anchorView.getWidth() / 2;
+        int anchorY = location[1] + anchorView.getHeight() / 2;
+
+        // Show the popup at the center of the screen, you can customize the position
+        popupWindow.showAtLocation(anchorView,Gravity.CENTER, 0, 0);
+
+//        // Set up the ImageView and TextView in the popup layout
+//        ImageView iconImageView = popupView.findViewById(R.id.iconImageView);
+//        TextView textView = popupView.findViewById(R.id.textView);
+
+        // You can customize the icon and text here
+        // Example: iconImageView.setImageResource(R.drawable.your_custom_icon);
+        // Example: textView.setText("Your custom text");
     }
 }
