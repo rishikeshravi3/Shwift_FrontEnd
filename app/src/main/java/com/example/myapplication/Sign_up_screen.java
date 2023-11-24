@@ -297,7 +297,6 @@ public class Sign_up_screen extends Activity {
                         // If the status code is not 200, handle the error or show an appropriate message
                         Toast.makeText(Sign_up_screen.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
                     }
-                    SignUpModel responseFromAPI = response.body();
                     // on below line we are getting our data from modal class and adding it to our string.
                     String responseString = "Response Code : " + response.code();
                     System.out.println(responseString);
