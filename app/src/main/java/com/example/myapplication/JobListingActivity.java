@@ -9,17 +9,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.myapplication.APIHelper.APIClient;
+import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.JsonObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class JobListingActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    APIInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -43,7 +54,25 @@ public class JobListingActivity extends AppCompatActivity {
             return false;
         });
 
-        // data to populate the RecyclerView with
+        Call<ResponseBody> call = apiInterface.getJobList();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String s =  response.body().string();
+
+                    System.out.println(s);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
         ArrayList<String> test = new ArrayList<>();
         test.add("Test 1");
         test.add("Test 2");
