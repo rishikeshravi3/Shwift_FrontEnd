@@ -14,7 +14,6 @@ import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -35,7 +34,7 @@ public class JobListingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_job_listing);
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();

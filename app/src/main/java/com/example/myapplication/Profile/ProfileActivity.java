@@ -22,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
         bottomNavigationView.setSelectedItemId(R.id.saved_jobs);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
