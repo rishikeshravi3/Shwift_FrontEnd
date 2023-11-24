@@ -44,15 +44,6 @@
         android:textAppearance="@style/onboarding_info_text"
         android:translationY="-2.9sp" />
 
-    <ImageView
-        android:id="@+id/onboarding_info_3_page"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="568dp"
-        app:srcCompat="@drawable/onboarding_info_3_page"
-        tools:ignore="ContentDescription" />
-
     <Button
         android:id="@+id/onboarding_info_3_button"
         android:layout_width="320dp"

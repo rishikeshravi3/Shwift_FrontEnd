@@ -14,7 +14,10 @@ public class expertise_activity extends AppCompatActivity {
         setContentView(R.layout.activity_expertise);
         Button to_signupPage = findViewById(R.id.expertcontinuebtn);
         to_signupPage.setOnClickListener(v -> {
-            Intent intent=new Intent(this,Sign_up_screen.class);
+            Intent intent = getIntent();
+            String dataFromActivity2 = intent.getStringExtra("PasswordKey");
+             intent=new Intent(this,Sign_up_screen.class);
+             intent.putExtra("PasswordKey",dataFromActivity2);
             startActivity(intent);
         });
     }

@@ -2,12 +2,16 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,6 +37,8 @@ import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,13 +60,18 @@ public class Sign_up_screen extends Activity {
     private Button uploadButton;
     private AutoCompleteTextView genderEditText;
     APIInterface apiInterface;
+    private static final String PREF_NAME = "MyPrefs";
+    private static final String KEY_EMAIL = "emailKey";
+
+    private Intent intent;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
-
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString(KEY_EMAIL, "");
         imageView = findViewById(R.id.imageView);
         TextInputEditText FName = findViewById(R.id.FirstName_signup);
         TextInputEditText LName = findViewById(R.id.MiddleLastName_signup);
@@ -68,6 +79,7 @@ public class Sign_up_screen extends Activity {
         TextInputEditText PhoneNo = findViewById(R.id.PhoneNumber_signup);
         Button Continue = findViewById(R.id.signup_screen__continue_btn);
         genderEditText = findViewById(R.id.Gender_signup);
+        mail.setText(savedEmail);
 
 
         genderEditText.setOnTouchListener(new View.OnTouchListener() {
@@ -88,9 +100,16 @@ public class Sign_up_screen extends Activity {
                 String LastName =LName.getText().toString();
                 String Email =mail.getText().toString();
                 String Phone =PhoneNo.getText().toString();
-                postData(FirstName,LastName,Email,"@HARRWEW",Phone);
-                showPopup(v);
 
+                if (FirstName.isEmpty() || LastName.isEmpty() || Email.isEmpty() || Phone.isEmpty()) {
+                    // Show an error message or toast indicating that all fields are required
+                    Toast.makeText(Sign_up_screen.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                    return; // Stop further execution
+                }else {
+                    Intent intent = getIntent();
+                    String pswd = intent.getStringExtra("PasswordKey");
+                    postData(FirstName, LastName, Email, pswd, Phone);
+                }
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -145,17 +164,36 @@ public class Sign_up_screen extends Activity {
             // Get the selected image URI
             // Update the ImageView with the selected image
             Uri selectedImageUri = data.getData();
-
+            //String imagePath = saveImageToLocal(selectedImageUri);
             Bitmap selectedBitmap = getBitmapFromUri(selectedImageUri);
 
             // Create a circular bitmap
             Bitmap circularBitmap = getCircularBitmap(selectedBitmap);
-
+            String imagePath = saveImageToLocal(selectedImageUri);
+            Intent intent = new Intent(this, JobListingActivity.class);
+            intent.putExtra("imagePath", imagePath);
             // Update the ImageView with the circular image
             imageView.setImageBitmap(circularBitmap);
-
-            imageView.setImageBitmap(circularBitmap);
             Toast.makeText(this,"Profile Image Updated",Toast.LENGTH_SHORT).show();
+        }
+    }
+    private String saveImageToLocal(Uri imageUri) {
+        try {
+            // Use ContentResolver to get a bitmap from the URI
+            Bitmap selectedBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+            // Save the bitmap to a file in local storage
+            String fileName = "profile_image.jpg";
+            File file = new File(getFilesDir(), fileName);
+            FileOutputStream fos = new FileOutputStream(file);
+            selectedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+
+            // Return the path of the saved image
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
     private void showGenderOptionsPopup() {
@@ -219,71 +257,68 @@ public class Sign_up_screen extends Activity {
         return output;
     }
 
-    private void showPopup(View anchorView) {
-        // Inflate the popup_layout.xml
-        View popupView = LayoutInflater.from(this).inflate(R.layout.popup_layout, null);
+    private class PostDataTask extends AsyncTask<SignUpModel, Void, Response<SignUpModel>> {
+        private ProgressDialog progressDialog;
 
-        // Create a PopupWindow
-        PopupWindow popupWindow = new PopupWindow(
-                popupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Show loader or progress dialog
+            progressDialog = ProgressDialog.show(Sign_up_screen.this, "Please wait", "Sending data...", true, false);
+        }
 
-        // Set a focusable flag to make it respond to touch events outside of the popup
-        popupWindow.setFocusable(true);
-        int[] location = new int[2];
-        anchorView.getLocationOnScreen(location);
-        int anchorX = location[0] + anchorView.getWidth() / 2;
-        int anchorY = location[1] + anchorView.getHeight() / 2;
+        @Override
+        protected Response<SignUpModel> doInBackground(SignUpModel... signUpModels) {
+            // Execute the network operation in the background
+            Call<SignUpModel> call = apiInterface.createPost(signUpModels[0]);
+            try {
+                return call.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
 
-        // Show the popup at the center of the screen, you can customize the position
-        popupWindow.showAtLocation(anchorView,Gravity.CENTER, 0, 0);
+        @Override
+        protected void onPostExecute(Response<SignUpModel> response) {
+            super.onPostExecute(response);
+            // Dismiss the loader or progress dialog
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
 
-//        // Set up the ImageView and TextView in the popup layout
-//        ImageView iconImageView = popupView.findViewById(R.id.iconImageView);
-//        TextView textView = popupView.findViewById(R.id.textView);
-
-        // You can customize the icon and text here
-        // Example: iconImageView.setImageResource(R.drawable.your_custom_icon);
-        // Example: textView.setText("Your custom text");
+            if (response != null) {
+                try {
+                    if (response.isSuccessful()) {
+                        // Show the popup only if the status code is 200
+                         intent = new Intent(Sign_up_screen.this, JobListingActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // If the status code is not 200, handle the error or show an appropriate message
+                        Toast.makeText(Sign_up_screen.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                    SignUpModel responseFromAPI = response.body();
+                    // on below line we are getting our data from modal class and adding it to our string.
+                    String responseString = "Response Code : " + response.code();
+                    System.out.println(responseString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // Handle the case where the response is null or an exception occurred
+                Toast.makeText(Sign_up_screen.this, "Error occurred", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
-    private void postData(String name, String lastName,String emailId,String pSWD,String phoneNum) {
-
-        // below line is for displaying our progress bar.
+    private void postData(String name, String lastName, String emailId, String pSWD, String phoneNum) {
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        // on below line we are creating a retrofit
-        // builder and passing our base url
-        // below line is to create an instance for our retrofit api class.
         String accType = "employee";
-        // passing data from our text fields to our modal class.
-        SignUpModel modal = new SignUpModel(name,lastName,emailId,pSWD,accType,phoneNum);
+        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum);
 
-        // calling a method to create a post and passing our modal class.
-        Call<SignUpModel> call = apiInterface.createPost(modal);
-
-        // on below line we are executing our method.
-        call.enqueue(new Callback<SignUpModel>() {
-            @Override
-            public void onResponse(Call<SignUpModel> call, Response<SignUpModel> response) {
-              try {
-                  SignUpModel responseFromAPI = response.body();
-                  // on below line we are getting our data from modal class and adding it to our string.
-                  String responseString = "Response Code : " + response.code();
-                  System.out.println(responseString);
-              } catch (Exception e) {
-                  e.printStackTrace();
-              }
-                // below line we are setting our
-                // string to our text view.
-            }
-
-            @Override
-            public void onFailure(Call<SignUpModel> call, Throwable t) {
-
-                t.printStackTrace();
-            }
-        });
+        // Execute the network operation using AsyncTask
+        new PostDataTask().execute(modal);
     }
-
 }
+
+

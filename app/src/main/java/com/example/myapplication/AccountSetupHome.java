@@ -22,7 +22,10 @@ public class AccountSetupHome extends AppCompatActivity {
         setContentView(R.layout.activity_account_setup_home);
         Button to_accountsetup = findViewById(R.id.setupHome1);
         to_accountsetup.setOnClickListener(v -> {
-            Intent intent=new Intent(this,expertise_activity.class);
+            Intent intent = getIntent();
+            String dataFromActivity1 = intent.getStringExtra("PasswordKey");
+            intent=new Intent(this,expertise_activity.class);
+            intent.putExtra("PasswordKey", dataFromActivity1);
             startActivity(intent);
         });
 //        Chip to_color_findJob_chip = findViewById(R.id.findJob_chip_home);
