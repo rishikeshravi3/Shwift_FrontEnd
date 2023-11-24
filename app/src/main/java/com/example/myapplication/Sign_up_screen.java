@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Canvas;
@@ -24,17 +22,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
+import com.example.myapplication.APIHelper.APIClient;
+import com.example.myapplication.APIHelper.APIInterface;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
@@ -43,6 +39,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 // MainActivity.java
 public class Sign_up_screen extends Activity {
@@ -53,15 +53,23 @@ public class Sign_up_screen extends Activity {
     private ImageButton imageView;
     private Button uploadButton;
     private AutoCompleteTextView genderEditText;
+    APIInterface apiInterface;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
+
         imageView = findViewById(R.id.imageView);
-        Button Toasttemp = findViewById(R.id.signup_screen__continue_btn);
+        TextInputEditText FName = findViewById(R.id.FirstName_signup);
+        TextInputEditText LName = findViewById(R.id.MiddleLastName_signup);
+        TextInputEditText mail = findViewById(R.id.Email_signup);
+        TextInputEditText PhoneNo = findViewById(R.id.PhoneNumber_signup);
+        Button Continue = findViewById(R.id.signup_screen__continue_btn);
         genderEditText = findViewById(R.id.Gender_signup);
+
+
         genderEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, android.view.MotionEvent event) {
@@ -73,10 +81,14 @@ public class Sign_up_screen extends Activity {
                 return false;
             }
         });
-
-        Toasttemp.setOnClickListener(new View.OnClickListener() {
+        Continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String FirstName =FName.getText().toString();
+                String LastName =LName.getText().toString();
+                String Email =mail.getText().toString();
+                String Phone =PhoneNo.getText().toString();
+                postData(FirstName,LastName,Email,"@HARRWEW",Phone);
                 showPopup(v);
 
             }
@@ -235,4 +247,43 @@ public class Sign_up_screen extends Activity {
         // Example: iconImageView.setImageResource(R.drawable.your_custom_icon);
         // Example: textView.setText("Your custom text");
     }
+
+    private void postData(String name, String lastName,String emailId,String pSWD,String phoneNum) {
+
+        // below line is for displaying our progress bar.
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        // on below line we are creating a retrofit
+        // builder and passing our base url
+        // below line is to create an instance for our retrofit api class.
+        String accType = "employee";
+        // passing data from our text fields to our modal class.
+        SignUpModel modal = new SignUpModel(name,lastName,emailId,pSWD,accType,phoneNum);
+
+        // calling a method to create a post and passing our modal class.
+        Call<SignUpModel> call = apiInterface.createPost(modal);
+
+        // on below line we are executing our method.
+        call.enqueue(new Callback<SignUpModel>() {
+            @Override
+            public void onResponse(Call<SignUpModel> call, Response<SignUpModel> response) {
+              try {
+                  SignUpModel responseFromAPI = response.body();
+                  // on below line we are getting our data from modal class and adding it to our string.
+                  String responseString = "Response Code : " + response.code();
+                  System.out.println(responseString);
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+                // below line we are setting our
+                // string to our text view.
+            }
+
+            @Override
+            public void onFailure(Call<SignUpModel> call, Throwable t) {
+
+                t.printStackTrace();
+            }
+        });
+    }
+
 }

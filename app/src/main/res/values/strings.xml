@@ -73,4 +73,10 @@
     <string name="apply"><b>Apply</b></string>
     <string name="application_stages_heading"><b>Applications</b></string>
     <string name="application_stages_search_tab_hint">Search</string>
+    <string name="work_experience">Work Experience</string>
+    <string name="enter_your_work_experience_below">Enter your work experience below</string>
+    <string name="enter_your_education_below">Enter your education below</string>
+    <string name="education">Education</string>
+    <string name="projects">Projects</string>
+    <string name="enter_your_projects_below">Enter your projects below</string>
 </resources>
