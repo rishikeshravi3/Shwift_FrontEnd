@@ -12,6 +12,6 @@
         android:layout_width="212dp"
         android:layout_height="325dp"
         android:layout_gravity="center"
-        android:src="@drawable/popup_image_icon" />
+        android:src="@drawable/popup_image" />
 
 </LinearLayout>
