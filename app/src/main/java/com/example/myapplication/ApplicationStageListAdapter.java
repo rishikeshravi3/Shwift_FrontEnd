@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ApplicationStageListAdapter extends RecyclerView.Adapter<ApplicationStageListAdapter.ViewHolder> {
     private ApplicationStageListData[] listdata;
+    private static ClickListener clickListener;
 
-    public ApplicationStageListAdapter(ApplicationStageListData[] listdata){
+    public ApplicationStageListAdapter(ApplicationStageListData[] listdata, ClickListener clickListener){
         this.listdata=listdata;
+        this.clickListener=clickListener;
     }
 
     @NonNull
@@ -47,6 +51,14 @@ public class ApplicationStageListAdapter extends RecyclerView.Adapter<Applicatio
             holder.status.setTextAppearance(R.style.application_stage_item_status_style_rejected);
             holder.status.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.application_stage_item_rejected_background));
         }
+
+//        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(v.getContext(), ApplicationStageOnClickActivity.class);
+//                startActivity(intent,v.getContext());
+//            }
+//        });
     }
 
     @Override
@@ -55,7 +67,7 @@ public class ApplicationStageListAdapter extends RecyclerView.Adapter<Applicatio
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView logo;
         public TextView role;
         public TextView company;
@@ -68,6 +80,19 @@ public class ApplicationStageListAdapter extends RecyclerView.Adapter<Applicatio
             this.company=(TextView)itemView.findViewById(R.id.application_stage_item_company);
             this.status=(TextView)itemView.findViewById(R.id.application_stage_item_status);
             constraintLayout=(ConstraintLayout)itemView.findViewById(R.id.application_stages_recycler_view);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v){
+            int position = getBindingAdapterPosition();
+            if(position>=0){
+                clickListener.onItemClick(position,v);
+            }
+        }
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
     }
 }

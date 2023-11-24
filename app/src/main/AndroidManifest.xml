@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -14,17 +15,17 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ApplicationStageOnClickActivity"
+            android:exported="false" />
+        <activity
             android:name=".Apply_Job"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".Filter"
-            android:exported="false">
-            </activity>
-
+            android:exported="false"></activity>
         <activity
             android:name=".Profile.ProfileSummaryActivity"
-            android:exported="false"
-        />
+            android:exported="false" />
         <activity
             android:name=".Profile.ContactInformationActivity"
             android:exported="false" />
@@ -36,15 +37,15 @@
             android:exported="false" />
         <activity
             android:name=".JobListingActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".ApplicationStagesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ApplicationStagesActivity"
-            android:exported="true" >
         </activity>
         <activity
             android:name=".ApplicantViewJobDescription"
@@ -57,8 +58,7 @@
 
         <activity
             android:name=".Sign_up_screen"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".account_setup_user_info"
             android:exported="false" />
@@ -85,12 +85,7 @@
             android:exported="true" />
         <activity
             android:name=".onboarding"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".create_New_Password"
             android:exported="false"

@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 public class ApplicationStagesActivity extends AppCompatActivity {
 
@@ -27,9 +31,16 @@ public class ApplicationStagesActivity extends AppCompatActivity {
 //        test data end
 
         RecyclerView recyclerView=findViewById(R.id.application_stages_recycler_view);
-        ApplicationStageListAdapter adapter=new ApplicationStageListAdapter(listData);
+        ApplicationStageListAdapter adapter=new ApplicationStageListAdapter(listData, new ApplicationStageListAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                Intent intent=new Intent(ApplicationStagesActivity.this, ApplicationStageOnClickActivity.class);
+                startActivity(intent);
+            }
+        });
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
     }
 }
