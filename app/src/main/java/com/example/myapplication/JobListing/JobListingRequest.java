@@ -1,4 +1,4 @@
 package com.example.myapplication.JobListing;
-public class JobListinRequest {
+public class JobListingRequest {
     public String emailId;
 }

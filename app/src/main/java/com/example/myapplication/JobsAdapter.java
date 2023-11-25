@@ -31,11 +31,13 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
 
     private List<JobModel> jobList;
     Context context;
+    int activityType; // 1 - JobListing, 2 - SavedJobs
 
-    public JobsAdapter(Context ctx, List<JobModel> jobs)
+    public JobsAdapter(Context ctx, List<JobModel> jobs, int actType)
     {
         context = ctx;
         jobList = jobs;
+        activityType = actType;
     }
 
     @Override
@@ -74,13 +76,58 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
         holder.bookmark.setOnClickListener(v -> {
             JobModel jobObj = jobList.get(position);
             if (jobObj.job_saved) {
-                deleteJob(holder, jobList.get(position));
-                jobObj.job_saved = false;
-                updateSavedIcon(holder, false);
+                if (activityType == 1) {
+                    deleteJob(holder, jobList.get(position));
+                    jobObj.job_saved = false;
+                    updateSavedIcon(holder, false);
+                } else {
+                    deleteJobInSavedJobs(holder, jobList.get(position));
+                }
             } else {
                 saveJob(holder, jobList.get(position));
             }
         });
+    }
+
+    private void deleteJobInSavedJobs(ViewHolder holder, JobModel jobObj) {
+        LoginModel user = Common.getUserData(context);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Dialog dialog = Common.progressDialog(context);
+        dialog.show();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(() -> {
+            SaveJobModel saveJobModel = new SaveJobModel();
+            saveJobModel.jobId = jobObj.job_id;
+            saveJobModel.emailId = user.email_id;
+            Call<ResponseBody> call = apiInterface.deleteSavedJob(saveJobModel);
+            try {
+                Response<ResponseBody> response = call.execute();
+                if (response.isSuccessful()) {
+                    return response.body().string();
+                } else {
+                    return null;
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        });
+
+        try {
+            String result = future.get();
+            if (result != null) {
+                int pos = jobList.indexOf(jobObj);
+                jobList.remove(jobObj);
+                notifyItemRemoved(pos);
+                notifyItemRangeChanged(pos, jobList.size());
+            } else {
+                Common.print(context, "Job delete failed");
+            }
+        } catch (Exception e) {
+
+        } finally {
+            executor.shutdown();
+            dialog.dismiss();
+        }
     }
 
     private void deleteJob(ViewHolder holder, JobModel jobObj) {

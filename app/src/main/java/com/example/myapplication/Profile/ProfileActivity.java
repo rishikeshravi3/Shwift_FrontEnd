@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.myapplication.Applications.ApplicationStagesActivity;
 import com.example.myapplication.JobListing.JobListingActivity;
+import com.example.myapplication.JobListing.SavedJobsActivity;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -32,8 +34,14 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (itemId == R.id.saved_jobs) {
+                startActivity(new Intent(getApplicationContext(), SavedJobsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             } else if (itemId == R.id.applications) {
+                startActivity(new Intent(getApplicationContext(), ApplicationStagesActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             } else if (itemId == R.id.profile) {
                 return true;
