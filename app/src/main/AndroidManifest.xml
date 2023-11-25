@@ -83,14 +83,12 @@
         <activity
             android:name=".expertise_activity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
         <activity
             android:name=".AccountSetupHome"
             android:exported="false" />
@@ -108,8 +106,11 @@
             android:exported="true" />
         <activity
             android:name=".onboarding"
-            android:exported="false">
-
+            android:exported="true">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
         </activity>
         <activity
             android:name=".create_New_Password"
