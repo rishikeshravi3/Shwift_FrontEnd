@@ -1,9 +1,11 @@
 package com.example.myapplication.Profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +25,7 @@ public class SkillActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skill);
-
+        Button save = findViewById(R.id.button_save_skill);
         editSkill = findViewById(R.id.editSkill);
         chipContainer = findViewById(R.id.chipContainer);
         chipFromFetch();
@@ -41,6 +43,43 @@ public class SkillActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        save.setOnClickListener(v -> {
+            UpdateProfileRequest req = new UpdateProfileRequest();
+            req.col_name="emp_skills";
+            req.value = getSkillsFromChips();
+            UpdateProfileService.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
+                @Override
+                public void onUpdateSuccess() {
+                    // Update successful, start the new activity
+                    Intent intent = new Intent(SkillActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onUpdateFailure() {
+                    // Handle update failure if needed
+                    Toast.makeText(SkillActivity.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        });
+    }
+
+    private String getSkillsFromChips() {
+        StringBuilder skillsBuilder = new StringBuilder();
+        for (int i = 0; i < chipContainer.getChildCount(); i++) {
+            if (chipContainer.getChildAt(i) instanceof Chip) {
+                Chip chip = (Chip) chipContainer.getChildAt(i);
+                String skillText = chip.getText().toString().trim();
+                skillsBuilder.append(skillText);
+                if (i < chipContainer.getChildCount() - 1) {
+                    skillsBuilder.append(","); // Add comma between skills
+                }
+            }
+        }
+        return skillsBuilder.toString();
     }
 private void chipFromFetch(){
     ProfileResponseModel obj = Common.getProfileData(this);
