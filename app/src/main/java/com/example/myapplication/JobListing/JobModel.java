@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.JobListing;
 public class JobModel {
     public String job_id;
     public String job_desc;

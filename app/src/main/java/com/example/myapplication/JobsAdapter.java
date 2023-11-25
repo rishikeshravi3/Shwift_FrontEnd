@@ -8,13 +8,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.JobListing.JobModel;
+
 import java.util.List;
 
 public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
 
-    private List<String> jobList;
+    private List<JobModel> jobList;
+    Context context;
 
-    public JobsAdapter(List<String> jobs) {
+    public JobsAdapter(Context ctx, List<JobModel> jobs)
+    {
+        context = ctx;
         jobList = jobs;
     }
 
@@ -29,8 +34,11 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String s = jobList.get(position);
-        holder.txtRole.setText(s);
+        JobModel obj = jobList.get(position);
+        holder.txtRole.setText(obj.job_title);
+        holder.txtCompanyName.setText(obj.recruiter_name);
+        holder.txtLocation.setText(obj.job_location);
+        holder.txtSalary.setText(obj.pay_scale);
     }
 
     @Override

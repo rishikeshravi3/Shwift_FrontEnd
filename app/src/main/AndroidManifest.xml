@@ -42,7 +42,7 @@
             android:name=".SavedJobsActivity"
             android:exported="false" />
         <activity
-            android:name=".JobListingActivity"
+            android:name=".JobListing.JobListingActivity"
             android:exported="false" />
 
         <meta-data
