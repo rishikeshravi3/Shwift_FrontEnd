@@ -60,7 +60,7 @@
         android:paddingVertical="10dp">
 
       <EditText
-          android:id="@+id/editSummary"
+          android:id="@+id/editSkill"
           android:layout_width="317dp"
           android:layout_height="wrap_content"
           android:layout_gravity="top|center"

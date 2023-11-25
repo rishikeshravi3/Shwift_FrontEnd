@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.LoginModel;
+import com.example.myapplication.Profile.ProfileResponseModel;
 import com.example.myapplication.R;
 import com.google.gson.Gson;
 
@@ -36,5 +37,15 @@ public class Common {
         Gson gson = new Gson();
         LoginModel user = gson.fromJson(userData, LoginModel.class);
         return user;
+    }
+
+    public static ProfileResponseModel getProfileData(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
+        String jsonStr = sharedPreferences.getString(Constants.KEY_PROFILE_DATA, "");
+
+// Use Gson to convert the JSON string back to a ProfileResponseModel object
+        Gson gson = new Gson();
+        ProfileResponseModel profileData = gson.fromJson(jsonStr, ProfileResponseModel.class);
+        return profileData;
     }
 }

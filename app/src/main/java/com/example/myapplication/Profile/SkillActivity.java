@@ -11,35 +11,60 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Helper.Common;
 import com.example.myapplication.R;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.material.chip.Chip;
 
 public class SkillActivity extends AppCompatActivity {
-    private EditText editSummary;
+    private EditText editSkill;
     private FlexboxLayout chipContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skill);
 
-        editSummary = findViewById(R.id.editSummary);
+        editSkill = findViewById(R.id.editSkill);
         chipContainer = findViewById(R.id.chipContainer);
+        chipFromFetch();
 
-        editSummary.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+        editSkill.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE || (event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
                     // Handle the "Enter" key press
-                    addChip(editSummary.getText().toString());
-                    editSummary.setText(""); // Clear the EditText
+                    addChip(editSkill.getText().toString());
+                    editSkill.setText(""); // Clear the EditText
                     return true;
                 }
                 return false;
             }
         });
     }
+private void chipFromFetch(){
+    ProfileResponseModel obj = Common.getProfileData(this);
+    if(obj!=null){
+        String skillsString = obj.emp_skills;
+        String[] skillsArray = skillsString.split(",");
+        for (String skill : skillsArray) {
+        Chip chip = new Chip(this);
+        chip.setText(skill.trim());
+        chip.setCloseIconVisible(true);
+        chip.setOnCloseIconClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle chip removal
+                chipContainer.removeView(chip);
+            }
+        });
 
+        chipContainer.addView(chip);
+    }
+    }else{
+        Toast.makeText(this, "Please enter a non-empty skill", Toast.LENGTH_SHORT).show();
+    }
+}
     private void addChip(String text) {
         if (!text.trim().isEmpty()) {
             Chip chip = new Chip(this);

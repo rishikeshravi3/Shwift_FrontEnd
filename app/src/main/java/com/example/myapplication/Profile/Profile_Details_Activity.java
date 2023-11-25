@@ -37,7 +37,11 @@ public class Profile_Details_Activity extends AppCompatActivity {
         FirstName.setText(obj.first_name);
         EditText LastName = findViewById(R.id.LastName_profile);
         LastName.setText(obj.last_name);
-
+        EditText CurrentPosition = findViewById(R.id.Current_position_profile);
+        ProfileResponseModel profileData = Common.getProfileData(this);
+        if(profileData!=null) {
+            CurrentPosition.setText(profileData.curr_position);
+        }
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
