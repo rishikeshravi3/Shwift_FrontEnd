@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
@@ -31,6 +32,9 @@
             android:name=".Profile.SkillActivity"
             android:exported="false"></activity>
         <activity
+            android:name=".ApplicationStageOnClickActivity"
+            android:exported="false" />
+        <activity
             android:name=".Apply_Job"
             android:exported="false" />
         <activity
@@ -60,6 +64,7 @@
         <activity
             android:name=".ApplicationStagesActivity"
             android:exported="true"></activity>
+
         <activity
             android:name=".ApplicantViewJobDescription"
             android:exported="true"></activity>
@@ -73,8 +78,7 @@
 
         <activity
             android:name=".Sign_up_screen"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".account_setup_user_info"
             android:exported="false" />

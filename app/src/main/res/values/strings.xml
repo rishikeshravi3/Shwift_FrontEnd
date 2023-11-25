@@ -73,10 +73,15 @@
     <string name="apply"><b>Apply</b></string>
     <string name="application_stages_heading"><b>Applications</b></string>
     <string name="application_stages_search_tab_hint">Search</string>
+<<<<<<< HEAD
     <string name="work_experience">Work Experience</string>
     <string name="enter_your_work_experience_below">Enter your work experience below</string>
     <string name="enter_your_education_below">Enter your education below</string>
     <string name="education">Education</string>
     <string name="projects">Projects</string>
     <string name="enter_your_projects_below">Enter your projects below</string>
+=======
+    <string name="application_stage_on_click_heading_text"><b>Application Status</b></string>
+    <string name="application_stage_on_click_your_status_text">Your Application Status</string>
+>>>>>>> db6b2bbc22af275f41bcaeed29f6e07d72fa3d87
 </resources>
