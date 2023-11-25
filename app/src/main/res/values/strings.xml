@@ -117,4 +117,13 @@
     <string name="job_details_activity_Maxpay_text">Maximum pay</string>
     <string name="job_details_activity_Maxpay_hint">Maximum pay per month</string>
     <string name="job_details_activity_experience_text">Experience</string>
+    <string name="job_details_activity_priority_text">Job priority</string>
+    <string name="job_details_activity_pay_hint">Hourly pay($)</string>
+    <string name="job_details_activity_requiremnets_text">enter comma separated required skills</string>
+    <string name="job_details_activity_hours_text">Number of hours</string>
+    <string name="job_details_activity_hours_hint">Number of hours</string>
+    <string name="job_details_activity_recruiter_text">Recruiter Name</string>
+    <string name="job_details_activity_recruiter_hint">Recruiter name</string>
+    <string name="job_details_activity_startDate_text">Start date</string>
+    <string name="job_details_activity_applicationDeadline_text">Application deadline</string>
 </resources>

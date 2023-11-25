@@ -64,10 +64,10 @@
             />
 
         <TextView
-            android:id="@+id/job_details_activity_vacancies"
+            android:id="@+id/job_details_activity_priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_vacancies_text"
+            android:text="@string/job_details_activity_priority_text"
             app:layout_constraintTop_toBottomOf="@id/job_details_activity_jobTitle_EditText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="17dp"
@@ -75,15 +75,13 @@
             android:textSize="16sp"
             android:textColor="#000000"/>
 
-        <EditText
-            android:id="@+id/job_details_activity_vacancies_EditText"
+        <Spinner
+            android:id="@+id/job_details_activity_priority_EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="@string/job_details_activity_vacancies_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_vacancies"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_priority"
             android:layout_marginTop="9dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -93,6 +91,7 @@
             android:paddingRight="17dp"
             android:textAppearance="@style/choose_whet"
             android:background="@drawable/application_stages_search_bar_background"
+            android:spinnerMode="dropdown"
             />
 
         <TextView
@@ -100,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/job_details_activity_location_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_vacancies_EditText"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_priority_EditText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="32dp"
@@ -192,42 +191,11 @@
             />
 
         <TextView
-            android:id="@+id/job_details_activity_experience"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_experience_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_jobType_EditText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="17dp"
-            android:layout_marginLeft="32dp"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
-        <Spinner
-            android:id="@+id/job_details_activity_experience_EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_experience"
-            android:layout_marginTop="9dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:paddingTop="9dp"
-            android:paddingBottom="9dp"
-            android:paddingLeft="17dp"
-            android:paddingRight="17dp"
-            android:textAppearance="@style/choose_whet"
-            android:spinnerMode="dropdown"
-            android:background="@drawable/application_stages_search_bar_background"
-            />
-
-        <TextView
             android:id="@+id/job_details_activity_workType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/job_details_activity_WorkType_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_experience_EditText"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_jobType_EditText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="32dp"
@@ -254,10 +222,10 @@
             />
 
         <TextView
-            android:id="@+id/job_details_activity_Minpay"
+            android:id="@+id/job_details_activity_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_Minpay_text"
+            android:text="@string/job_details_activity_pay_text"
             app:layout_constraintTop_toBottomOf="@id/job_details_activity_workType_EditText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="17dp"
@@ -266,14 +234,14 @@
             android:textColor="#000000"/>
 
         <EditText
-            android:id="@+id/job_details_activity_Minpay_EditText"
+            android:id="@+id/job_details_activity_pay_EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="@string/job_details_activity_Minpay_hint"
+            android:hint="@string/job_details_activity_pay_hint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_Minpay"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_pay"
             android:layout_marginTop="9dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -286,11 +254,11 @@
             />
 
         <TextView
-            android:id="@+id/job_details_activity_Maxpay"
+            android:id="@+id/job_details_activity_requirements"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_Maxpay_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_Minpay_EditText"
+            android:text="@string/job_details_activity_requiremnets_text"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_pay_EditText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="32dp"
@@ -298,78 +266,14 @@
             android:textColor="#000000"/>
 
         <EditText
-            android:id="@+id/job_details_activity_Maxpay_EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="@string/job_details_activity_Maxpay_hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_Maxpay"
-            android:layout_marginTop="9dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:paddingTop="9dp"
-            android:paddingBottom="9dp"
-            android:paddingLeft="17dp"
-            android:paddingRight="17dp"
-            android:textAppearance="@style/choose_whet"
-            android:background="@drawable/application_stages_search_bar_background"
-            />
-
-        <TextView
-            android:id="@+id/job_details_activity_industryType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_industryType_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_Maxpay_EditText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="17dp"
-            android:layout_marginLeft="32dp"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
-        <Spinner
-            android:id="@+id/job_details_activity_industryType_EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_industryType"
-            android:layout_marginTop="9dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:paddingTop="9dp"
-            android:paddingBottom="9dp"
-            android:paddingLeft="17dp"
-            android:paddingRight="17dp"
-            android:textAppearance="@style/choose_whet"
-            android:background="@drawable/application_stages_search_bar_background"
-            android:spinnerMode="dropdown"
-            android:text="@string/job_details_activity_industryType_text"
-            />
-
-        <TextView
-            android:id="@+id/job_details_activity_rolres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_rolres_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_industryType_EditText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="17dp"
-            android:layout_marginLeft="32dp"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
-        <EditText
-            android:id="@+id/job_details_activity_rolres_EditText"
+            android:id="@+id/job_details_activity_requirements_EditText"
             android:layout_width="match_parent"
             android:layout_height="216dp"
-            android:inputType="textMultiLine"
-            android:hint="@string/job_details_activity_rolres_text"
+            android:inputType="text"
+            android:hint="@string/job_details_activity_requiremnets_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_rolres"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_requirements"
             android:layout_marginTop="9dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -383,42 +287,11 @@
             />
 
         <TextView
-            android:id="@+id/job_details_activity_education"
+            android:id="@+id/job_details_activity_hours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_education_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_rolres_EditText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="17dp"
-            android:layout_marginLeft="32dp"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
-        <Spinner
-            android:id="@+id/job_details_activity_education_EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_education"
-            android:layout_marginTop="9dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:paddingTop="9dp"
-            android:paddingBottom="9dp"
-            android:paddingLeft="17dp"
-            android:paddingRight="17dp"
-            android:textAppearance="@style/choose_whet"
-            android:background="@drawable/application_stages_search_bar_background"
-            android:spinnerMode="dropdown"
-            />
-
-        <TextView
-            android:id="@+id/job_details_activity_skills"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_skills_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_education_EditText"
+            android:text="@string/job_details_activity_hours_text"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_requirements_EditText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="32dp"
@@ -426,14 +299,14 @@
             android:textColor="#000000"/>
 
         <EditText
-            android:id="@+id/job_details_activity_skills_EditText"
+            android:id="@+id/job_details_activity_hours_EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:hint="@string/job_details_activity_skills_hint"
+            android:inputType="number"
+            android:hint="@string/job_details_activity_hours_hint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_skills"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_hours"
             android:layout_marginTop="9dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -447,11 +320,44 @@
             />
 
         <TextView
-            android:id="@+id/job_details_activity_hiringDeadline"
+            android:id="@+id/job_details_activity_recruiter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/job_details_activity_hiringDeadline_text"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_skills_EditText"
+            android:text="@string/job_details_activity_recruiter_text"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_hours_EditText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="32dp"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <EditText
+            android:id="@+id/job_details_activity_recruiter_EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/job_details_activity_recruiter_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_recruiter"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:textAppearance="@style/choose_whet"
+            android:background="@drawable/application_stages_search_bar_background"
+            android:gravity="top"
+            />
+
+        <TextView
+            android:id="@+id/job_details_activity_startDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/job_details_activity_startDate_text"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_recruiter_EditText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="32dp"
@@ -459,12 +365,43 @@
             android:textColor="#000000"/>
 
         <TextView
-            android:id="@+id/job_details_activity_hiringDeadline_EditText"
+            android:id="@+id/job_details_activity_startDate_EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_hiringDeadline"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_startDate"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:hint="DD/MM/YYYY"
+            android:textAppearance="@style/choose_whet"
+            android:background="@drawable/application_stages_search_bar_background"
+            android:gravity="top"/>
+
+        <TextView
+            android:id="@+id/job_details_activity_applicationDeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/job_details_activity_applicationDeadline_text"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_startDate_EditText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="32dp"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/job_details_activity_applicationDeadline_EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_applicationDeadline"
             android:layout_marginTop="9dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
@@ -481,7 +418,7 @@
             android:id="@+id/job_details_activity_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/job_details_activity_hiringDeadline_EditText"
+            app:layout_constraintTop_toBottomOf="@id/job_details_activity_applicationDeadline_EditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

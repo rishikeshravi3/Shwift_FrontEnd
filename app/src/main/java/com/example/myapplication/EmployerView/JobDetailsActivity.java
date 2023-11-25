@@ -3,6 +3,7 @@ package com.example.myapplication.EmployerView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,83 +18,99 @@ import com.example.myapplication.R;
 import java.util.Calendar;
 
 public class JobDetailsActivity extends AppCompatActivity {
-    String[] itemsIndustry;
-    String[] itemsEducation;
+
     String[] itemsWork;
 
     String[] itemsJob;
-    String[] itemsExperience;
+    String[] itemPriority;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_details);
 
-        Spinner industryType = findViewById(R.id.job_details_activity_industryType_EditText);
-        Spinner education = findViewById(R.id.job_details_activity_education_EditText);
-        Spinner work=findViewById(R.id.job_details_activity_workType_EditText);
-        Spinner job=findViewById(R.id.job_details_activity_jobType_EditText);
-        Spinner experience=findViewById(R.id.job_details_activity_experience_EditText);
-        TextView date=findViewById(R.id.job_details_activity_hiringDeadline_EditText);
+        Spinner work = findViewById(R.id.job_details_activity_workType_EditText);
+        Spinner job = findViewById(R.id.job_details_activity_jobType_EditText);
+        Spinner priority=findViewById(R.id.job_details_activity_priority_EditText);
+        TextView startDate=findViewById(R.id.job_details_activity_startDate_EditText);
+        TextView applicationDeadline=findViewById(R.id.job_details_activity_applicationDeadline_EditText);
 
-        date.setOnClickListener(new View.OnClickListener() {
+        startDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar cldr =Calendar.getInstance();
-                int day=cldr.get(Calendar.DAY_OF_MONTH);
-                int month=cldr.get(Calendar.MONTH);
-                int year=cldr.get(Calendar.YEAR);
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
                 DatePickerDialog picker = new DatePickerDialog(JobDetailsActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        date.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                        startDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                     }
-                },year,month,day);
-                picker.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+                }, year, month, day);
+                picker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 picker.show();
             }
         });
 
-        itemsIndustry = new String[]{"Accounting and Finance",
-                "Administration",
-                "Architecture and Engineering",
-                "Arts and Sports",
-                "Customer Service",
-                "Education and Training",
-                "General Services",
-                "Health and Medical",
-                "Hospitality and Tourism",
-                "Human Resources",
-                "IT and Software",
-                "Legal",
-                "Management and Consultancy",
-                "Manufacturing and Production",
-                "Media and Creatives",
-                "Public Services and NGOs",
-                "Safety and Security",
-                "Sales and Marketing",
-                "Sciences",
-                "Supply Chain",
-                "Writing and Content"
-        };
+        applicationDeadline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                DatePickerDialog picker = new DatePickerDialog(JobDetailsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        applicationDeadline.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+                }, year, month, day);
+                picker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                picker.show();
+            }
+        });
 
-        itemsEducation=new String[]{"Less Than High School",
-        "High School","Diploma","Bachelor's Degree","Master's Degree","Doctoral or Professional Degree"};
 
-        itemsWork=new String[]{"Onsite","Remote"};
-        itemsJob=new String[]{"Full Time","Part Time","Freelance","Contractual"};
-        itemsExperience=new String[]{"No Experience","1 - 5 Years","6 - 10 Years","More than 10 Years"};
+        itemsWork = new String[]{"Onsite", "Remote"};
+        itemsJob = new String[]{"Full Time", "Part Time"};
+        itemPriority=new String[]{"High","Medium","Low"};
 
-        ArrayAdapter<String> adapterIndustry=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,itemsIndustry);
-        industryType.setAdapter(adapterIndustry);
-        ArrayAdapter<String> adapterEducation=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,itemsEducation);
-        education.setAdapter(adapterEducation);
-        ArrayAdapter<String> adapterWork=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,itemsWork);
+
+        ArrayAdapter<String> adapterWork = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsWork);
         work.setAdapter(adapterWork);
-        ArrayAdapter<String> adapterJob=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,itemsJob);
+        ArrayAdapter<String> adapterJob = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsJob);
         job.setAdapter(adapterJob);
-        ArrayAdapter<String> adapterExperience=new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,itemsExperience);
-        experience.setAdapter(adapterExperience);
-    }
+        ArrayAdapter<String> adapterPriority = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemPriority);
+        priority.setAdapter(adapterPriority);
 
+        Button button=findViewById(R.id.job_details_activity_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView jobTitle=findViewById(R.id.job_details_activity_jobTitle_EditText);
+                TextView jobDesc=findViewById(R.id.job_details_activity_description_EditText);
+                TextView jobRequirement=findViewById(R.id.job_details_activity_requirements_EditText);
+                TextView pay=findViewById(R.id.job_details_activity_pay_EditText);
+                TextView hours=findViewById(R.id.job_details_activity_hours_EditText);
+                TextView jobLocation =findViewById(R.id.job_details_activity_location_EditText);
+                TextView recruiter=findViewById(R.id.job_details_activity_recruiter_EditText);
+                Intent intent=new Intent(JobDetailsActivity.this, JobDetailsActivityPreview.class);
+                intent.putExtra("jobTitle",jobTitle.getText());
+                intent.putExtra("jobDesc",jobDesc.getText());
+                intent.putExtra("jobReq",jobRequirement.getText());
+                intent.putExtra("workType",work.getSelectedItem().toString());
+                intent.putExtra("jobPriority",priority.getSelectedItem().toString());
+                intent.putExtra("pay",pay.getText());
+                intent.putExtra("hours",hours.getText());
+                intent.putExtra("jobLocation",jobLocation.getText());
+                intent.putExtra("jobType",job.getSelectedItem().toString());
+                intent.putExtra("startDate",startDate.getText());
+                intent.putExtra("applicationDeadline",applicationDeadline.getText());
+                intent.putExtra("recruiterName",recruiter.getText());
+                startActivity(intent);
+            }
+        });
+  }
 }

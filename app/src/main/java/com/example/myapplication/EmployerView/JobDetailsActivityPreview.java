@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 
@@ -22,5 +23,10 @@ public class JobDetailsActivityPreview extends AppCompatActivity {
 
         Button button=findViewById(R.id.applicant_view_job_description_apply_button);
         button.setText("Post");
+
+        TextView jobDescription=findViewById(R.id.applicant_view_job_description_job_description_body);
+        jobDescription.setText(getIntent().getStringExtra("jobDesc"));
+        TextView jobTitle=child.findViewById(R.id.recent_applicants_item_txtRole);
+        jobTitle.setText(getIntent().getStringExtra("jobTitle"));
     }
 }
