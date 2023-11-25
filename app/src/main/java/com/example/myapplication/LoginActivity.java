@@ -6,9 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,23 +14,22 @@ import android.widget.Toast;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
-
-import java.io.IOException;
+import com.example.myapplication.Helper.Constants;
+import com.example.myapplication.JobListing.JobListingActivity;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String PREF_NAME = "MyPrefs";
-    private static final String KEY_EMAIL = "emailKey";
     private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        String savedEmail = sharedPreferences.getString(KEY_EMAIL, "");
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString(Constants.KEY_EMAIL, "");
 
         EditText Email = findViewById(R.id.email_id_login);
         EditText Password = findViewById(R.id.password_login);
@@ -47,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(v -> {
             String Mail = Email.getText().toString().trim();
             String Pswd = Password.getText().toString().trim();
+
+            Mail = "test12345@gmail.com";
+            Pswd = "dcba";
             if(Mail.isEmpty()|| Pswd.isEmpty()){
             Toast.makeText(this,"Both Fields are required",Toast.LENGTH_SHORT).show();
             return;
@@ -78,6 +78,10 @@ public class LoginActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
                 if (response.isSuccessful()) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
+                    Gson gson = new Gson();
+                    String json = gson.toJson(response.body());
+                    sharedPreferences.edit().putString(Constants.KEY_USER_DATA, json).apply();
                     Intent intent = new Intent(LoginActivity.this, JobListingActivity.class);
                     startActivity(intent);
 

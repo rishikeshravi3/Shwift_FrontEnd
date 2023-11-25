@@ -5,32 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/JobListingActivity.java
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-=======
-import android.os.Handler;
-import android.os.Looper;
->>>>>>> c5b892d4c6d9c250b88b413a63288eb55296a8db:app/src/main/java/com/example/myapplication/JobListing/JobListingActivity.java
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.Helper.Common;
+import com.example.myapplication.Helper.Constants;
 import com.example.myapplication.JobsAdapter;
+import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.SavedJobsActivity;
@@ -38,12 +33,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.Calendar;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -54,11 +45,28 @@ public class JobListingActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     APIInterface apiInterface;
     ArrayList<JobModel> recentJobs = new ArrayList<>();
+    RecyclerView recommendedJobsView, recentJobsView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
+
+        TextView txtGreeting = findViewById(R.id.txtGreeting);
+        TextView txtName = findViewById(R.id.txtName);
+
+        LoginModel obj = Common.getUserData(this);
+        txtName.setText(obj.first_name + " " + obj.last_name);
+
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if (hour > 6 && hour < 12) {
+            txtGreeting.setText(getResources().getText(R.string.good_morning));
+        } else if (hour >= 12 && hour <=18) {
+            txtGreeting.setText(getResources().getText(R.string.good_afternoon));
+        } else {
+            txtGreeting.setText(getResources().getText(R.string.good_evening));
+        }
+
         apiInterface = APIClient.getClient().create(APIInterface.class);
         ImageView imageView = findViewById(R.id.companyLogo);
 
@@ -84,41 +92,13 @@ public class JobListingActivity extends AppCompatActivity {
             return false;
         });
 
-        RecyclerView recommendedJobsView = findViewById(R.id.recommendationList);
+        recommendedJobsView = findViewById(R.id.recommendationList);
         recommendedJobsView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
-        RecyclerView recentJobsView = findViewById(R.id.recentJobList);
+        recentJobsView = findViewById(R.id.recentJobList);
         recentJobsView.setLayoutManager(new LinearLayoutManager( this));
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Future<String> future = executor.submit(() -> {
-            Call<ResponseBody> call = apiInterface.getJobList();
-            try {
-                Response<ResponseBody> response = call.execute();
-                if (response.isSuccessful()) {
-                    return response.body().string();
-                } else {
-                    return null;
-                }
-            } catch (Exception e) {
-                return null;
-            }
-        });
-
-        try {
-            String result = future.get();
-            if (result != null) {
-                Gson g = new Gson();
-                recentJobs = g.fromJson(result, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                JobsAdapter jobsAdapter = new JobsAdapter(this, recentJobs);
-                recentJobsView.setAdapter(jobsAdapter);
-                recommendedJobsView.setAdapter(jobsAdapter);
-            }
-        } catch (Exception e) {
-
-        } finally {
-            executor.shutdown();
-        }
+        getJobList();
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
@@ -128,6 +108,45 @@ public class JobListingActivity extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    private void getJobList() {
+        LoginModel obj = Common.getUserData(this);
+        Dialog dialog = Common.progressDialog(this);
+        dialog.show();
+        JobListinRequest request = new JobListinRequest();
+        request.emailId = obj.email_id;
+        Call<ResponseBody> call = apiInterface.getJobList(request);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+
+                if (response.isSuccessful()) {
+                    try {
+                        Gson g = new Gson();
+                        String json = response.body().string();
+                        recentJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
+                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs);
+                        recentJobsView.setAdapter(jobsAdapter);
+                        recommendedJobsView.setAdapter(jobsAdapter);
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    Common.print(JobListingActivity.this, "Failed to get job list");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        });
     }
 
     @Override

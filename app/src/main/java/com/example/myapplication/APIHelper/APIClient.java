@@ -1,6 +1,6 @@
 package com.example.myapplication.APIHelper;
 
-import com.example.myapplication.Constants;
+import com.example.myapplication.Helper.Constants;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

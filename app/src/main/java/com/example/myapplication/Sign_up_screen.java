@@ -35,6 +35,7 @@ import android.view.View;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.JobListing.JobListingActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;

@@ -7,9 +7,11 @@ public class JobModel {
     public String pay_scale;
     public String num_hours;
     public String job_location;
-    public String position_type;
+    public int position_type;
     public String position_start_date;
     public String application_deadline;
     public String recruiter_name;
     public String job_title;
+    public boolean job_saved;
+    public int position_onsite;
 }
