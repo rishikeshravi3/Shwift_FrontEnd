@@ -58,45 +58,21 @@
             android:textColor="@color/gray"
             android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/FirstName_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="17dp"
-            android:layout_below="@id/txt_firstname"
-            android:background="@drawable/chip_background"
-            android:hint="First Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:textColorHint="#ACACAC"
-            />
-        <TextView
-            android:id="@+id/txt_MiddleName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_below="@id/FirstName_profile"
-            android:text="Middle Name"
-            android:textColor="@color/gray"
-            android:textSize="16sp" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/MiddleName_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="17dp"
-            android:layout_below="@id/txt_MiddleName"
-            android:background="@drawable/chip_background"
-            android:hint="Middle Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:textColorHint="#ACACAC"
-            />
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/FirstName_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_firstname"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/chip_background"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:hint="First Name"
+        android:inputType="none"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:textColorHint="#ACACAC" />
 
         <TextView
             android:id="@+id/txt_LastName"
@@ -104,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
             android:layout_marginHorizontal="10dp"
-            android:layout_below="@id/MiddleName_profile"
+            android:layout_below="@id/FirstName_profile"
             android:text="Last Name"
             android:textColor="@color/gray"
             android:textSize="16sp" />
@@ -114,10 +90,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="17dp"
+            android:cursorVisible="false"
+            android:editable="false"
             android:layout_below="@id/txt_LastName"
             android:background="@drawable/chip_background"
             android:hint="Last Name"
-            android:inputType="textPersonName"
+            android:inputType="none"
             android:minHeight="48dp"
             android:paddingStart="16dp"
             android:textColorHint="#ACACAC"

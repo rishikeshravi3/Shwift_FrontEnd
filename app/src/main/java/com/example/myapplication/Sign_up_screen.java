@@ -63,6 +63,7 @@ public class Sign_up_screen extends Activity {
     APIInterface apiInterface;
     private static final String PREF_NAME = "MyPrefs";
     private static final String KEY_EMAIL = "emailKey";
+    private  static  final String KEY_PHONE = "phoneKey";
 
     private Intent intent;
 
@@ -101,6 +102,10 @@ public class Sign_up_screen extends Activity {
                 String LastName =LName.getText().toString();
                 String Email =mail.getText().toString();
                 String Phone =PhoneNo.getText().toString();
+                SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(KEY_PHONE,Phone);
+                editor.apply();
 
                 if (FirstName.isEmpty() || LastName.isEmpty() || Email.isEmpty() || Phone.isEmpty()) {
                     // Show an error message or toast indicating that all fields are required
@@ -292,8 +297,9 @@ public class Sign_up_screen extends Activity {
                 try {
                     if (response.isSuccessful()) {
                         // Show the popup only if the status code is 200
-                         intent = new Intent(Sign_up_screen.this, JobListingActivity.class);
+                         intent = new Intent(Sign_up_screen.this, LoginActivity.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         // If the status code is not 200, handle the error or show an appropriate message
                         Toast.makeText(Sign_up_screen.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();

@@ -59,7 +59,7 @@ public class ProfileOptionsAdapter extends RecyclerView.Adapter<ProfileOptionsAd
                     context.startActivity(new Intent(context, ProjectsActivity.class));
                     break;
                 case SKILLS:
-                    context.startActivity(new Intent(context, ProjectsActivity.class));
+                    context.startActivity(new Intent(context, SkillActivity.class));
                     break;
                 default:
                     break;
