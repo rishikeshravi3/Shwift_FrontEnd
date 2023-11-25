@@ -112,4 +112,9 @@
     <string name="job_details_activity_hiringDeadline_text">Hiring deadline</string>
     <string name="job_details_activity_hiringDeadline_hint">DD/MM/YYYY</string>
     <string name="preview">Preview</string>
+    <string name="job_details_activity_Minpay_text">Minimum pay</string>
+    <string name="job_details_activity_Minpay_hint">Minimum pay per month</string>
+    <string name="job_details_activity_Maxpay_text">Maximum pay</string>
+    <string name="job_details_activity_Maxpay_hint">Maximum pay per month</string>
+    <string name="job_details_activity_experience_text">Experience</string>
 </resources>
