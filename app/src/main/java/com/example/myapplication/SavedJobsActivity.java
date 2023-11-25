@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.myapplication.JobListing.JobListingActivity;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -51,10 +52,10 @@ public class SavedJobsActivity extends AppCompatActivity {
         test.add("Test 5");
 
         // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.savedJobList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        JobsAdapter adapter = new JobsAdapter(test);
-        recyclerView.setAdapter(adapter);
+//        RecyclerView recyclerView = findViewById(R.id.savedJobList);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        JobsAdapter adapter = new JobsAdapter(test);
+//        recyclerView.setAdapter(adapter);
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
