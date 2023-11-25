@@ -1,6 +1,6 @@
 package com.example.myapplication.APIHelper;
 
-import com.example.myapplication.JobListing.JobListinRequest;
+import com.example.myapplication.JobListing.JobListingRequest;
 import com.example.myapplication.JobListing.SaveJobModel;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileRequestModel;
@@ -20,7 +20,7 @@ import retrofit2.http.Query;
 public interface APIInterface {
 
     @POST("/shwift/fetchSpecificListing")
-    Call<ResponseBody> getJobList(@Body JobListinRequest input);
+    Call<ResponseBody> getJobList(@Body JobListingRequest input);
 
     @POST("/shwift/signUp")
     Call<SignUpModel> createPost(@Body SignUpModel signUpModel);
@@ -42,4 +42,6 @@ public interface APIInterface {
 
     @POST("/shwift/updateEmployeeInfo")
     Call<UpdateProfileResponse> getUpdateInfo(@Body UpdateProfileRequest updateProfileRequest);
+    @POST("/shwift/getSavedJobs")
+    Call<ResponseBody> getSavedJobs(@Body JobListingRequest input);
 }

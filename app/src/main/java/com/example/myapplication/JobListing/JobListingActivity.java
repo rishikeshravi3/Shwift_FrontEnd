@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -22,13 +20,12 @@ import android.widget.Toast;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.Applications.ApplicationStagesActivity;
 import com.example.myapplication.Helper.Common;
-import com.example.myapplication.Helper.Constants;
 import com.example.myapplication.JobsAdapter;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.SavedJobsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -81,6 +78,9 @@ public class JobListingActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (itemId == R.id.applications) {
+                startActivity(new Intent(getApplicationContext(), ApplicationStagesActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             } else if (itemId == R.id.profile) {
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
@@ -113,7 +113,7 @@ public class JobListingActivity extends AppCompatActivity {
         LoginModel obj = Common.getUserData(this);
         Dialog dialog = Common.progressDialog(this);
         dialog.show();
-        JobListinRequest request = new JobListinRequest();
+        JobListingRequest request = new JobListingRequest();
         request.emailId = obj.email_id;
         Call<ResponseBody> call = apiInterface.getJobList(request);
         call.enqueue(new Callback<ResponseBody>() {
@@ -128,7 +128,7 @@ public class JobListingActivity extends AppCompatActivity {
                         Gson g = new Gson();
                         String json = response.body().string();
                         recentJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs);
+                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs, 1);
                         recentJobsView.setAdapter(jobsAdapter);
                         recommendedJobsView.setAdapter(jobsAdapter);
                     } catch (Exception e) {

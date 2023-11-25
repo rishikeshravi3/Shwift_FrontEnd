@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ApplicationStagesActivity">
+    android:layout_height="match_parent"
+    tools:context=".Applications.ApplicationStagesActivity">
 
     <ImageView
         android:id="@+id/application_stages_back_arrow"
@@ -27,17 +27,18 @@
         android:layout_marginStart="23dp"
         android:layout_marginTop="38.5dp"
         android:textAppearance="@style/application_stages_heading_style"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/application_stages_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/application_stages_heading"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="17dp"
-        android:background="@drawable/application_stages_search_bar_background">
+        android:layout_marginRight="40dp"
+        android:background="@drawable/application_stages_search_bar_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_stages_heading">
 
         <ImageView
             android:id="@+id/application_stages_search_bar_magnifying_glass_icon"
@@ -51,26 +52,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/application_stages_search_bar_magnifying_glass_icon"
             tools:ignore="ContentDescription,ImageContrastCheck" />
-        <ImageView
-            android:id="@+id/application_stages_search_bar_filter_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/application_stages_search_bar"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="9dp"
-            app:srcCompat="@drawable/application_stages_search_bar_filter_icon"
-            tools:ignore="ContentDescription" />
+
 
         <EditText
             android:id="@+id/editTextText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
-            android:layout_marginEnd="38dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="38dp"
             android:layout_marginBottom="5dp"
             android:background="@null"
             android:hint="@string/application_stages_search_tab_hint"
@@ -81,16 +71,34 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="Autofill,TouchTargetSizeCheck,TextContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/application_stages_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/application_stages_search_bar"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="14dp"
+        android:layout_marginRight="40dp"
         android:paddingBottom="35dp"
-        android:id="@+id/application_stages_recycler_view">
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_stages_search_bar"></androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:id="@+id/view"
+        style="@style/Divider.Horizontal"
+        android:background="@color/light_gray"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:itemBackground="@color/white"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

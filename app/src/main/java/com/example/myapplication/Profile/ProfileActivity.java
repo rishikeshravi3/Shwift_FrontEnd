@@ -12,20 +12,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Helper.Common;
 import com.example.myapplication.Helper.Constants;
-import com.example.myapplication.JobListing.JobListinRequest;
 import com.example.myapplication.JobListing.JobListingActivity;
-import com.example.myapplication.JobListing.JobModel;
-import com.example.myapplication.JobsAdapter;
+import com.example.myapplication.Applications.ApplicationStagesActivity;
+import com.example.myapplication.JobListing.SavedJobsActivity;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,8 +61,14 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (itemId == R.id.saved_jobs) {
+                startActivity(new Intent(getApplicationContext(), SavedJobsActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             } else if (itemId == R.id.applications) {
+                startActivity(new Intent(getApplicationContext(), ApplicationStagesActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
                 return true;
             } else if (itemId == R.id.profile) {
                 return true;
