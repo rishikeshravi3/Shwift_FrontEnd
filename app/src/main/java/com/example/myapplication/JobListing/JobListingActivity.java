@@ -51,7 +51,6 @@ public class JobListingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_listing);
-
         TextView txtGreeting = findViewById(R.id.txtGreeting);
         TextView txtName = findViewById(R.id.txtName);
 

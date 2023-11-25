@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.myapplication.Helper.Common;
 import com.example.myapplication.JobListing.JobListingActivity;
+import com.example.myapplication.LoginModel;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,7 +25,15 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        TextView name = findViewById(R.id.txtName_profile);
+        ImageView EditProfile = findViewById(R.id.editIcon_profile);
+        EditProfile.setOnClickListener(v->{
+            Intent intent = new Intent(this, Profile_Details_Activity.class);
+            startActivity(intent);
+        });
 
+        LoginModel obj = Common.getUserData(this);
+        name.setText(obj.first_name + " " + obj.last_name);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.saved_jobs);
         bottomNavigationView.setOnItemSelectedListener(item -> {

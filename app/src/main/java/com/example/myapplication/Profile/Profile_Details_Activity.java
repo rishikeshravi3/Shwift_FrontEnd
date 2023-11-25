@@ -13,21 +13,31 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.myapplication.Helper.Common;
+import com.example.myapplication.LoginModel;
 import com.example.myapplication.R;
 
 import java.io.IOException;
 
 public class Profile_Details_Activity extends AppCompatActivity {
     private ImageButton imageView;
+
     private static final int PICK_IMAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_details);
         imageView = findViewById(R.id.imageView1);
+        EditText FirstName = findViewById(R.id.FirstName_profile);
+        LoginModel obj = Common.getUserData(this);
+        FirstName.setText(obj.first_name);
+        EditText LastName = findViewById(R.id.LastName_profile);
+        LastName.setText(obj.last_name);
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,6 +17,9 @@ public class Common {
     public static void print(Context ctx, String message) {
         Toast.makeText(ctx, message, Toast.LENGTH_LONG).show();
     }
+    public static void printShort(Context ctx, String message) {
+        Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show();
+    }
 
     public static Dialog progressDialog(Context ctx) {
         Dialog dialog = new Dialog(ctx);
