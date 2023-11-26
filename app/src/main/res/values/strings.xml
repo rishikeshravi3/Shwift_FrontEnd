@@ -79,7 +79,6 @@
     <string name="education">Education</string>
     <string name="projects">Projects</string>
     <string name="enter_your_projects_below">Enter your projects below</string>
-<<<<<<< HEAD
     <string name="application_stage_on_click_heading_text"><b>Application Status</b></string>
     <string name="application_stage_on_click_your_status_text">Your Application Status</string>
     <string name="good_afternoon">Good Afternoon!</string>
@@ -87,7 +86,6 @@
     <string name="part_time">Part time</string>
     <string name="temp">Temp</string>
     <string name="on_site">On site</string>
-=======
     <string name="employer_account_setup_company_details_heading_text"><b>Tell Us About Your Company</b></string>
     <string name="employer_account_setup_company_details_fill_details_text">Please fill up the details</string>
     <string name="employer_account_setup_company_details_organization_name_hint">Name Of Your Organization</string>
@@ -139,5 +137,4 @@
     <string name="applicant_view_job_description_recruiter_heading"><b>Recruiter Name:</b></string>
     <string name="applicant_view_job_description_start_date_heading"><b>Start Date:</b></string>
     <string name="applicant_view_job_description_application_deadline_heading"><b>Application Deadline:</b></string>
->>>>>>> ab908b66bd7276cb0d0bc1617bfb0c0228df6468
 </resources>
