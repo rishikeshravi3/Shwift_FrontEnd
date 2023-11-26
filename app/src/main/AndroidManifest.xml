@@ -22,12 +22,7 @@
         </activity>
         <activity
             android:name=".EmployerView.JobDetailsActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".EmployerView.Employer_View_Home_Page"
@@ -123,6 +118,11 @@
         <activity
             android:name=".onboarding"
             android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".create_New_Password"
