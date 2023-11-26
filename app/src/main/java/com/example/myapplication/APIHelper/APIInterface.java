@@ -1,5 +1,6 @@
 package com.example.myapplication.APIHelper;
 
+import com.example.myapplication.EmployerView.JobDetailsModel;
 import com.example.myapplication.SignUpModel;
 import com.example.myapplication.SignUpResponseModel;
 import com.google.gson.JsonObject;
@@ -20,4 +21,7 @@ APIInterface {
     @POST("/shwift/signUp")
     Call<SignUpModel> createPost(@Body SignUpModel signUpModel);
     Call<ResponseBody> postSignup();
+
+    @POST("/shwift/createlisting")
+    Call<JobDetailsResponseModel> createListing(@Body JobDetailsModel jobDetailsModel);
 }

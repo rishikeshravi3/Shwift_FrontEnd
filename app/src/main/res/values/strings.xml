@@ -126,4 +126,8 @@
     <string name="job_details_activity_recruiter_hint">Recruiter name</string>
     <string name="job_details_activity_startDate_text">Start date</string>
     <string name="job_details_activity_applicationDeadline_text">Application deadline</string>
+    <string name="applicant_view_job_description_NumberOfHours_heading"><b>Number of Hours:</b></string>
+    <string name="applicant_view_job_description_recruiter_heading"><b>Recruiter Name:</b></string>
+    <string name="applicant_view_job_description_start_date_heading"><b>Start Date:</b></string>
+    <string name="applicant_view_job_description_application_deadline_heading"><b>Application Deadline:</b></string>
 </resources>

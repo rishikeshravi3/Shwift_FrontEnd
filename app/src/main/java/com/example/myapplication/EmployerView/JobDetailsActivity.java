@@ -23,6 +23,9 @@ public class JobDetailsActivity extends AppCompatActivity {
 
     String[] itemsJob;
     String[] itemPriority;
+    String priorityText;
+    String jobText;
+    String workText;
 
 
     @Override
@@ -32,9 +35,9 @@ public class JobDetailsActivity extends AppCompatActivity {
 
         Spinner work = findViewById(R.id.job_details_activity_workType_EditText);
         Spinner job = findViewById(R.id.job_details_activity_jobType_EditText);
-        Spinner priority=findViewById(R.id.job_details_activity_priority_EditText);
-        TextView startDate=findViewById(R.id.job_details_activity_startDate_EditText);
-        TextView applicationDeadline=findViewById(R.id.job_details_activity_applicationDeadline_EditText);
+        Spinner priority = findViewById(R.id.job_details_activity_priority_EditText);
+        TextView startDate = findViewById(R.id.job_details_activity_startDate_EditText);
+        TextView applicationDeadline = findViewById(R.id.job_details_activity_applicationDeadline_EditText);
 
         startDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,10 +75,33 @@ public class JobDetailsActivity extends AppCompatActivity {
             }
         });
 
+//        work.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+//                Object item = parent.getItemAtPosition(pos);
+//                if(item.toString().equals("remote")){
+//                    workText="1";
+//                }
+//            }
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                workText="0";
+//            }
+//        });
 
-        itemsWork = new String[]{"Onsite", "Remote"};
-        itemsJob = new String[]{"Full Time", "Part Time"};
-        itemPriority=new String[]{"High","Medium","Low"};
+        work.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                workText = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                workText = parent.getItemAtPosition(0).toString();
+            }
+        });
+
+        itemsWork = new String[]{"Remote","Onsite"};
+        itemsJob = new String[]{"Full Time", "Part Time", "Temporary"};
+        itemPriority = new String[]{"High", "Medium", "Low"};
 
 
         ArrayAdapter<String> adapterWork = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemsWork);
@@ -85,32 +111,32 @@ public class JobDetailsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterPriority = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, itemPriority);
         priority.setAdapter(adapterPriority);
 
-        Button button=findViewById(R.id.job_details_activity_button);
+        Button button = findViewById(R.id.job_details_activity_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView jobTitle=findViewById(R.id.job_details_activity_jobTitle_EditText);
-                TextView jobDesc=findViewById(R.id.job_details_activity_description_EditText);
-                TextView jobRequirement=findViewById(R.id.job_details_activity_requirements_EditText);
-                TextView pay=findViewById(R.id.job_details_activity_pay_EditText);
-                TextView hours=findViewById(R.id.job_details_activity_hours_EditText);
-                TextView jobLocation =findViewById(R.id.job_details_activity_location_EditText);
-                TextView recruiter=findViewById(R.id.job_details_activity_recruiter_EditText);
-                Intent intent=new Intent(JobDetailsActivity.this, JobDetailsActivityPreview.class);
-                intent.putExtra("jobTitle",jobTitle.getText());
-                intent.putExtra("jobDesc",jobDesc.getText());
-                intent.putExtra("jobReq",jobRequirement.getText());
-                intent.putExtra("workType",work.getSelectedItem().toString());
-                intent.putExtra("jobPriority",priority.getSelectedItem().toString());
-                intent.putExtra("pay",pay.getText());
-                intent.putExtra("hours",hours.getText());
-                intent.putExtra("jobLocation",jobLocation.getText());
-                intent.putExtra("jobType",job.getSelectedItem().toString());
-                intent.putExtra("startDate",startDate.getText());
-                intent.putExtra("applicationDeadline",applicationDeadline.getText());
-                intent.putExtra("recruiterName",recruiter.getText());
+                TextView jobTitle = findViewById(R.id.job_details_activity_jobTitle_EditText);
+                TextView jobDesc = findViewById(R.id.job_details_activity_description_EditText);
+                TextView jobRequirement = findViewById(R.id.job_details_activity_requirements_EditText);
+                TextView pay = findViewById(R.id.job_details_activity_pay_EditText);
+                TextView hours = findViewById(R.id.job_details_activity_hours_EditText);
+                TextView jobLocation = findViewById(R.id.job_details_activity_location_EditText);
+                TextView recruiter = findViewById(R.id.job_details_activity_recruiter_EditText);
+                Intent intent = new Intent(JobDetailsActivity.this, JobDetailsActivityPreview.class);
+                intent.putExtra("jobTitle", jobTitle.getText().toString());
+                intent.putExtra("jobDesc", jobDesc.getText().toString());
+                intent.putExtra("jobReq", jobRequirement.getText().toString());
+                intent.putExtra("workType", workText);
+                intent.putExtra("jobPriority", priority.getSelectedItem().toString());
+                intent.putExtra("pay", pay.getText().toString());
+                intent.putExtra("hours", hours.getText().toString());
+                intent.putExtra("jobLocation", jobLocation.getText().toString());
+                intent.putExtra("jobType", job.getSelectedItem().toString());
+                intent.putExtra("startDate", startDate.getText().toString());
+                intent.putExtra("applicationDeadline", applicationDeadline.getText().toString());
+                intent.putExtra("recruiterName", recruiter.getText().toString());
                 startActivity(intent);
             }
         });
-  }
+    }
 }
