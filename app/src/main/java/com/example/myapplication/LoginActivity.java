@@ -25,6 +25,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,23 +39,24 @@ public class LoginActivity extends AppCompatActivity {
         TextView to_forgotpassword = findViewById(R.id.forgot_pass);
 
         to_forgotpassword.setOnClickListener(v -> {
-            Intent intent=new Intent(this,passwordReset_Mode_Selection.class);
+            Intent intent = new Intent(this, passwordReset_Mode_Selection.class);
             startActivity(intent);
         });
         Button loginbtn = findViewById(R.id.button_account_login);
         loginbtn.setOnClickListener(v -> {
             String Mail = Email.getText().toString().trim();
             String Pswd = Password.getText().toString().trim();
-            if(Mail.isEmpty()|| Pswd.isEmpty()){
-            Toast.makeText(this,"Both Fields are required",Toast.LENGTH_SHORT).show();
-            return;
-            }else{
-                sendLoginRequest(Mail,Pswd);
+            Mail = "test12345@gmail.com";
+            Pswd = "dcba";
+            if (Mail.isEmpty() || Pswd.isEmpty()) {
+                Toast.makeText(this, "Both Fields are required", Toast.LENGTH_SHORT).show();
+            } else {
+                sendLoginRequest(Mail, Pswd);
             }
         });
         TextView to_createAccount = findViewById(R.id.go_to_create_account);
         to_createAccount.setOnClickListener(v -> {
-          finish();
+            finish();
         });
     }
 
@@ -75,14 +77,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (progressDialog != null && progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-                if (response.code()==200) {
+                if (response.code() == 200) {
                     SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
                     Gson gson = new Gson();
                     String json = gson.toJson(response.body());
                     sharedPreferences.edit().putString(Constants.KEY_USER_DATA, json).apply();
                     Intent intent = new Intent(LoginActivity.this, JobListingActivity.class);
                     startActivity(intent);
-                    Common.printShort(LoginActivity.this,"Login Successful");
+                    Common.printShort(LoginActivity.this, "Login Successful");
                     finish();
                 } else {
                     // Handle login failure

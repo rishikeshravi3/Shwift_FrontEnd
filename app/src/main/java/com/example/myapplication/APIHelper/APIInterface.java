@@ -42,6 +42,10 @@ public interface APIInterface {
 
     @POST("/shwift/updateEmployeeInfo")
     Call<UpdateProfileResponse> getUpdateInfo(@Body UpdateProfileRequest updateProfileRequest);
+
     @POST("/shwift/getSavedJobs")
     Call<ResponseBody> getSavedJobs(@Body JobListingRequest input);
+
+    @POST("/shwift/getApplicationsByEmail")
+    Call<ResponseBody> getApplicationsByEmail(@Body JobListingRequest input);
 }

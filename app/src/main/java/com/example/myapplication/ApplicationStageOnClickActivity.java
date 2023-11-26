@@ -19,21 +19,23 @@ public class ApplicationStageOnClickActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_stage_on_click);
-        String company=getIntent().getStringExtra("company");
-        String role=getIntent().getStringExtra("role");
-        String status=getIntent().getStringExtra("status");
-        String location=getIntent().getStringExtra("location");
-        String salary=getIntent().getStringExtra("salary");
-        ArrayList<String> jobType=getIntent().getStringArrayListExtra("jobType");
-        int logoID=getIntent().getIntExtra("logoId",0);
+        String company = getIntent().getStringExtra("company");
+        String role = getIntent().getStringExtra("role");
+        String status = getIntent().getStringExtra("status");
+        String location = getIntent().getStringExtra("location");
+        String salary = getIntent().getStringExtra("salary");
+        int postionType = getIntent().getIntExtra("positionType", 0);
+        int onSite = getIntent().getIntExtra("onSite", 0);
+        int logoID = getIntent().getIntExtra("logoId", 0);
 
-        ImageView logo=findViewById(R.id.application_stage_on_click_card_image);
-        TextView companyName=findViewById(R.id.application_stage_on_click_card_company);
-        TextView roleName=findViewById(R.id.application_stage_on_click_card_role);
-        TextView statusName=findViewById(R.id.application_stage_on_click_your_status);
-        TextView locationName=findViewById(R.id.application_stage_on_click_card_location);
-        TextView salaryName=findViewById(R.id.application_stage_on_click_card_salary);
-        FlexboxLayout flexboxLayout=findViewById(R.id.application_stage_on_click_card_job_type_flexbox);
+        ImageView logo = findViewById(R.id.application_stage_on_click_card_image);
+        TextView companyName = findViewById(R.id.application_stage_on_click_card_company);
+        TextView roleName = findViewById(R.id.application_stage_on_click_card_role);
+        TextView statusName = findViewById(R.id.application_stage_on_click_your_status);
+        TextView locationName = findViewById(R.id.application_stage_on_click_card_location);
+        TextView salaryName = findViewById(R.id.application_stage_on_click_card_salary);
+        TextView txtPositionType = findViewById(R.id.txtPositionType);
+        TextView txtOnSite = findViewById(R.id.txtOnSite);
 
         logo.setImageResource(logoID);
         companyName.setText(company);
@@ -42,21 +44,24 @@ public class ApplicationStageOnClickActivity extends AppCompatActivity {
         locationName.setText(location);
         salaryName.setText(salary);
 
-        TextView[] tv=new TextView[10];
-        for(int i = 0; i< Objects.requireNonNull(jobType).size(); i++)
-        {
-            tv[i]=new TextView(getApplicationContext());
-            tv[i].setText(jobType.get(i));
-            FlexboxLayout.LayoutParams params=new FlexboxLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(25,25,25,25);
-            tv[i].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            tv[i].setTextAppearance(R.style.key_skills);
-            tv[i].setBackground(ContextCompat.getDrawable(this,R.drawable.key_skills_border));
-            tv[i].setPadding(25,25,25,25);
-            tv[i].setLayoutParams(params);
-            flexboxLayout.addView(tv[i]);
+        if (postionType == 1) {
+            String text = getResources().getText(R.string.full_time).toString();
+            txtPositionType.setText(text);
+        } else if (postionType == 2) {
+            String text = getResources().getText(R.string.part_time).toString();
+            txtPositionType.setText(text);
+        } else {
+            String text = getResources().getText(R.string.temp).toString();
+            txtPositionType.setText(text);
         }
 
+        if (onSite == 1) {
+            String text = getResources().getText(R.string.on_site).toString();
+            txtOnSite.setText(text);
+        } else {
+            String text = getResources().getText(R.string.remote).toString();
+            txtOnSite.setText(text);
+        }
 
         assert status != null;
         switch (status) {
@@ -74,7 +79,7 @@ public class ApplicationStageOnClickActivity extends AppCompatActivity {
                 break;
         }
 
-        ImageView backArrow=findViewById(R.id.application_stage_on_click_back_arrow);
+        ImageView backArrow = findViewById(R.id.application_stage_on_click_back_arrow);
         backArrow.setOnClickListener(v -> finish());
 
     }
