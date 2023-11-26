@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.myapplication.Helper.Common;
+import com.example.myapplication.LoginModel;
 import com.example.myapplication.R;
 
 public class ContactInformationActivity extends AppCompatActivity {
@@ -21,12 +22,9 @@ public class ContactInformationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_information);
         EditText phoneNumber = findViewById(R.id.editPhoneNum);
         EditText Emailid = findViewById(R.id.editEmail);
-        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        String savedPhone = sharedPreferences.getString(KEY_PHONE,"");
-        String savedEmail = sharedPreferences.getString(KEY_EMAIL, "");
-
-        Emailid.setText(savedEmail);
-        phoneNumber.setText(savedPhone);
+        LoginModel obj = Common.getUserData(this);
+        Emailid.setText(obj.email_id);
+        phoneNumber.setText(obj.phone_num);
 
 
 

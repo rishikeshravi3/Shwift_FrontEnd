@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".JobListingActivity">
+    tools:context=".EmployerView.Employer_View_Home_Page">
 
     <ScrollView
         android:layout_weight="1"
