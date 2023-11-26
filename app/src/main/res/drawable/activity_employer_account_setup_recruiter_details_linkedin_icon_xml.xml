@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/activity_employer_account_setup_recruiter_details_linkedin_logo" android:right="16dp"/>
+</layer-list>

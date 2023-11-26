@@ -67,6 +67,7 @@ public class JobListingActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.companyLogo);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+       // bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();

@@ -57,12 +57,12 @@
             android:textAppearance="@style/applicant_view_job_description_body_style"
             tools:ignore="VisualLintLongText" />
         <TextView
-            android:id="@+id/applicant_view_job_description_requirement_skill_heading"
+            android:id="@+id/applicant_view_job_description_NumberOfHours_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:text="@string/applicant_view_job_description_requirement_skills_heading"
+            android:text="@string/applicant_view_job_description_NumberOfHours_heading"
             android:textAppearance="@style/applicant_view_job_description_heading_style"
             android:layout_marginStart="16dp"
             android:layout_below="@id/applicant_view_job_description_job_description_body"
@@ -70,10 +70,10 @@
             />
 
         <TextView
-            android:id="@+id/applicant_view_job_description_requirement_skill_body"
+            android:id="@+id/applicant_view_job_description_NumberOfHours_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/applicant_view_job_description_requirement_skill_heading"
+            android:layout_below="@id/applicant_view_job_description_NumberOfHours_heading"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
@@ -84,23 +84,23 @@
             tools:ignore="VisualLintLongText" />
 
         <TextView
-            android:id="@+id/applicant_view_job_description_education_heading"
+            android:id="@+id/applicant_view_job_description_recruiter_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:text="@string/applicant_view_job_description_education_heading"
+            android:text="@string/applicant_view_job_description_recruiter_heading"
             android:textAppearance="@style/applicant_view_job_description_heading_style"
             android:layout_marginStart="16dp"
-            android:layout_below="@id/applicant_view_job_description_requirement_skill_body"
+            android:layout_below="@id/applicant_view_job_description_NumberOfHours_body"
             android:layout_marginTop="17dp"
             />
 
         <TextView
-            android:id="@+id/applicant_view_job_description_education_body"
+            android:id="@+id/applicant_view_job_description_recruiter_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/applicant_view_job_description_education_heading"
+            android:layout_below="@id/applicant_view_job_description_recruiter_heading"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
@@ -119,7 +119,7 @@
             android:text="@string/applicant_view_job_description_key_skills_heading"
             android:textAppearance="@style/applicant_view_job_description_heading_style"
             android:layout_marginStart="16dp"
-            android:layout_below="@id/applicant_view_job_description_education_body"
+            android:layout_below="@id/applicant_view_job_description_recruiter_body"
             android:layout_marginTop="17dp"
             />
 
@@ -137,12 +137,12 @@
 
 
         <TextView
-            android:id="@+id/applicant_view_job_description_job_summary_heading"
+            android:id="@+id/applicant_view_job_description_start_date_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:text="@string/applicant_view_job_description_job_summary_heading"
+            android:text="@string/applicant_view_job_description_start_date_heading"
             android:textAppearance="@style/applicant_view_job_description_heading_style"
             android:layout_marginStart="16dp"
             android:layout_below="@id/applicant_view_job_description_key_skills_body"
@@ -150,10 +150,10 @@
             />
 
         <TextView
-            android:id="@+id/applicant_view_job_description_job_summary_body"
+            android:id="@+id/applicant_view_job_description_start_date_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/applicant_view_job_description_job_summary_heading"
+            android:layout_below="@id/applicant_view_job_description_start_date_heading"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
@@ -164,23 +164,23 @@
             tools:ignore="VisualLintLongText,TextContrastCheck" />
 
         <TextView
-            android:id="@+id/applicant_view_job_description_about_company_heading"
+            android:id="@+id/applicant_view_job_description_application_deadline_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:text="@string/applicant_view_job_description_about_company_heading"
+            android:text="@string/applicant_view_job_description_application_deadline_heading"
             android:textAppearance="@style/applicant_view_job_description_heading_style"
             android:layout_marginStart="16dp"
-            android:layout_below="@id/applicant_view_job_description_job_summary_body"
+            android:layout_below="@id/applicant_view_job_description_start_date_body"
             android:layout_marginTop="17dp"
             />
 
         <TextView
-            android:id="@+id/applicant_view_job_description_about_company_body"
+            android:id="@+id/applicant_view_job_description_application_deadline_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/applicant_view_job_description_about_company_heading"
+            android:layout_below="@id/applicant_view_job_description_application_deadline_heading"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"
@@ -194,7 +194,7 @@
             android:id="@+id/applicant_view_job_description_apply_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/applicant_view_job_description_about_company_body"
+            android:layout_below="@id/applicant_view_job_description_application_deadline_body"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="22dp"
