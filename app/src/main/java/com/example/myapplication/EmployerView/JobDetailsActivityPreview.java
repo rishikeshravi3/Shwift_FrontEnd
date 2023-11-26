@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,8 @@ public class JobDetailsActivityPreview extends AppCompatActivity {
 
         Button button=findViewById(R.id.applicant_view_job_description_apply_button);
         button.setText("Post");
+
+        ImageView backArrow=findViewById(R.id.applicant_view_job_description_back_arrow);
 
 
         TextView jobTitle=child.findViewById(R.id.recent_applicants_item_txtRole);
@@ -108,6 +111,13 @@ public class JobDetailsActivityPreview extends AppCompatActivity {
                 postData(getIntent().getStringExtra("jobTitle"),getIntent().getStringExtra("jobDesc"),getIntent().getStringExtra("jobReq"),getIntent().getStringExtra("jobPriority"),getIntent().getStringExtra("pay"),
                         getIntent().getStringExtra("hours"),getIntent().getStringExtra("jobLocation"),jobTypeCode,getIntent().getStringExtra("startDate"),getIntent().getStringExtra("applicationDeadline"),
                         getIntent().getStringExtra("recruiterName"),workTypeCode);
+            }
+        });
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

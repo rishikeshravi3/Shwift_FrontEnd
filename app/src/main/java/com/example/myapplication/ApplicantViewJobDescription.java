@@ -31,8 +31,8 @@ public class ApplicantViewJobDescription extends AppCompatActivity {
         TextView jobDescription=findViewById(R.id.applicant_view_job_description_job_description_body);
         jobDescription.setText("We are looking for an experienced and talented UI designer to design and shape unique, user-centric products and experiences. The ideal candidate will have experience working in agile teams, with developers, UX designers, and copywriters. You should have an eye for clean and artful design, possess superior UI skills, and be able to translate high-level requirements into interaction flows and artifacts and transform them into beautiful, intuitive, and functional user interfaces.\n");
 
-        TextView requirementAndSkills=findViewById(R.id.applicant_view_job_description_key_skills_body);
-        requirementAndSkills.setText("1. We are looking for an experienced and talented UI designer to design and shape unique, user-centric products and experiences.\n2. The ideal candidate will have experience working in agile teams, with developers, UX designers, and copywriters.\n3. You should have an eye for clean and artful design, possess superior UI skills, and be able to translate high-level requirements into interaction flows and artifacts and transform them into beautiful, intuitive, and functional user interfaces.\n");
+//        TextView requirementAndSkills=findViewById(R.id.applicant_view_job_description_key_skills_body);
+//        requirementAndSkills.setText("1. We are looking for an experienced and talented UI designer to design and shape unique, user-centric products and experiences.\n2. The ideal candidate will have experience working in agile teams, with developers, UX designers, and copywriters.\n3. You should have an eye for clean and artful design, possess superior UI skills, and be able to translate high-level requirements into interaction flows and artifacts and transform them into beautiful, intuitive, and functional user interfaces.\n");
 
 //        TextView education=findViewById(R.id.);
 //        education.setText("UG :BFA in Visual Communication, Diploma in Visual Arts");
