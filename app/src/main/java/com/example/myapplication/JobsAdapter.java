@@ -78,8 +78,6 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
             if (jobObj.job_saved) {
                 if (activityType == 1) {
                     deleteJob(holder, jobList.get(position));
-                    jobObj.job_saved = false;
-                    updateSavedIcon(holder, false);
                 } else {
                     deleteJobInSavedJobs(holder, jobList.get(position));
                 }

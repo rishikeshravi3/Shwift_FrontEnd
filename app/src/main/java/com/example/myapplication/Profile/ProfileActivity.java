@@ -116,8 +116,7 @@ public class ProfileActivity extends AppCompatActivity {
         Dialog dialog = Common.progressDialog(this);
         dialog.show();
         ProfileRequestModel request = new ProfileRequestModel();
-
-        request.emailId = "va_thakur532";
+        request.emailId = obj.email_id;
         Call<ProfileResponseModel> call = apiInterface.getProfileInfo(request);
         call.enqueue(new Callback<ProfileResponseModel>() {
             @Override
