@@ -28,7 +28,7 @@ public class UpdateProfileService {
         dialog.show();
         UpdateProfileRequest request = updateProfileRequest;
 
-        request.emailId = "va_thakur532";
+        request.emailId = obj.email_id;
         Call<UpdateProfileResponse> call = apiInterface.getUpdateInfo(request);
         call.enqueue(new Callback<UpdateProfileResponse>() {
             @Override

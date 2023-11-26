@@ -16,7 +16,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +46,9 @@ public class JobListingActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     APIInterface apiInterface;
     ArrayList<JobModel> recentJobs = new ArrayList<>();
+    ArrayList<JobModel> recommendedJobs = new ArrayList<>();
     RecyclerView recommendedJobsView, recentJobsView;
+    LinearLayout recommendationLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,12 +97,14 @@ public class JobListingActivity extends AppCompatActivity {
             return false;
         });
 
+        recommendationLayout = findViewById(R.id.recommendationLayout);
         recommendedJobsView = findViewById(R.id.recommendationList);
         recommendedJobsView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
         recentJobsView = findViewById(R.id.recentJobList);
         recentJobsView.setLayoutManager(new LinearLayoutManager(this));
 
+        getRecommendedJobs();
         getJobList();
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
@@ -118,6 +124,48 @@ public class JobListingActivity extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    private void getRecommendedJobs() {
+        LoginModel obj = Common.getUserData(this);
+        Dialog dialog = Common.progressDialog(this);
+        dialog.show();
+        JobListingRequest request = new JobListingRequest();
+        request.emailId = obj.email_id;
+        Call<ResponseBody> call = apiInterface.getRecommendedJobs(request);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+
+                if (response.isSuccessful()) {
+                    try {
+                        Gson g = new Gson();
+                        String json = response.body().string();
+                        recommendedJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
+                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recommendedJobs, 1);
+                        recommendedJobsView.setAdapter(jobsAdapter);
+                        if (recommendedJobs.size() == 0) {
+                            recommendationLayout.setVisibility(View.GONE);
+                            recommendedJobsView.setVisibility(View.GONE);
+                        }
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    Common.print(JobListingActivity.this, "Failed to get recommended job list");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        });
     }
 
     private void getJobList() {
@@ -141,7 +189,6 @@ public class JobListingActivity extends AppCompatActivity {
                         recentJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
                         JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs, 1);
                         recentJobsView.setAdapter(jobsAdapter);
-                        recommendedJobsView.setAdapter(jobsAdapter);
                     } catch (Exception e) {
 
                     }

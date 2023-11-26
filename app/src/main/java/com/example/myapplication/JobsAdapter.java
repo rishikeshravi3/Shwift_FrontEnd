@@ -68,9 +68,9 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
         }
 
         if (obj.position_onsite == 1) {
-            holder.txtJobAttr1.setText(context.getResources().getText(R.string.on_site));
+            holder.txtJobAttr2.setText(context.getResources().getText(R.string.on_site));
         }  else {
-            holder.txtJobAttr1.setText(context.getResources().getText(R.string.remote));
+            holder.txtJobAttr2.setText(context.getResources().getText(R.string.remote));
         }
 
         holder.bookmark.setOnClickListener(v -> {

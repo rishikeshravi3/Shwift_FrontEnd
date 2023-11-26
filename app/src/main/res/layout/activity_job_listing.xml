@@ -106,6 +106,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/recommendationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -121,15 +122,15 @@
                     android:textStyle="bold"
                     android:text="@string/recommendation"/>
 
-                <TextView
-                    android:id="@+id/txtSeeAllRecommendation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/purple"
-                    android:layout_gravity="end"
-                    android:textStyle="bold"
-                    android:text="@string/see_all"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/txtSeeAllRecommendation"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textColor="@color/purple"-->
+<!--                    android:layout_gravity="end"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="@string/see_all"/>-->
 
             </LinearLayout>
 
@@ -157,15 +158,15 @@
                     android:textStyle="bold"
                     android:text="@string/recent_jobs"/>
 
-                <TextView
-                    android:id="@+id/employer_view_home_page_txt_See_All_Recent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/purple"
-                    android:layout_gravity="end"
-                    android:textStyle="bold"
-                    android:text="@string/see_all"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/employer_view_home_page_txt_See_All_Recent"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textColor="@color/purple"-->
+<!--                    android:layout_gravity="end"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="@string/see_all"/>-->
 
             </LinearLayout>
 
