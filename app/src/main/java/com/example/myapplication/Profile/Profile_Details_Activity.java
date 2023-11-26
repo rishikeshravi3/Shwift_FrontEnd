@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -38,11 +39,32 @@ public class Profile_Details_Activity extends AppCompatActivity {
         EditText LastName = findViewById(R.id.LastName_profile);
         LastName.setText(obj.last_name);
         EditText CurrentPosition = findViewById(R.id.Current_position_profile);
+        Button save = findViewById(R.id.profileDetails_savebtn);
         ProfileResponseModel profileData = Common.getProfileData(this);
         if(profileData!=null) {
             CurrentPosition.setText(profileData.curr_position);
         }
 
+        save.setOnClickListener(v -> {
+            UpdateProfileRequest req = new UpdateProfileRequest();
+            req.col_name="curr_position";
+            req.value = CurrentPosition.getText().toString().trim();
+            UpdateProfileService.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
+                @Override
+                public void onUpdateSuccess() {
+                    // Update successful, start the new activity
+                    Intent intent = new Intent(Profile_Details_Activity.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onUpdateFailure() {
+                    // Handle update failure if needed
+                    Toast.makeText(Profile_Details_Activity.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
