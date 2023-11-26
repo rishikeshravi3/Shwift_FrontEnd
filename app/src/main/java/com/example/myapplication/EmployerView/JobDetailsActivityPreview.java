@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.Helper.Common;
+import com.example.myapplication.LoginModel;
 import com.example.myapplication.R;
 import com.example.myapplication.SignUpModel;
 import com.google.android.flexbox.FlexboxLayout;
@@ -155,7 +157,8 @@ public class JobDetailsActivityPreview extends AppCompatActivity {
         // builder and passing our base url
         // below line is to create an instance for our retrofit api class.
         // passing data from our text fields to our modal class.
-        JobDetailsModel modal = new JobDetailsModel(jobTitle,jobDescription,jobRequirement,jobPriority,payScale,numHours,jobLocation,positionType,startDate,appDeadline,recruiterName,positionOnsite);
+        LoginModel obj = Common.getUserData(JobDetailsActivityPreview.this);
+        JobDetailsModel modal = new JobDetailsModel(jobTitle,jobDescription,jobRequirement,jobPriority,payScale,numHours,jobLocation,positionType,startDate,appDeadline,recruiterName,positionOnsite, obj.email_id);
 
         // calling a method to create a post and passing our modal class.
         Call<JobDetailsModel> call = apiInterface.createListing(modal);
@@ -175,6 +178,7 @@ public class JobDetailsActivityPreview extends AppCompatActivity {
                     }
                     System.out.println(responseString);
                 } catch (Exception e) {
+                    Common.printShort(JobDetailsActivityPreview.this,"Api Error");
                     e.printStackTrace();
                 }
                 // below line we are setting our

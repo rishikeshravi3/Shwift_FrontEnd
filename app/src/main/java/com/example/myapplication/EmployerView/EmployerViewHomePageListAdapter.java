@@ -38,9 +38,6 @@ public class EmployerViewHomePageListAdapter extends RecyclerView.Adapter<Employ
         holder.name.setText(listdata[position].get_Name());
         holder.location.setText(listdata[position].getLocation());
         holder.availability.setText(listdata[position].getAvailability());
-        holder.positionType.setText(listdata[position].getPositionType());
-        holder.workType.setText(listdata[position].getWorkType());
-
     }
 
     @Override
@@ -55,8 +52,6 @@ public class EmployerViewHomePageListAdapter extends RecyclerView.Adapter<Employ
         public TextView name;
         public TextView location;
         public TextView availability;
-        public TextView workType;
-        public TextView positionType;
         public LinearLayout linearLayout;
         public ViewHolder(View itemView){
             super(itemView);
@@ -65,8 +60,6 @@ public class EmployerViewHomePageListAdapter extends RecyclerView.Adapter<Employ
             this.name=(TextView)itemView.findViewById(R.id.recent_applicants_item_txtName);
             this.location=(TextView)itemView.findViewById(R.id.recent_applicants_item_txtLocation);
             this.availability=(TextView)itemView.findViewById(R.id.recent_applicants_item_txtAvailability);
-            this.workType=(TextView)itemView.findViewById(R.id.recent_applicants_item_workType);
-            this.positionType=(TextView)itemView.findViewById(R.id.recent_applicants_item_positionType);
             linearLayout=(LinearLayout) itemView.findViewById(R.id.employer_view_home_page_recycler_view);
         }
     }

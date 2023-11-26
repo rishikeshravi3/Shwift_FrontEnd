@@ -1,5 +1,7 @@
 package com.example.myapplication.EmployerView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Applications.ApplicationStagesActivity;
+import com.example.myapplication.JobListing.JobListingActivity;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -157,29 +160,47 @@ public class JobDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-//        bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
-//        bottomNavigationView.setSelectedItemId(R.id.home_employer);
-//        bottomNavigationView.setOnItemSelectedListener(item -> {
-//            int itemId = item.getItemId();
-//            if (itemId == R.id.home_employer) {
-//                return true;
-//            } else if (itemId == R.id.addListing_employer) {
-//                startActivity(new Intent(getApplicationContext(), JobDetailsActivity.class));
-//                overridePendingTransition(0, 0);
-//                finish();
-//                return true;
-//            } else if (itemId == R.id.myListing_employer) {
-//                startActivity(new Intent(getApplicationContext(), ApplicationStagesActivity.class));
-//                overridePendingTransition(0, 0);
-//                finish();
-//                return true;
-//            } else if (itemId == R.id.profile_employer) {
-//                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-//                overridePendingTransition(0, 0);
-//                finish();
-//                return true;
-//            }
-//            return false;
-//        });
+        bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
+        bottomNavigationView.setSelectedItemId(R.id.addListing_employer);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home_employer) {
+                startActivity(new Intent(getApplicationContext(), Employer_View_Home_Page.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (itemId == R.id.addListing_employer) {
+                return true;
+            } else if (itemId == R.id.myListing_employer) {
+                startActivity(new Intent(getApplicationContext(), ApplicationEmployerList.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            } else if (itemId == R.id.profile_employer) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            }
+            return false;
+        });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(JobDetailsActivity.this);
+                builder.setMessage(R.string.exit_message);
+                builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+                    finish();
+                    System.exit(0);
+                });
+                builder.setNegativeButton(R.string.no, (dialog, which) -> {
+
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 }
