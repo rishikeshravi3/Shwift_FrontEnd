@@ -23,5 +23,5 @@ APIInterface {
     Call<ResponseBody> postSignup();
 
     @POST("/shwift/createlisting")
-    Call<JobDetailsResponseModel> createListing(@Body JobDetailsModel jobDetailsModel);
+    Call<JobDetailsModel> createListing(@Body JobDetailsModel jobDetailsModel);
 }

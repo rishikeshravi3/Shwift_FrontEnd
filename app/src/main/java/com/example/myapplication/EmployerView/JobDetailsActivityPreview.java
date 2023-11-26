@@ -3,12 +3,14 @@ package com.example.myapplication.EmployerView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
@@ -146,16 +148,21 @@ public class JobDetailsActivityPreview extends AppCompatActivity {
         JobDetailsModel modal = new JobDetailsModel(jobTitle,jobDescription,jobRequirement,jobPriority,payScale,numHours,jobLocation,positionType,startDate,appDeadline,recruiterName,positionOnsite);
 
         // calling a method to create a post and passing our modal class.
-        Call<JobDetailsResponseModel> call = apiInterface.createListing(modal);
+        Call<JobDetailsModel> call = apiInterface.createListing(modal);
 
         // on below line we are executing our method.
-        call.enqueue(new Callback<JobDetailsResponseModel>() {
+        call.enqueue(new Callback<JobDetailsModel>() {
             @Override
-            public void onResponse(Call<JobDetailsResponseModel> call, Response<JobDetailsModel> response) {
+            public void onResponse(Call<JobDetailsModel> call, Response<JobDetailsModel> response) {
                 try {
-                    JobDetailsModel responseFromAPI = response.body();
+                    //JobDetailsModel responseFromAPI = response.body();
                     // on below line we are getting our data from modal class and adding it to our string.
                     String responseString = "Response Code : " + response.code();
+                    if(response.code()==201){
+                        Toast.makeText(JobDetailsActivityPreview.this,"Job Data Posted Successfully",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(JobDetailsActivityPreview.this,Employer_View_Home_Page.class);
+                        startActivity(intent);
+                    }
                     System.out.println(responseString);
                 } catch (Exception e) {
                     e.printStackTrace();
