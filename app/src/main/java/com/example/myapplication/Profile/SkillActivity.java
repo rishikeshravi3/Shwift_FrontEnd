@@ -85,6 +85,7 @@ private void chipFromFetch(){
     ProfileResponseModel obj = Common.getProfileData(this);
     if(obj!=null){
         String skillsString = obj.emp_skills;
+        if (skillsString.isEmpty()) return;
         String[] skillsArray = skillsString.split(",");
         for (String skill : skillsArray) {
         Chip chip = new Chip(this);

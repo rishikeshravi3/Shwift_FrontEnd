@@ -57,4 +57,7 @@ APIInterface {
 
     @POST("/shwift/createlisting")
     Call<JobDetailsModel> createListing(@Body JobDetailsModel jobDetailsModel);
+
+    @POST("/shwift/getRecommendedJobs")
+    Call<ResponseBody> getRecommendedJobs(@Body JobListingRequest input);
 }
