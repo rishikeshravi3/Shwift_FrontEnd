@@ -7,4 +7,5 @@ public class LoginModel {
     public String pswd;
     public String acc_type;
     public String phone_num;
+
 }

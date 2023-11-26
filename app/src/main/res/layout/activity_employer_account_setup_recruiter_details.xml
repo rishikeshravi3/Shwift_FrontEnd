@@ -65,26 +65,12 @@
             />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_employer_account_setup_recruiter_details_company_website"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_below="@id/activity_employer_account_setup_recruiter_details_last_name"
-            android:background="@drawable/chip_background"
-            android:hint="@string/activity_employer_account_setup_recruiter_details_company_website_text"
-            android:inputType="textWebEmailAddress"
-            android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:textColorHint="#ACACAC"
-            />
-
-        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_employer_account_setup_recruiter_details_organization_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="17dp"
-            android:layout_below="@id/activity_employer_account_setup_recruiter_details_company_website"
+            android:layout_below="@id/activity_employer_account_setup_recruiter_details_last_name"
             android:background="@drawable/chip_background"
             android:drawableRight="@drawable/custom_email_icon"
             android:hint="@string/activity_employer_account_setup_recruiter_details_organization_email_text"

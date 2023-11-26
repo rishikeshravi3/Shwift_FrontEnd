@@ -7,13 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.EmployerView.Employer_View_Home_Page;
 import com.example.myapplication.Helper.Common;
 import com.example.myapplication.Helper.Constants;
 import com.example.myapplication.JobListing.JobListingActivity;
@@ -43,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
         Button loginbtn = findViewById(R.id.button_account_login);
+        ImageView show_password=findViewById(R.id.show_password);
         loginbtn.setOnClickListener(v -> {
             String Mail = Email.getText().toString().trim();
             String Pswd = Password.getText().toString().trim();
@@ -54,6 +58,18 @@ public class LoginActivity extends AppCompatActivity {
                 sendLoginRequest(Mail, Pswd);
             }
         });
+
+        show_password.setOnClickListener(v -> {
+            if (Password.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+                Password.setInputType(InputType.TYPE_CLASS_TEXT);
+                show_password.setBackgroundResource(R.drawable.eye_slash_regular);
+            } else {
+                Password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                show_password.setBackgroundResource(R.drawable.eye_regular);
+            }
+        });
+
+
         TextView to_createAccount = findViewById(R.id.go_to_create_account);
         to_createAccount.setOnClickListener(v -> {
             finish();
@@ -82,8 +98,15 @@ public class LoginActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     String json = gson.toJson(response.body());
                     sharedPreferences.edit().putString(Constants.KEY_USER_DATA, json).apply();
-                    Intent intent = new Intent(LoginActivity.this, JobListingActivity.class);
-                    startActivity(intent);
+                    if (response.body() != null) {
+                        if ("employee".equals(response.body().acc_type)) {
+                            Intent intent = new Intent(LoginActivity.this, JobListingActivity.class);
+                            startActivity(intent);
+                        } else if ("employer".equals(response.body().acc_type)) {
+                            Intent intent = new Intent(LoginActivity.this, Employer_View_Home_Page.class);
+                            startActivity(intent);
+                        }
+                    }
                     Common.printShort(LoginActivity.this, "Login Successful");
                     finish();
                 } else {

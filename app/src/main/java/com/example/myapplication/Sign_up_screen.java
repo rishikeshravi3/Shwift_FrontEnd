@@ -35,6 +35,7 @@ import android.view.View;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.EmployerView.Employer_Account_Setup_Company_details;
 import com.example.myapplication.JobListing.JobListingActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -114,7 +115,11 @@ public class Sign_up_screen extends Activity {
                 }else {
                     Intent intent = getIntent();
                     String pswd = intent.getStringExtra("PasswordKey");
-                    postData(FirstName, LastName, Email, pswd, Phone);
+                    String Jobtype = "employee";
+                    System.out.println(pswd);
+                    if(pswd!=null){
+                    postData(FirstName,Jobtype, LastName, Email, pswd, Phone);
+                    }
                 }
             }
         });
@@ -146,6 +151,7 @@ public class Sign_up_screen extends Activity {
     }
     private void showDatePickerDialog() {
         Calendar newCalendar = Calendar.getInstance();
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -160,8 +166,13 @@ public class Sign_up_screen extends Activity {
                 newCalendar.get(Calendar.MONTH),
                 newCalendar.get(Calendar.DAY_OF_MONTH)
         );
+
+        // Set max date to prevent selecting dates forward from the current date
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
         datePickerDialog.show();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -317,10 +328,9 @@ public class Sign_up_screen extends Activity {
         }
     }
 
-    private void postData(String name, String lastName, String emailId, String pSWD, String phoneNum) {
+    private void postData(String name,String accType, String lastName, String emailId, String pSWD, String phoneNum) {
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        String accType = "employee";
-        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum);
+        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum,"","","","");
 
         // Execute the network operation using AsyncTask
         new PostDataTask().execute(modal);

@@ -12,8 +12,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.Applications.ApplicationStagesActivity;
+import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
@@ -26,6 +30,7 @@ public class JobDetailsActivity extends AppCompatActivity {
     String priorityText;
     String jobText;
     String workText;
+    BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -87,17 +92,17 @@ public class JobDetailsActivity extends AppCompatActivity {
 //            }
 //        });
 
-        work.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                workText = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                workText = parent.getItemAtPosition(0).toString();
-            }
-        });
+//        work.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                workText = parent.getItemAtPosition(position).toString();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                workText = parent.getItemAtPosition(0).toString();
+//            }
+//        });
 
         itemsWork = new String[]{"Remote","Onsite"};
         itemsJob = new String[]{"Full Time", "Part Time", "Temporary"};
@@ -112,6 +117,13 @@ public class JobDetailsActivity extends AppCompatActivity {
         priority.setAdapter(adapterPriority);
 
         Button button = findViewById(R.id.job_details_activity_button);
+        TextView jobTitle = findViewById(R.id.job_details_activity_jobTitle_EditText);
+        TextView jobDesc = findViewById(R.id.job_details_activity_description_EditText);
+        TextView jobRequirement = findViewById(R.id.job_details_activity_requirements_EditText);
+        TextView pay = findViewById(R.id.job_details_activity_pay_EditText);
+        TextView hours = findViewById(R.id.job_details_activity_hours_EditText);
+        TextView jobLocation = findViewById(R.id.job_details_activity_location_EditText);
+        TextView recruiter = findViewById(R.id.job_details_activity_recruiter_EditText);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,21 +134,52 @@ public class JobDetailsActivity extends AppCompatActivity {
                 TextView hours = findViewById(R.id.job_details_activity_hours_EditText);
                 TextView jobLocation = findViewById(R.id.job_details_activity_location_EditText);
                 TextView recruiter = findViewById(R.id.job_details_activity_recruiter_EditText);
-                Intent intent = new Intent(JobDetailsActivity.this, JobDetailsActivityPreview.class);
-                intent.putExtra("jobTitle", jobTitle.getText().toString());
-                intent.putExtra("jobDesc", jobDesc.getText().toString());
-                intent.putExtra("jobReq", jobRequirement.getText().toString());
-                intent.putExtra("workType", workText);
-                intent.putExtra("jobPriority", priority.getSelectedItem().toString());
-                intent.putExtra("pay", pay.getText().toString());
-                intent.putExtra("hours", hours.getText().toString());
-                intent.putExtra("jobLocation", jobLocation.getText().toString());
-                intent.putExtra("jobType", job.getSelectedItem().toString());
-                intent.putExtra("startDate", startDate.getText().toString());
-                intent.putExtra("applicationDeadline", applicationDeadline.getText().toString());
-                intent.putExtra("recruiterName", recruiter.getText().toString());
-                startActivity(intent);
+                if(jobTitle.getText().toString().isEmpty()||jobDesc.getText().toString().isEmpty()||jobRequirement.getText().toString().isEmpty()||
+                pay.getText().toString().isEmpty()||hours.getText().toString().isEmpty()||jobLocation.getText().toString().isEmpty()||startDate.getText().toString().isEmpty()
+                ||applicationDeadline.getText().toString().isEmpty()||recruiter.getText().toString().isEmpty()){
+                    Toast.makeText(JobDetailsActivity.this,"Please Fill All the Fields",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent(JobDetailsActivity.this, JobDetailsActivityPreview.class);
+                    intent.putExtra("jobTitle", jobTitle.getText().toString());
+                    intent.putExtra("jobDesc", jobDesc.getText().toString());
+                    intent.putExtra("jobReq", jobRequirement.getText().toString());
+                    intent.putExtra("workType", work.getSelectedItem().toString());
+                    intent.putExtra("jobPriority", priority.getSelectedItem().toString());
+                    intent.putExtra("pay", pay.getText().toString());
+                    intent.putExtra("hours", hours.getText().toString());
+                    intent.putExtra("jobLocation", jobLocation.getText().toString());
+                    intent.putExtra("jobType", job.getSelectedItem().toString());
+                    intent.putExtra("startDate", startDate.getText().toString());
+                    intent.putExtra("applicationDeadline", applicationDeadline.getText().toString());
+                    intent.putExtra("recruiterName", recruiter.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
+//        bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
+//        bottomNavigationView.setSelectedItemId(R.id.home_employer);
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//            int itemId = item.getItemId();
+//            if (itemId == R.id.home_employer) {
+//                return true;
+//            } else if (itemId == R.id.addListing_employer) {
+//                startActivity(new Intent(getApplicationContext(), JobDetailsActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//                return true;
+//            } else if (itemId == R.id.myListing_employer) {
+//                startActivity(new Intent(getApplicationContext(), ApplicationStagesActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//                return true;
+//            } else if (itemId == R.id.profile_employer) {
+//                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//                return true;
+//            }
+//            return false;
+//        });
     }
 }
