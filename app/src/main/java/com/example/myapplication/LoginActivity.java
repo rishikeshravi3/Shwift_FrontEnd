@@ -46,8 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(v -> {
             String Mail = Email.getText().toString().trim();
             String Pswd = Password.getText().toString().trim();
-            Mail = "test12345@gmail.com";
-            Pswd = "dcba";
+//            Mail = "test12345@gmail.com";
+//            Pswd = "dcba";
             if (Mail.isEmpty() || Pswd.isEmpty()) {
                 Toast.makeText(this, "Both Fields are required", Toast.LENGTH_SHORT).show();
             } else {
@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Handle network errors or other failures
                 if (progressDialog != null && progressDialog.isShowing()) {
                     progressDialog.dismiss();
+                    Common.printShort(LoginActivity.this, "Login Error");
                 }
                 t.printStackTrace();
             }

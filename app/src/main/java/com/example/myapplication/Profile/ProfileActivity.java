@@ -144,7 +144,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     }
                 } else {
-                    Common.print(ProfileActivity.this, "Failed to get job list");
+                    //Common.print(ProfileActivity.this, "Failed to get job list");
                 }
             }
 
