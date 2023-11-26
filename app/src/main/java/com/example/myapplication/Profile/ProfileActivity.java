@@ -41,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+<<<<<<< HEAD
         TextView name = findViewById(R.id.txtName_profile);
         ImageView EditProfile = findViewById(R.id.editIcon_profile);
         EditProfile.setOnClickListener(v->{
@@ -52,6 +53,10 @@ public class ProfileActivity extends AppCompatActivity {
         name.setText(obj.first_name + " " + obj.last_name);
         getProfileDetails();
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+=======
+
+        bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
+>>>>>>> ab908b66bd7276cb0d0bc1617bfb0c0228df6468
         bottomNavigationView.setSelectedItemId(R.id.saved_jobs);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();

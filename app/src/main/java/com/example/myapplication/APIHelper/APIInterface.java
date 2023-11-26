@@ -7,6 +7,7 @@ import com.example.myapplication.Profile.ProfileRequestModel;
 import com.example.myapplication.Profile.ProfileResponseModel;
 import com.example.myapplication.Profile.UpdateProfileRequest;
 import com.example.myapplication.Profile.UpdateProfileResponse;
+import com.example.myapplication.EmployerView.JobDetailsModel;
 import com.example.myapplication.SignUpModel;
 
 import okhttp3.ResponseBody;
@@ -17,13 +18,16 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface APIInterface {
+public interface
+
+APIInterface {
 
     @POST("/shwift/fetchSpecificListing")
     Call<ResponseBody> getJobList(@Body JobListingRequest input);
 
     @POST("/shwift/signUp")
     Call<SignUpModel> createPost(@Body SignUpModel signUpModel);
+
 
     @GET("shwift/login/{userName}")
     Call<LoginModel> login(
@@ -44,4 +48,8 @@ public interface APIInterface {
     Call<UpdateProfileResponse> getUpdateInfo(@Body UpdateProfileRequest updateProfileRequest);
     @POST("/shwift/getSavedJobs")
     Call<ResponseBody> getSavedJobs(@Body JobListingRequest input);
+    Call<ResponseBody> postSignup();
+
+    @POST("/shwift/createlisting")
+    Call<JobDetailsModel> createListing(@Body JobDetailsModel jobDetailsModel);
 }

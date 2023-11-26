@@ -71,7 +71,7 @@
         android:background="@color/light_gray"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
+        android:id="@+id/employer_view_home_page_bottom_Navigation"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:itemBackground="@color/white"
