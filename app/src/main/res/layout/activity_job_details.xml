@@ -1,10 +1,15 @@
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".EmployerView.JobDetailsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<ScrollView
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="0dp"
+    android:layout_weight="1">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -435,3 +440,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/employer_view_home_page_bottom_Navigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:itemBackground="@color/white"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/bottm_navigation_employer" />
+</LinearLayout>
+

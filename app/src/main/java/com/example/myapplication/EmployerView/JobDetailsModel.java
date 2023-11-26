@@ -13,11 +13,12 @@ public class JobDetailsModel{
     public String appDeadline;
     public String recruiterName;
     public int positionOnsite;
+    public  String recruiterEmail;
 
 
     public JobDetailsModel(String jobTitle, String jobDescription, String jobRequirement, String jobPriority,
                            String payScale, String numHours, String jobLocation, int positionType,
-                           String startDate, String appDeadline, String recruiterName, int positionOnsite) {
+                           String startDate, String appDeadline, String recruiterName, int positionOnsite,String recruiterEmail) {
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
         this.jobRequirement = jobRequirement;
@@ -30,5 +31,6 @@ public class JobDetailsModel{
         this.appDeadline = appDeadline;
         this.recruiterName = recruiterName;
         this.positionOnsite = positionOnsite;
+        this.recruiterEmail= recruiterEmail;
     }
 }

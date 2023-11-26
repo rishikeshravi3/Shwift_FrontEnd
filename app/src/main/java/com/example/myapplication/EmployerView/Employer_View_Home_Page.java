@@ -47,7 +47,7 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                 finish();
                 return true;
             } else if (itemId == R.id.myListing_employer) {
-                startActivity(new Intent(getApplicationContext(), ApplicationStagesActivity.class));
+                startActivity(new Intent(getApplicationContext(), ApplicationEmployerList.class));
                 overridePendingTransition(0, 0);
                 finish();
                 return true;

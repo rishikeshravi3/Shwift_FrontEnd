@@ -68,13 +68,13 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/employer_view_home_page_notification"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="10dp"
-                    android:src="@drawable/notification"/>
+<!--                <ImageView-->
+<!--                    android:id="@+id/employer_view_home_page_notification"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginHorizontal="10dp"-->
+<!--                    android:src="@drawable/notification"/>-->
 
             </LinearLayout>
 
@@ -128,16 +128,6 @@
                     android:textStyle="bold"
                     android:text="@string/recent_applicants"/>
 
-                <TextView
-                    android:id="@+id/employer_view_home_page_txt_See_All_Recent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/purple"
-                    android:layout_gravity="end"
-                    android:textStyle="bold"
-                    android:text="@string/see_all"/>
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -160,6 +150,6 @@
         app:itemBackground="@color/white"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        app:menu="@menu/bottom_navigation" />
+        app:menu="@menu/bottm_navigation_employer" />
 
 </LinearLayout>

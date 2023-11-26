@@ -17,20 +17,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EmployerView.ApplicationEmployerList"
+            android:exported="false" />
+        <activity
             android:name=".EmployerView.JobDetailsActivityPreview"
-            android:exported="true" >
-        </activity>
-        <activity
-            android:name=".EmployerView.JobDetailsActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".EmployerView.Employer_View_Home_Page"
             android:exported="true"></activity>
         <activity
+            android:name=".EmployerView.JobDetailsActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".EmployerView.Employer_View_Home_Page"
+            android:exported="true" />
+        <activity
             android:name=".EmployerView.EmployerAccountSetupRecruiterDetails"
-            android:exported="true" >
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".EmployerView.Employer_Account_Setup_Company_details"
             android:exported="true" />
@@ -67,24 +67,18 @@
         <activity
             android:name=".Profile.ProfileActivity"
             android:exported="false" />
-
         <activity
             android:name=".JobListing.SavedJobsActivity"
             android:exported="false" />
-
         <activity
             android:name=".Applications.ApplicationStagesActivity"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"></activity>
         <activity
             android:name=".ApplicantViewJobDescription"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".JobListing.JobListingActivity"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -92,24 +86,21 @@
 
         <activity
             android:name=".Sign_up_screen"
-            android:exported="false"></activity>
-
+            android:exported="false" />
         <activity
             android:name=".account_setup_user_info"
             android:exported="false" />
         <activity
             android:name=".expertise_activity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AccountSetupHome"
@@ -131,6 +122,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
