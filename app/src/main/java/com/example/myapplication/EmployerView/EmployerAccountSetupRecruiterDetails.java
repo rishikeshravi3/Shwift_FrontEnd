@@ -2,6 +2,7 @@ package com.example.myapplication.EmployerView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,6 +11,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Gravity;
@@ -21,22 +23,37 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.example.myapplication.APIHelper.APIClient;
+import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.SignUpModel;
+import com.example.myapplication.Sign_up_screen;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class EmployerAccountSetupRecruiterDetails extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private ImageButton imageView;
+    APIInterface apiInterface;
+    private Intent intent;
 
-    private Button Continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_account_setup_recruiter_details);
         imageView = findViewById(R.id.employer_account_setup_recruiter_details_image);
-        Continue=findViewById(R.id.activity_employer_account_setup_recruiter_details_button);
+        Button continueButton = findViewById(R.id.activity_employer_account_setup_recruiter_details_button);
+        TextInputEditText firstNameEditText = findViewById(R.id.activity_employer_account_setup_recruiter_details_first_name);
+        TextInputEditText lastNameEditText = findViewById(R.id.activity_employer_account_setup_recruiter_details_last_name);
+        TextInputEditText emailEditText = findViewById(R.id.activity_employer_account_setup_recruiter_details_organization_email);
+        TextInputEditText phoneEditText = findViewById(R.id.activity_employer_account_setup_recruiter_phone);
+        TextInputEditText linkedinEditText = findViewById(R.id.activity_employer_account_setup_recruiter_details_linkedin_url);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +63,52 @@ public class EmployerAccountSetupRecruiterDetails extends AppCompatActivity {
             }
         });
 
-        Continue.setOnClickListener(new View.OnClickListener() {
+        continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String firstName = firstNameEditText.getText().toString().trim();
+                String lastName = lastNameEditText.getText().toString().trim();
+                String email = emailEditText.getText().toString().trim();
+                String phone = phoneEditText.getText().toString().trim();
+                String linkedinUrl = linkedinEditText.getText().toString().trim();
+
+                // Perform validation
+                if (firstName.isEmpty()) {
+                    firstNameEditText.setError("First Name is required");
+                    return;
+                }
+
+                if (lastName.isEmpty()) {
+                    lastNameEditText.setError("Last Name is required");
+                    return;
+                }
+
+                if (email.isEmpty()) {
+                    emailEditText.setError("Email is required");
+                    return;
+                } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    emailEditText.setError("Invalid email address");
+                    return;
+                }
+
+                if (phone.isEmpty()) {
+                    phoneEditText.setError("Phone number is required");
+                    return;
+                }
+
+                // You can perform additional validation for phone number format if needed
+
+                // If all validations pass, you can proceed to the next step
+                // (Start the next activity or perform any other action)
+                // Example:
+                Intent intent = getIntent();
+                String pswd = intent.getStringExtra("PasswordKey");
+                String orgName = intent.getStringExtra("OrgName");
+                String orgDesc = intent. getStringExtra("orgDesc");
+                System.out.println(pswd);
                 showPopup(v);
+                String JobType = "employer";
+                postData(firstName,JobType,lastName,email,pswd,phone,orgName,orgDesc);
 
             }
         });
@@ -140,6 +199,67 @@ public class EmployerAccountSetupRecruiterDetails extends AppCompatActivity {
         // You can customize the icon and text here
         // Example: iconImageView.setImageResource(R.drawable.your_custom_icon);
         // Example: textView.setText("Your custom text");
+    }
+    private class PostDataTask1 extends AsyncTask<SignUpModel, Void, Response<SignUpModel>> {
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Show loader or progress dialog
+            progressDialog = ProgressDialog.show(EmployerAccountSetupRecruiterDetails.this, "Please wait", "Sending data...", true, false);
+        }
+
+        @Override
+        protected Response<SignUpModel> doInBackground(SignUpModel... signUpModels) {
+            // Execute the network operation in the background
+            Call<SignUpModel> call = apiInterface.createPost(signUpModels[0]);
+            try {
+                return call.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Response<SignUpModel> response) {
+            super.onPostExecute(response);
+            // Dismiss the loader or progress dialog
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+
+            if (response != null) {
+                try {
+                    if (response.isSuccessful()) {
+                        // Show the popup only if the status code is 200
+                        intent = new Intent(EmployerAccountSetupRecruiterDetails.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // If the status code is not 200, handle the error or show an appropriate message
+                        Toast.makeText(EmployerAccountSetupRecruiterDetails.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                    // on below line we are getting our data from modal class and adding it to our string.
+                    String responseString = "Response Code : " + response.code();
+                    System.out.println(responseString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // Handle the case where the response is null or an exception occurred
+                Toast.makeText(EmployerAccountSetupRecruiterDetails.this, "Error occurred", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void postData(String name,String accType, String lastName, String emailId, String pSWD, String phoneNum,String orgName, String orgDesc) {
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum,"",orgName,"12345",orgDesc);
+
+        // Execute the network operation using AsyncTask
+        new  PostDataTask1().execute(modal);
     }
 }
 

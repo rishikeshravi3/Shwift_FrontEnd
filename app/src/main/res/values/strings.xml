@@ -8,7 +8,7 @@
     <string name="find_a_employee">Find an employee</string>
     <string name="i_want_to_find_employees">I want to find employees</string>
     <string name="what_is_you">What is your Expertise?</string>
-    <string name="please_sele">Please select the field of expertise (upto 3)</string>
+    <string name="please_sele">Please select the field of expertise</string>
     <string name="create_new_account">Create New Account</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
