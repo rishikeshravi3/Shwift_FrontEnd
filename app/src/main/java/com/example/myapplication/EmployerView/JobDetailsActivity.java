@@ -13,7 +13,10 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.myapplication.Applications.ApplicationStagesActivity;
+import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
@@ -26,6 +29,7 @@ public class JobDetailsActivity extends AppCompatActivity {
     String priorityText;
     String jobText;
     String workText;
+    BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -125,7 +129,7 @@ public class JobDetailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(JobDetailsActivity.this, JobDetailsActivityPreview.class);
                 intent.putExtra("jobTitle", jobTitle.getText().toString());
                 intent.putExtra("jobDesc", jobDesc.getText().toString());
-                intent.putExtra("jobReq", jobRequirement.getText().toString());
+                intent.putExtra("jobReq", jobRequirement.getText().toString().trim());
                 intent.putExtra("workType", workText);
                 intent.putExtra("jobPriority", priority.getSelectedItem().toString());
                 intent.putExtra("pay", pay.getText().toString());
@@ -138,5 +142,29 @@ public class JobDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//        bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
+//        bottomNavigationView.setSelectedItemId(R.id.home_employer);
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//            int itemId = item.getItemId();
+//            if (itemId == R.id.home_employer) {
+//                return true;
+//            } else if (itemId == R.id.addListing_employer) {
+//                startActivity(new Intent(getApplicationContext(), JobDetailsActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//                return true;
+//            } else if (itemId == R.id.myListing_employer) {
+//                startActivity(new Intent(getApplicationContext(), ApplicationStagesActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//                return true;
+//            } else if (itemId == R.id.profile_employer) {
+//                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//                return true;
+//            }
+//            return false;
+//        });
     }
 }
