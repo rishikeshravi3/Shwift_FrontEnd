@@ -1,11 +1,13 @@
 package com.example.myapplication.JobListing;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -57,7 +59,7 @@ public class JobListingActivity extends AppCompatActivity {
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if (hour > 6 && hour < 12) {
             txtGreeting.setText(getResources().getText(R.string.good_morning));
-        } else if (hour >= 12 && hour <=18) {
+        } else if (hour >= 12 && hour <= 18) {
             txtGreeting.setText(getResources().getText(R.string.good_afternoon));
         } else {
             txtGreeting.setText(getResources().getText(R.string.good_evening));
@@ -67,7 +69,6 @@ public class JobListingActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.companyLogo);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-       // bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -96,15 +97,24 @@ public class JobListingActivity extends AppCompatActivity {
         recommendedJobsView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
         recentJobsView = findViewById(R.id.recentJobList);
-        recentJobsView.setLayoutManager(new LinearLayoutManager( this));
+        recentJobsView.setLayoutManager(new LinearLayoutManager(this));
 
         getJobList();
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
-                Toast.makeText(JobListingActivity.this, "Back?", Toast.LENGTH_SHORT).show();
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(JobListingActivity.this);
+                builder.setMessage(R.string.exit_message);
+                builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+                    finish();
+                    System.exit(0);
+                });
+                builder.setNegativeButton(R.string.no, (dialog, which) -> {
+
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
@@ -154,6 +164,7 @@ public class JobListingActivity extends AppCompatActivity {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.home);
     }
+
     private Bitmap getCircularBitmap(Bitmap bitmap) {
         // Create a circular bitmap using the original bitmap
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),

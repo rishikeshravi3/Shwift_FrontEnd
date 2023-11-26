@@ -137,4 +137,7 @@
     <string name="applicant_view_job_description_recruiter_heading"><b>Recruiter Name:</b></string>
     <string name="applicant_view_job_description_start_date_heading"><b>Start Date:</b></string>
     <string name="applicant_view_job_description_application_deadline_heading"><b>Application Deadline:</b></string>
+    <string name="exit_message">Are you sure you want to exit the application?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
