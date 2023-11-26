@@ -82,7 +82,8 @@
         </activity>
         <activity
             android:name=".JobListing.JobListingActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -103,10 +104,6 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".AccountSetupHome"
@@ -126,6 +123,10 @@
         <activity
             android:name=".onboarding"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".create_New_Password"
