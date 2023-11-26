@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.myapplication.ApplicationStageListAdapter;
-import com.example.myapplication.ApplicationStageListData;
 import com.example.myapplication.R;
 
 public class Employer_View_Home_Page extends AppCompatActivity {
