@@ -29,7 +29,8 @@
             android:exported="true"></activity>
         <activity
             android:name=".EmployerView.EmployerAccountSetupRecruiterDetails"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".EmployerView.Employer_Account_Setup_Company_details"
             android:exported="true" />
