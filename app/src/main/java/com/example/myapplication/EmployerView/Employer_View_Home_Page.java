@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Applications.ApplicationStagesActivity;
@@ -45,6 +46,7 @@ public class Employer_View_Home_Page extends AppCompatActivity {
     ArrayList<UserApplicationModel> applicationList = new ArrayList<>();
     RecyclerView applicationListView;
     TextView txtNoData;
+    ImageView userDp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,12 @@ public class Employer_View_Home_Page extends AppCompatActivity {
 
         TextView txtGreeting = findViewById(R.id.employer_view_home_page_txt_greeting);
         TextView txtName = findViewById(R.id.employer_view_home_page_txt_name);
+        userDp = findViewById(R.id.employer_view_home_page_user_logo);
 
         LoginModel obj = Common.getUserData(this);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
         txtName.setText(obj.first_name + " " + obj.last_name);
 
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -164,5 +170,15 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        LoginModel obj = Common.getUserData(this);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
     }
 }
