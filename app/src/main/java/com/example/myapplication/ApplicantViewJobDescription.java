@@ -3,11 +3,16 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -118,6 +123,41 @@ public class ApplicantViewJobDescription extends AppCompatActivity {
             }
         });
 
+        Button apply=findViewById(R.id.applicant_view_job_description_apply_button);
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View popupView = LayoutInflater.from(ApplicantViewJobDescription.this).inflate(R.layout.apply_job_popup, null);
+
+                // Create a PopupWindow
+                PopupWindow popupWindow = new PopupWindow(
+                        popupView,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                // Set a focusable flag to make it respond to touch events outside of the popup
+                popupWindow.setFocusable(true);
+                int[] location = new int[2];
+                v.getLocationOnScreen(location);
+                int anchorX = location[0] + v.getWidth() / 2;
+                int anchorY = location[1] + v.getHeight() / 2;
+
+                // Show the popup at the center of the screen, you can customize the position
+                popupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
+
+                Button CVapply=popupView.findViewById(R.id.buttonApplyCV);
+                CVapply.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(ApplicantViewJobDescription.this, Apply_Job.class);
+                        intent.putExtra("jobData",jobData);
+                        startActivity(intent);
+
+                    }
+                });
+            }
+        });
+
 //dummy code
 
 //        TextView requirementAndSkills=findViewById(R.id.applicant_view_job_description_key_skills_body);
@@ -161,4 +201,34 @@ public class ApplicantViewJobDescription extends AppCompatActivity {
 
 //Dummy Code ends
     }
+    private void showPopup(View anchorView) {
+        // Inflate the popup_layout.xml
+        View popupView = LayoutInflater.from(this).inflate(R.layout.apply_job_popup, null);
+
+        // Create a PopupWindow
+        PopupWindow popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // Set a focusable flag to make it respond to touch events outside of the popup
+        popupWindow.setFocusable(true);
+        int[] location = new int[2];
+        anchorView.getLocationOnScreen(location);
+        int anchorX = location[0] + anchorView.getWidth() / 2;
+        int anchorY = location[1] + anchorView.getHeight() / 2;
+
+        // Show the popup at the center of the screen, you can customize the position
+        popupWindow.showAtLocation(anchorView, Gravity.BOTTOM, 0, 0);
+
+//        // Set up the ImageView and TextView in the popup layout
+//        ImageView iconImageView = popupView.findViewById(R.id.iconImageView);
+//        TextView textView = popupView.findViewById(R.id.textView);
+
+        // You can customize the icon and text here
+        // Example: iconImageView.setImageResource(R.drawable.your_custom_icon);
+        // Example: textView.setText("Your custom text");
+    }
 }
+
+
