@@ -34,7 +34,7 @@
                     android:id="@+id/companyLogo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/shwift_logo"/>
+                    android:background="@drawable/company_icon"/>
 
             </com.google.android.material.card.MaterialCardView>
 

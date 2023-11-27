@@ -16,6 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.JobListing.JobModel;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.material.card.MaterialCardView;
@@ -56,6 +57,11 @@ public class ApplicantViewJobDescription extends AppCompatActivity {
 
         TextView hours=findViewById(R.id.applicant_view_job_description_NumberOfHours_body);
         hours.setText(object.num_hours);
+
+        ImageView logo = child.findViewById(R.id.companyLogo);
+        if (object.employer_dp != null && object.employer_dp.isEmpty() == false) {
+            Glide.with(this).load(object.employer_dp).into(logo);
+        }
 
 //        TextView recruiter=findViewById(R.id.applicant_view_job_description_recruiter_body);
 //        recruiter.setText(object.recruiter_name);

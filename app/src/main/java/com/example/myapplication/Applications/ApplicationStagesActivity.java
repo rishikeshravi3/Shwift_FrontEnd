@@ -120,6 +120,7 @@ public class ApplicationStagesActivity extends AppCompatActivity {
                             intent.putExtra("salary", obj.pay_scale);
                             intent.putExtra("positionType", obj.position_type);
                             intent.putExtra("onSite", obj.position_onsite);
+                            intent.putExtra("logo", obj.employer_dp);
 
                             startActivity(intent);
                         });

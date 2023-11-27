@@ -15,4 +15,5 @@ public class JobModel {
     public boolean job_saved;
     public int position_onsite;
     public String recruiter_email_id;
+    public String employer_dp;
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Applications.ApplicationStageListAdapter;
@@ -30,7 +31,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
     private List<JobModel> jobList;
     Context context;
     int activityType; // 1 - JobListing, 2 - SavedJobs, 3 - RecommendedJobs
-    private static ClickListener clickListener;
+    private ClickListener clickListener;
 
     public JobsAdapter(Context ctx, List<JobModel> jobs, int actType, ClickListener clickListener) {
         context = ctx;
@@ -70,6 +71,10 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
             holder.txtJobAttr2.setText(context.getResources().getText(R.string.on_site));
         }  else {
             holder.txtJobAttr2.setText(context.getResources().getText(R.string.remote));
+        }
+
+        if (obj.employer_dp != null && obj.employer_dp.isEmpty() == false) {
+            Glide.with(context).load(obj.employer_dp).into(holder.companyLogo);
         }
 
         holder.bookmark.setOnClickListener(v -> {

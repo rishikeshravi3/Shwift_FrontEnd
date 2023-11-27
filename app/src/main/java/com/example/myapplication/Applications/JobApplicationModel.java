@@ -19,4 +19,5 @@ public class JobApplicationModel {
     public int position_onsite;
     public Date app_date;
     public int application_status;
+    public String employer_dp;
 }

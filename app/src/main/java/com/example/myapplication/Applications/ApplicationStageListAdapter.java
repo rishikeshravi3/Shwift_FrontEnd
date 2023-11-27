@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.ApplicationStageListData;
 import com.example.myapplication.JobListing.JobModel;
 import com.example.myapplication.R;
@@ -51,6 +52,11 @@ public class ApplicationStageListAdapter extends RecyclerView.Adapter<Applicatio
         } else {
             holder.status.setText("Application Rejected");
         }
+
+        if (obj.employer_dp != null && obj.employer_dp.isEmpty() == false) {
+            Glide.with(context).load(obj.employer_dp).into(holder.logo);
+        }
+
         holder.status.setPadding(17,3,17,3);
         if(holder.status.getText().equals("Application Sent")){
            holder.status.setTextAppearance(R.style.application_stage_item_status_style_sent);

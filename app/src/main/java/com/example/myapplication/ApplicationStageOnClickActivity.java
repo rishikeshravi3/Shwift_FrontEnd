@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class ApplicationStageOnClickActivity extends AppCompatActivity {
         int postionType = getIntent().getIntExtra("positionType", 0);
         int onSite = getIntent().getIntExtra("onSite", 0);
         int logoID = getIntent().getIntExtra("logoId", 0);
+        String logo_co = getIntent().getStringExtra("logo");
 
         ImageView logo = findViewById(R.id.application_stage_on_click_card_image);
         TextView companyName = findViewById(R.id.application_stage_on_click_card_company);
@@ -37,7 +39,11 @@ public class ApplicationStageOnClickActivity extends AppCompatActivity {
         TextView txtPositionType = findViewById(R.id.txtPositionType);
         TextView txtOnSite = findViewById(R.id.txtOnSite);
 
-        logo.setImageResource(logoID);
+        if (logo_co != null && logo_co.isEmpty() == false) {
+            Glide.with(this).load(logo_co).into(logo);
+        } else {
+            logo.setImageResource(R.drawable.company_icon);
+        }
         companyName.setText(company);
         roleName.setText(role);
         statusName.setText(status);

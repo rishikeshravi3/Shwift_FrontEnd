@@ -52,7 +52,8 @@
             android:id="@+id/userDp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/person" />
+            android:background="@drawable/person"
+            android:scaleType="centerCrop"/>
 
     </com.google.android.material.card.MaterialCardView>
 

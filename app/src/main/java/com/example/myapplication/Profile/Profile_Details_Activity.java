@@ -3,7 +3,9 @@ package com.example.myapplication.Profile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -27,6 +29,7 @@ import com.example.myapplication.ApplicantViewJobDescription;
 import com.example.myapplication.EmployerView.ProfileActivity_employer;
 import com.example.myapplication.EmployerView.UpdateEmployerInfo;
 import com.example.myapplication.Helper.Common;
+import com.example.myapplication.Helper.Constants;
 import com.example.myapplication.Helper.UploadImageRequest;
 import com.example.myapplication.JobListing.JobListingActivity;
 import com.example.myapplication.JobListing.JobModel;
@@ -79,6 +82,12 @@ public class Profile_Details_Activity extends AppCompatActivity {
                 UpdateProfileService.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
                     @Override
                     public void onUpdateSuccess() {
+                        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
+                        Gson gson = new Gson();
+                        LoginModel loginModel = Common.getUserData(Profile_Details_Activity.this);
+                        loginModel.user_dp = imageString;
+                        String json = gson.toJson(loginModel);
+                        sharedPreferences.edit().putString(Constants.KEY_USER_DATA, json).apply();
                     }
                     @Override
                     public void onUpdateFailure() {

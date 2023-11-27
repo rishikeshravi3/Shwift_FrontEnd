@@ -12,6 +12,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Helper.Common;
@@ -36,6 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     APIInterface apiInterface;
     public static final String PREF_NAME = "MyPrefs";
+    ImageView userDp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         TextView name = findViewById(R.id.txtName_profile);
         ImageView EditProfile = findViewById(R.id.editIcon_profile);
+        userDp = findViewById(R.id.userDp);
         EditProfile.setOnClickListener(v->{
             Intent intent = new Intent(this, Profile_Details_Activity.class);
             startActivity(intent);
@@ -50,6 +54,9 @@ public class ProfileActivity extends AppCompatActivity {
         apiInterface = APIClient.getClient().create(APIInterface.class);
         LoginModel obj = Common.getUserData(this);
         name.setText(obj.first_name + " " + obj.last_name);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
         getProfileDetails();
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.saved_jobs);
@@ -109,6 +116,10 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.profile);
+        LoginModel obj = Common.getUserData(this);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
     }
 
     private void getProfileDetails() {

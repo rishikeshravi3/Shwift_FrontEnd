@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.ApplicantViewJobDescription;
@@ -51,6 +52,7 @@ public class JobListingActivity extends AppCompatActivity {
     ArrayList<JobModel> recommendedJobs = new ArrayList<>();
     RecyclerView recommendedJobsView, recentJobsView;
     LinearLayout recommendationLayout;
+    ImageView userDp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,13 @@ public class JobListingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_job_listing);
         TextView txtGreeting = findViewById(R.id.txtGreeting);
         TextView txtName = findViewById(R.id.txtName);
+        userDp = findViewById(R.id.userDp);
 
         LoginModel obj = Common.getUserData(this);
         txtName.setText(obj.first_name + " " + obj.last_name);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
 
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if (hour > 6 && hour < 12) {
@@ -72,7 +78,6 @@ public class JobListingActivity extends AppCompatActivity {
         }
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        ImageView imageView = findViewById(R.id.userDp);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -148,7 +153,12 @@ public class JobListingActivity extends AppCompatActivity {
                         String json = response.body().string();
                         recommendedJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
                         JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recommendedJobs, 3, (position, v) -> {
-
+                            Intent intent = new Intent(JobListingActivity.this, ApplicantViewJobDescription.class);
+                            JobModel obj = recommendedJobs.get(position);
+                            Gson gson = new Gson();
+                            String jayson = gson.toJson(obj);
+                            intent.putExtra("jobData",jayson);
+                            startActivity(intent);
                         });
                         recommendedJobsView.setAdapter(jobsAdapter);
                         if (recommendedJobs.size() == 0) {
@@ -191,7 +201,7 @@ public class JobListingActivity extends AppCompatActivity {
                         Gson g = new Gson();
                         String json = response.body().string();
                         recentJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs,1, (JobsAdapter.ClickListener) (position, v) -> {
+                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs,1, (position, v) -> {
                             Intent intent = new Intent(JobListingActivity.this, ApplicantViewJobDescription.class);
                             JobModel obj = recentJobs.get(position);
                             Gson gson = new Gson();
@@ -221,6 +231,10 @@ public class JobListingActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.home);
+        LoginModel obj = Common.getUserData(this);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
     }
 
     private Bitmap getCircularBitmap(Bitmap bitmap) {
