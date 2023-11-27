@@ -102,6 +102,8 @@ public class Sign_up_screen extends Activity {
                 checkedChips.add("Mon");
                 TextUtils.join(", ", checkedChips);
                 Log.i("Hamz",checkedChips.toString());
+            }else{
+                checkedChips.remove("Mon");
             }
         });
         chip1.setOnClickListener(v->{
@@ -109,6 +111,8 @@ public class Sign_up_screen extends Activity {
             if(checked){
                 checkedChips.add("Tues");
                 TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Tues");
             }
         });
         chip2.setOnClickListener(v->{
@@ -117,12 +121,17 @@ public class Sign_up_screen extends Activity {
                 checkedChips.add("Wed");
                 TextUtils.join(", ", checkedChips);
             }
+            else{
+                checkedChips.remove("Wed");
+            }
         });
         chip3.setOnClickListener(v->{
             boolean checked = chip3.isChecked();
             if(checked){
                 checkedChips.add("Thurs");
                 TextUtils.join(", ", checkedChips);
+            } else{
+                checkedChips.remove("Thurs");
             }
         });
         chip4.setOnClickListener(v->{
@@ -130,6 +139,8 @@ public class Sign_up_screen extends Activity {
             if(checked){
                 checkedChips.add("Fri");
                 TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Fri");
             }
         });
         chip5.setOnClickListener(v->{
@@ -137,6 +148,8 @@ public class Sign_up_screen extends Activity {
             if(checked){
                 checkedChips.add("Sat");
                 TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Sat");
             }
         });
         chip6.setOnClickListener(v->{
@@ -144,6 +157,8 @@ public class Sign_up_screen extends Activity {
             if(checked){
                 checkedChips.add("Sun");
                 TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Sun");
             }
         });
 
