@@ -50,7 +50,7 @@ public class ProfileActivity_employer extends AppCompatActivity {
         TextView name = findViewById(R.id.txtName_profile);
         ImageView EditProfile = findViewById(R.id.editIcon_profile);
         EditProfile.setOnClickListener(v->{
-            Intent intent = new Intent(this, Profile_Details_Activity.class);
+            Intent intent = new Intent(this, EmployerProfileDetailsActivity.class);
             startActivity(intent);
         });
         apiInterface = APIClient.getClient().create(APIInterface.class);
