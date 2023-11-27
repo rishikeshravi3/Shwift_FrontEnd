@@ -8,4 +8,5 @@ public class UserApplicationModel {
     public String job_title;
     public String availability;
     public String job_id;
+    public String resume_url;
 }
