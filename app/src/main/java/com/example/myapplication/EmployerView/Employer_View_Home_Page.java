@@ -138,7 +138,8 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                         String json = response.body().string();
                         applicationList = g.fromJson(json, new TypeToken<ArrayList<UserApplicationModel>>(){}.getType());
                         EmployerViewHomePageListAdapter adapter = new EmployerViewHomePageListAdapter(Employer_View_Home_Page.this, applicationList , (position, v) -> {
-
+                            UserApplicationModel obj = applicationList.get(position);
+                                // start activity
                         });
                         applicationListView.setAdapter(adapter);
                         if (applicationList.size() == 0) {
