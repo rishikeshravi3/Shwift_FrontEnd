@@ -17,20 +17,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EmployerView.Organization_name"
+            android:exported="false"
+            android:label="@string/title_activity_organization_name"
+            android:theme="@style/Theme.MyApplication" />
+        <activity
+            android:name=".EmployerView.ProfileActivity_employer"
+            android:exported="false" />
+        <activity
             android:name=".EmployerView.ApplicationEmployerList"
             android:exported="false" />
         <activity
             android:name=".EmployerView.JobDetailsActivityPreview"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".EmployerView.JobDetailsActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".EmployerView.Employer_View_Home_Page"
             android:exported="true" />
         <activity
             android:name=".EmployerView.EmployerAccountSetupRecruiterDetails"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".EmployerView.Employer_Account_Setup_Company_details"
             android:exported="true" />
@@ -72,13 +80,13 @@
             android:exported="false" />
         <activity
             android:name=".Applications.ApplicationStagesActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ApplicantViewJobDescription"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".JobListing.JobListingActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -92,7 +100,7 @@
             android:exported="false" />
         <activity
             android:name=".expertise_activity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

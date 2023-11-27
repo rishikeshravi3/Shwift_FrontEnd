@@ -1,5 +1,7 @@
 package com.example.myapplication.APIHelper;
 
+import com.example.myapplication.EmployerView.ProfileRequestEmployer;
+import com.example.myapplication.EmployerView.ProfileResponseEmployer;
 import com.example.myapplication.JobListing.JobListingRequest;
 import com.example.myapplication.JobListing.SaveJobModel;
 import com.example.myapplication.LoginModel;
@@ -60,4 +62,7 @@ APIInterface {
 
     @POST("/shwift/getRecommendedJobs")
     Call<ResponseBody> getRecommendedJobs(@Body JobListingRequest input);
+
+    @POST("/shwift/fetchAllEmployerInfo")
+    Call<ProfileResponseEmployer> getProfileInfoEmployer(@Body ProfileRequestEmployer profileRequestEmployer);
 }

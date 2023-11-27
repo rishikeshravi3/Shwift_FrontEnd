@@ -9,4 +9,6 @@ public class Constants {
     public static final String KEY_USER_DATA = "userDataKey";
 
     public  static  final String KEY_PROFILE_DATA= "userProfileDataKey";
+
+    public  static  final String KEY_PROFILE_EMPLOYER_DATA= "userProfileEmployerDataKey";
 }

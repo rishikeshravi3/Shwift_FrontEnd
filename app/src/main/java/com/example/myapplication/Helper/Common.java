@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.myapplication.EmployerView.ProfileResponseEmployer;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileResponseModel;
 import com.example.myapplication.R;
@@ -46,6 +47,16 @@ public class Common {
 // Use Gson to convert the JSON string back to a ProfileResponseModel object
         Gson gson = new Gson();
         ProfileResponseModel profileData = gson.fromJson(jsonStr, ProfileResponseModel.class);
+        return profileData;
+    }
+
+    public static ProfileResponseEmployer getProfileDataEmployer(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
+        String jsonStr = sharedPreferences.getString(Constants.KEY_PROFILE_EMPLOYER_DATA, "");
+
+// Use Gson to convert the JSON string back to a ProfileResponseModel object
+        Gson gson = new Gson();
+        ProfileResponseEmployer profileData = gson.fromJson(jsonStr, ProfileResponseEmployer.class);
         return profileData;
     }
 }

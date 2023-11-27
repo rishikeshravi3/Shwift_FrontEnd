@@ -177,7 +177,7 @@ public class JobDetailsActivity extends AppCompatActivity {
                 finish();
                 return true;
             } else if (itemId == R.id.profile_employer) {
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                startActivity(new Intent(getApplicationContext(), ProfileActivity_employer.class));
                 overridePendingTransition(0, 0);
                 finish();
                 return true;
