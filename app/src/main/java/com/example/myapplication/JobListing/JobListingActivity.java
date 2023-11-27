@@ -67,7 +67,7 @@ public class JobListingActivity extends AppCompatActivity {
         }
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        ImageView imageView = findViewById(R.id.companyLogo);
+        ImageView imageView = findViewById(R.id.userDp);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
