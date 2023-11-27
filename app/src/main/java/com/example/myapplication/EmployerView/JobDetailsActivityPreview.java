@@ -60,8 +60,8 @@ public class JobDetailsActivityPreview extends AppCompatActivity {
         jobDescription.setText(getIntent().getStringExtra("jobDesc"));
         TextView hours=findViewById(R.id.applicant_view_job_description_NumberOfHours_body);
         hours.setText(getIntent().getStringExtra("hours"));
-        TextView recruiter=findViewById(R.id.applicant_view_job_description_recruiter_body);
-        recruiter.setText(getIntent().getStringExtra("recruiterName"));
+//        TextView recruiter=findViewById(R.id.applicant_view_job_description_recruiter_body);
+//        recruiter.setText(getIntent().getStringExtra("recruiterName"));
         TextView startDate=findViewById(R.id.applicant_view_job_description_start_date_body);
         startDate.setText(getIntent().getStringExtra("startDate"));
         TextView applicationDeadline=findViewById(R.id.applicant_view_job_description_application_deadline_body);

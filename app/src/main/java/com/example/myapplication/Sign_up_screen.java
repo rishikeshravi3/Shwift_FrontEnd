@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -13,6 +14,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,6 +39,8 @@ import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.EmployerView.Employer_Account_Setup_Company_details;
 import com.example.myapplication.JobListing.JobListingActivity;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;
@@ -46,6 +50,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import android.text.TextUtils;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -65,6 +70,7 @@ public class Sign_up_screen extends Activity {
     private static final String PREF_NAME = "MyPrefs";
     private static final String KEY_EMAIL = "emailKey";
     private  static  final String KEY_PHONE = "phoneKey";
+    ArrayList<String> checkedChips = new ArrayList<>();
 
     private Intent intent;
 
@@ -83,7 +89,80 @@ public class Sign_up_screen extends Activity {
         Button Continue = findViewById(R.id.signup_screen__continue_btn);
         genderEditText = findViewById(R.id.Gender_signup);
         mail.setText(savedEmail);
+        Chip chip = findViewById(R.id.chip_mon); // Replace with the actual ID of your Chip
+        Chip chip1 = findViewById(R.id.chip_tues);
+        Chip chip2 = findViewById(R.id.chip_wed);
+        Chip chip3 = findViewById(R.id.chip_thurs);
+        Chip chip4 = findViewById(R.id.chip_fri);
+        Chip chip5 = findViewById(R.id.chip_sat);
+        Chip chip6 = findViewById(R.id.chip_sun);
+        chip.setOnClickListener(v->{
+            boolean checked = chip.isChecked();
+            if(checked){
+                checkedChips.add("Mon");
+                TextUtils.join(", ", checkedChips);
+                Log.i("Hamz",checkedChips.toString());
+            }else{
+                checkedChips.remove("Mon");
+            }
+        });
+        chip1.setOnClickListener(v->{
+            boolean checked = chip1.isChecked();
+            if(checked){
+                checkedChips.add("Tues");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Tues");
+            }
+        });
+        chip2.setOnClickListener(v->{
+            boolean checked = chip2.isChecked();
+            if(checked){
+                checkedChips.add("Wed");
+                TextUtils.join(", ", checkedChips);
+            }
+            else{
+                checkedChips.remove("Wed");
+            }
+        });
+        chip3.setOnClickListener(v->{
+            boolean checked = chip3.isChecked();
+            if(checked){
+                checkedChips.add("Thurs");
+                TextUtils.join(", ", checkedChips);
+            } else{
+                checkedChips.remove("Thurs");
+            }
+        });
+        chip4.setOnClickListener(v->{
+            boolean checked = chip4.isChecked();
+            if(checked){
+                checkedChips.add("Fri");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Fri");
+            }
+        });
+        chip5.setOnClickListener(v->{
+            boolean checked = chip5.isChecked();
+            if(checked){
+                checkedChips.add("Sat");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Sat");
+            }
+        });
+        chip6.setOnClickListener(v->{
+            boolean checked = chip6.isChecked();
+            if(checked){
+                checkedChips.add("Sun");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Sun");
+            }
+        });
 
+        // Set up the check change listener for the first ChipGroup
 
         genderEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -143,8 +222,10 @@ public class Sign_up_screen extends Activity {
                 return false;
             }
         });
-    }
 
+
+
+    }
     private void openImagePicker() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
