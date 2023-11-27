@@ -51,7 +51,7 @@ public class ProfileAdapterEmployer extends RecyclerView.Adapter<ProfileAdapterE
                         context.startActivity(new Intent(context, Organization_Name.class));
                         break;
                     case SUMMARY:
-                        context.startActivity(new Intent(context, ProfileSummaryActivity.class));
+                        context.startActivity(new Intent(context, OrgDescription_Employer.class));
                         break;
 //                    case WORK_EXP:
 //                        context.startActivity(new Intent(context, WorkExperienceActivity.class));

@@ -65,4 +65,7 @@ APIInterface {
 
     @POST("/shwift/fetchAllEmployerInfo")
     Call<ProfileResponseEmployer> getProfileInfoEmployer(@Body ProfileRequestEmployer profileRequestEmployer);
+
+    @POST("/shwift/updateEmployerInfo")
+    Call<UpdateProfileResponse> getUpdateEmployerInfo(@Body UpdateProfileRequest updateProfileRequest);
 }
