@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -20,13 +19,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Applications.ApplicationStagesActivity;
 import com.example.myapplication.Helper.Common;
-import com.example.myapplication.JobsAdapter;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
@@ -145,7 +142,7 @@ public class JobListingActivity extends AppCompatActivity {
                         Gson g = new Gson();
                         String json = response.body().string();
                         recommendedJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recommendedJobs, 1);
+                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recommendedJobs, 3);
                         recommendedJobsView.setAdapter(jobsAdapter);
                         if (recommendedJobs.size() == 0) {
                             recommendationLayout.setVisibility(View.GONE);

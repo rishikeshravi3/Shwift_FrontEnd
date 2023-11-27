@@ -8,18 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
-import com.example.myapplication.ApplicationStageListData;
 import com.example.myapplication.ApplicationStageOnClickActivity;
 import com.example.myapplication.Helper.Common;
 import com.example.myapplication.JobListing.JobListingActivity;
 import com.example.myapplication.JobListing.JobListingRequest;
-import com.example.myapplication.JobListing.JobModel;
 import com.example.myapplication.JobListing.SavedJobsActivity;
-import com.example.myapplication.JobsAdapter;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;

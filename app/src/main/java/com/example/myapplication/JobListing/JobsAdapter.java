@@ -1,8 +1,7 @@
-package com.example.myapplication;
+package com.example.myapplication.JobListing;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Helper.Common;
-import com.example.myapplication.Helper.Constants;
-import com.example.myapplication.JobListing.JobModel;
-import com.example.myapplication.JobListing.SaveJobModel;
-import com.google.gson.Gson;
+import com.example.myapplication.LoginModel;
+import com.example.myapplication.R;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -31,7 +28,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
 
     private List<JobModel> jobList;
     Context context;
-    int activityType; // 1 - JobListing, 2 - SavedJobs
+    int activityType; // 1 - JobListing, 2 - SavedJobs, 3 - RecommendedJobs
 
     public JobsAdapter(Context ctx, List<JobModel> jobs, int actType)
     {
@@ -234,6 +231,9 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
             txtJobAttr1 = itemView.findViewById(R.id.txtJobAttr1);
             txtJobAttr2 = itemView.findViewById(R.id.txtJobAttr2);
             bookmark = itemView.findViewById(R.id.bookmark);
+            if (activityType == 3) {
+               bookmark.setVisibility(View.GONE);
+            }
         }
     }
 }

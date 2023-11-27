@@ -13,8 +13,6 @@ import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Applications.ApplicationStagesActivity;
 import com.example.myapplication.Helper.Common;
-import com.example.myapplication.JobListing.JobListingActivity;
-import com.example.myapplication.JobsAdapter;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
