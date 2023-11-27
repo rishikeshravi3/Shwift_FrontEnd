@@ -55,7 +55,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
         holder.txtRole.setText(obj.job_title);
         holder.txtCompanyName.setText(obj.recruiter_name);
         holder.txtLocation.setText(obj.job_location);
-        holder.txtSalary.setText(obj.pay_scale);
+        holder.txtSalary.setText("$" + obj.pay_scale+" per hour");
 
         updateSavedIcon(holder, obj.job_saved);
 
