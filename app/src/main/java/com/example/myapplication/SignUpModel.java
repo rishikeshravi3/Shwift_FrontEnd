@@ -15,7 +15,7 @@ public class SignUpModel{
 
 
 
-    public SignUpModel(String name, String lastName,String emailId,String pSWD,String accType,String phoneNum,String profileDp,String orgName,String orgNum,String orgDesc) {
+    public SignUpModel(String name, String lastName,String emailId,String pSWD,String accType,String phoneNum,String profileDp,String orgName,String orgNum,String orgDesc,String avail) {
         this.firstName = name;
         this.lastName = lastName;
         this.emailId = emailId;
@@ -26,5 +26,6 @@ public class SignUpModel{
         this.orgName =orgName;
         this.orgNum = orgNum;
         this.orgDescription = orgDesc;
+        this.availability = avail;
     }
 }

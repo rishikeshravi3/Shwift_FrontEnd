@@ -1,5 +1,6 @@
 package com.example.myapplication.APIHelper;
 
+import com.example.myapplication.Apply_JobModel;
 import com.example.myapplication.EmployerView.ProfileRequestEmployer;
 import com.example.myapplication.EmployerView.ProfileResponseEmployer;
 import com.example.myapplication.Helper.UploadImageRequest;
@@ -75,4 +76,6 @@ APIInterface {
 
     @POST("/shwift/uploadImage")
     Call<ResponseBody> uploadImage(@Body UploadImageRequest input);
+    @POST("/shwift/application")
+    Call<Apply_JobModel> applyJob(@Body Apply_JobModel apply_JobModel);
 }
