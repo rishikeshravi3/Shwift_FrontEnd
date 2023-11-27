@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -13,6 +14,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,6 +39,8 @@ import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.EmployerView.Employer_Account_Setup_Company_details;
 import com.example.myapplication.JobListing.JobListingActivity;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;
@@ -65,6 +69,7 @@ public class Sign_up_screen extends Activity {
     private static final String PREF_NAME = "MyPrefs";
     private static final String KEY_EMAIL = "emailKey";
     private  static  final String KEY_PHONE = "phoneKey";
+    private List<String> selectedChipTexts = new ArrayList<>();
 
     private Intent intent;
 
@@ -143,6 +148,48 @@ public class Sign_up_screen extends Activity {
                 return false;
             }
         });
+
+        ChipGroup chipGroupRow1 = findViewById(R.id.chipGroupRow1);
+
+        // Set up the check change listener for the first ChipGroup
+        chipGroupRow1.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(ChipGroup group, int checkedId) {
+                updateChipAppearance(group, checkedId);
+            }
+        });
+
+    }
+    private void updateChipAppearance(ChipGroup group, int checkedId) {
+        // Iterate through each chip in the ChipGroup
+        selectedChipTexts.clear();
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View view = group.getChildAt(i);
+            if (view instanceof Chip) {
+                Chip chip = (Chip) view;
+
+                // Customize the appearance of the selected and unselected chips
+                if (chip.getId() == checkedId) {
+                    chip.setTextColor(Color.WHITE);
+                    chip.setChipBackgroundColorResource(R.color.purple);
+                    selectedChipTexts.add(chip.getText().toString());// Use your purple color resource
+                } else {
+                    chip.setTextColor(Color.BLACK); // Use your default text color resource
+                    chip.setChipBackgroundColorResource(R.color.white); // Use your default background color resource
+                }
+            }
+        }
+
+    }
+    private String joinStrings(List<String> strings, String delimiter) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < strings.size(); i++) {
+            if (i > 0) {
+                sb.append(delimiter);
+            }
+            sb.append(strings.get(i));
+        }
+        return sb.toString();
     }
 
     private void openImagePicker() {
