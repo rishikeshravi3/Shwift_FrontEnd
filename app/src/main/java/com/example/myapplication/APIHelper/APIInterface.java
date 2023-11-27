@@ -13,6 +13,7 @@ import com.example.myapplication.Profile.UpdateProfileRequest;
 import com.example.myapplication.Profile.UpdateProfileResponse;
 import com.example.myapplication.EmployerView.JobDetailsModel;
 import com.example.myapplication.SignUpModel;
+import com.example.myapplication.UploadPdfRequest;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -78,4 +79,7 @@ APIInterface {
     Call<ResponseBody> uploadImage(@Body UploadImageRequest input);
     @POST("/shwift/application")
     Call<Apply_JobModel> applyJob(@Body Apply_JobModel apply_JobModel);
+
+    @POST("/shwift/uploadPdf")
+    Call<ResponseBody> uploadPdf(@Body UploadPdfRequest input);
 }

@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.JobListing.JobModel;
 import com.example.myapplication.JobListing.JobsAdapter;
 import com.example.myapplication.R;
@@ -22,7 +23,7 @@ import java.util.List;
 public class EmployerViewHomePageListAdapter extends RecyclerView.Adapter<EmployerViewHomePageListAdapter.ViewHolder> {
     private List<UserApplicationModel> applicationList;
     Context context;
-    private static JobsAdapter.ClickListener clickListener;
+    private JobsAdapter.ClickListener clickListener;
 
     public EmployerViewHomePageListAdapter(Context ctx, List<UserApplicationModel> apps, JobsAdapter.ClickListener cListener) {
         context = ctx;
@@ -42,12 +43,21 @@ public class EmployerViewHomePageListAdapter extends RecyclerView.Adapter<Employ
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UserApplicationModel obj = applicationList.get(position);
+        if (obj.employee_dp != null && obj.employee_dp.isEmpty() == false) {
+            Glide.with(context).load(obj.employee_dp).into(holder.photo);
+        } else {
+            holder.photo.setImageResource(R.drawable.person);
+        }
         holder.photo.setImageResource(R.drawable.shwift_logo);
         holder.role.setText(obj.job_title);
         holder.name.setText(obj.first_name + " " + obj.last_name);
         holder.txtEmail.setText(obj.email_id);
         holder.txtPhoneNum.setText(obj.phone_num);
-//        holder.availability.setText(obj.availability);
+        if (obj.availability.isEmpty()) {
+            holder.availability.setText("Availability: " + context.getString(R.string.mon_tue_wed_thu_fri_sat_sun));
+        } else {
+            holder.availability.setText("Availability: " + obj.availability);
+        }
     }
 
     @Override
@@ -55,7 +65,7 @@ public class EmployerViewHomePageListAdapter extends RecyclerView.Adapter<Employ
         return applicationList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView photo;
         public TextView role;
         public TextView name;

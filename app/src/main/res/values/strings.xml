@@ -184,4 +184,5 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="no_data_found">No data found</string>
+    <string name="mon_tue_wed_thu_fri_sat_sun">Mon, Tue, Wed, Thu, Fri, Sat, Sun</string>
 </resources>

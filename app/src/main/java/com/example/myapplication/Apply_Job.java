@@ -2,11 +2,17 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,26 +25,37 @@ import com.example.myapplication.EmployerView.Employer_View_Home_Page;
 import com.example.myapplication.EmployerView.JobDetailsActivityPreview;
 import com.example.myapplication.EmployerView.JobDetailsModel;
 import com.example.myapplication.Helper.Common;
+import com.example.myapplication.Helper.Constants;
+import com.example.myapplication.Helper.UploadImageRequest;
 import com.example.myapplication.JobListing.JobListingActivity;
 import com.example.myapplication.JobListing.JobModel;
+import com.example.myapplication.Profile.Profile_Details_Activity;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Apply_Job extends Activity {
     APIInterface apiInterface;
-
     private static final int PICK_PDF_REQUEST = 1;
+    String resumeUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +86,7 @@ public class Apply_Job extends Activity {
         String applicantEmailText=applicantEmail.getText().toString();
         String jobId=object.job_id;
         String EmployerEmailText=object.recruiter_email_id;
-        String resumeUrl="";
+//        String resumeUrl="";
         int applicationStatus=1;
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +111,15 @@ public class Apply_Job extends Activity {
         if (requestCode == PICK_PDF_REQUEST && resultCode == RESULT_OK) {
             if (data != null) {
                 Uri selectedFileUri = data.getData();
-
-                // Handle the selected file URI, for example, display the file name
+                uploadResume(selectedFileUri);
                 uploadFile(selectedFileUri);
             }
         }
+    }
+
+    private void uploadResume(Uri selectedFileUri) {
+        String path = getPathFromUri(selectedFileUri);
+        new UploadPdfBase64Task(Constants.BASE_URL + "/shwift/uploadPdf", selectedFileUri.getPath(), selectedFileUri).execute();
     }
 
     private void uploadFile(Uri fileUri) {
@@ -203,5 +224,92 @@ public class Apply_Job extends Activity {
                 t.printStackTrace();
             }
         });
+    }
+
+    public  String getPathFromUri(Uri uri) {
+        String filePath = null;
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            filePath = cursor.getString(column_index);
+            cursor.close();
+        }
+        return filePath;
+    }
+
+    public class UploadPdfBase64Task extends AsyncTask<Void, Void, String> {
+
+        private String apiUrl;
+        private String pdfFilePath;
+        private Uri pdfUri;
+
+        public UploadPdfBase64Task(String apiUrl, String pdfFilePath, Uri uri) {
+            this.apiUrl = apiUrl;
+            this.pdfFilePath = pdfFilePath;
+            this.pdfUri = uri;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                // Read the PDF file and encode it as Base64
+                ContentResolver contentResolver = getContentResolver();
+                InputStream inputStream = contentResolver.openInputStream(pdfUri);
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
+                }
+                byte[] bytes = output.toByteArray();
+                String base64pdf = Base64.encodeToString(bytes, Base64.DEFAULT);
+                inputStream.close();
+
+                // Construct the JSON payload with the Base64-encoded PDF
+                String jsonPayload = "data:" + "application/pdf" + ";base64," + base64pdf;
+
+                APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+                UploadPdfRequest request = new UploadPdfRequest();
+                request.base64Pdf = jsonPayload;
+                if (request.base64Pdf != null) {
+                    Call<ResponseBody> call = apiInterface.uploadPdf(request);
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                            if (response.isSuccessful()) {
+                                try {
+                                    resumeUrl = response.body().string();
+                                } catch (Exception e) {
+
+                                }
+                            } else {
+                                Common.print(Apply_Job.this, "Failed to upload pdf");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        }
+                    });
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        // You can override onPostExecute to handle the result if needed
+        @Override
+        protected void onPostExecute(String result) {
+            // Handle the result after the task completes
+        }
     }
 }
