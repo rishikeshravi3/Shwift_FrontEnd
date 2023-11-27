@@ -153,42 +153,49 @@
 
             <!-- Add your 4 chips here -->
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_mon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="Mon" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tues"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="Tues" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_wed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="Wed" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_thurs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="Thurs" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="Fri" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 android:text="Sat" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
