@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.ApplicantViewJobDescription;
 import com.example.myapplication.Applications.ApplicationStagesActivity;
 import com.example.myapplication.Helper.Common;
 import com.example.myapplication.JobListing.JobListingActivity;
@@ -101,7 +102,15 @@ public class SavedJobsActivity extends AppCompatActivity {
                         Gson g = new Gson();
                         String json = response.body().string();
                         savedJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                        JobsAdapter jobsAdapter = new JobsAdapter(SavedJobsActivity.this, savedJobs, 2);
+                        JobsAdapter jobsAdapter = new JobsAdapter(SavedJobsActivity.this, savedJobs, 2,(position, v) ->
+                        {
+                            Intent intent = new Intent(SavedJobsActivity.this, ApplicantViewJobDescription.class);
+                            JobModel obj = savedJobs.get(position);
+                            Gson gson = new Gson();
+                            String jayson = gson.toJson(obj);
+                            intent.putExtra("jobData",jayson);
+                            startActivity(intent);
+                        });
                         savedJobsView.setAdapter(jobsAdapter);
                     } catch (Exception e) {
 

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.Applications.ApplicationStageListAdapter;
 import com.example.myapplication.Helper.Common;
 import com.example.myapplication.Helper.Constants;
 import com.example.myapplication.JobListing.JobModel;
@@ -32,12 +33,14 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
     private List<JobModel> jobList;
     Context context;
     int activityType; // 1 - JobListing, 2 - SavedJobs
+    private static ClickListener clickListener;
 
-    public JobsAdapter(Context ctx, List<JobModel> jobs, int actType)
+    public JobsAdapter(Context ctx, List<JobModel> jobs, int actType, ClickListener clickListener)
     {
         context = ctx;
         jobList = jobs;
         activityType = actType;
+        this.clickListener=clickListener;
     }
 
     @Override
@@ -221,7 +224,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
         return jobList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView companyLogo, bookmark;
         TextView txtRole, txtCompanyName, txtLocation, txtSalary, txtJobAttr1, txtJobAttr2;
         public ViewHolder(View itemView) {
@@ -234,6 +237,19 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
             txtJobAttr1 = itemView.findViewById(R.id.txtJobAttr1);
             txtJobAttr2 = itemView.findViewById(R.id.txtJobAttr2);
             bookmark = itemView.findViewById(R.id.bookmark);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v){
+            int position = getBindingAdapterPosition();
+            if(position>=0){
+                clickListener.onItemClick(position,v);
+            }
+        }
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
     }
 }

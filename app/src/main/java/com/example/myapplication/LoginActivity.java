@@ -50,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(v -> {
             String Mail = Email.getText().toString().trim();
             String Pswd = Password.getText().toString().trim();
-//            Mail = "test12345@gmail.com";
-//            Pswd = "dcba";
+            Mail = "rishitestss@abc.com";
+            Pswd = "abc";
             if (Mail.isEmpty() || Pswd.isEmpty()) {
                 Toast.makeText(this, "Both Fields are required", Toast.LENGTH_SHORT).show();
             } else {
