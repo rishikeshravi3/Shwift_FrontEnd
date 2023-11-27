@@ -29,6 +29,11 @@
             <activity
                 android:name=".EmployerView.EmployerProfileDetailsActivity"
                 android:exported="true" >
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
+
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
 
             </activity>
             <activity
@@ -123,10 +128,10 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-            <intent-filter>-
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>- -->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".AccountSetupHome"
@@ -145,7 +150,11 @@
             android:exported="true" />
         <activity
             android:name=".onboarding"
-            android:exported="false" >
+            android:exported="true" >
+            <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
 
         </activity>
         <activity

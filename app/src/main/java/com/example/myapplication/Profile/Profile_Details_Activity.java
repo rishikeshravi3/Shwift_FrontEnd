@@ -114,7 +114,7 @@ public class Profile_Details_Activity extends AppCompatActivity {
             });
 
         });
-        imageView.setOnClickListener(new View.OnClickListener() {
+            imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Open the image picker when the button is clicked
