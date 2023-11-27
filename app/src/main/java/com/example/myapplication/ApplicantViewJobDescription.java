@@ -57,8 +57,8 @@ public class ApplicantViewJobDescription extends AppCompatActivity {
         TextView hours=findViewById(R.id.applicant_view_job_description_NumberOfHours_body);
         hours.setText(object.num_hours);
 
-        TextView recruiter=findViewById(R.id.applicant_view_job_description_recruiter_body);
-        recruiter.setText(object.recruiter_name);
+//        TextView recruiter=findViewById(R.id.applicant_view_job_description_recruiter_body);
+//        recruiter.setText(object.recruiter_name);
 
         int job= object.position_type;
         int work= object.position_onsite;
