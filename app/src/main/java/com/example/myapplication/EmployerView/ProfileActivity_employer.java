@@ -106,8 +106,8 @@ public class ProfileActivity_employer extends AppCompatActivity {
 
     public List<ProfileOptionModel> getProfileOptions() {
         List<ProfileOptionModel> options = new ArrayList<ProfileOptionModel>();
-        options.add(new ProfileOptionModel((int) ProfileOptionType.CONTACT_INFO.ordinal(), "Organization Name"));
-        options.add(new ProfileOptionModel((int)ProfileOptionType.SUMMARY.ordinal(), "Summary"));
+        options.add(new ProfileOptionModel((int) ProfileOptionTypeEmployer.ORG_NAME.ordinal(), "Organization Name"));
+        options.add(new ProfileOptionModel((int) ProfileOptionTypeEmployer.ORG_NAME.ordinal(), "Summary"));
 //        options.add(new ProfileOptionModel((int)ProfileOptionType.WORK_EXP.ordinal(), "Work Experience"));
 //        options.add(new ProfileOptionModel((int)ProfileOptionType.EDUCATION.ordinal(), "Education"));
 //        options.add(new ProfileOptionModel((int)ProfileOptionType.PROJECTS.ordinal(), "Projects"));

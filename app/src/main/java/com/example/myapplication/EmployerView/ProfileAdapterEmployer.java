@@ -11,16 +11,10 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myapplication.Profile.ContactInformationActivity;
-import com.example.myapplication.Profile.EducationActivity;
 import com.example.myapplication.Profile.ProfileOptionModel;
-import com.example.myapplication.Profile.ProfileOptionType;
-import com.example.myapplication.Profile.ProfileOptionsAdapter;
+
 import com.example.myapplication.Profile.ProfileSummaryActivity;
-import com.example.myapplication.Profile.ProjectsActivity;
-import com.example.myapplication.Profile.SkillActivity;
-import com.example.myapplication.Profile.WorkExperienceActivity;
+
 import com.example.myapplication.R;
 
 import java.util.List;
@@ -40,21 +34,21 @@ public class ProfileAdapterEmployer extends RecyclerView.Adapter<ProfileAdapterE
             Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
             View jobView = inflater.inflate(R.layout.profile_option_item, parent, false);
-           ProfileAdapterEmployer.ViewHolderEmployer viewHolder = new ProfileAdapterEmployer.ViewHolderEmployer(jobView);
-            return  viewHolder;
+           ViewHolderEmployer viewHolder = new ViewHolderEmployer(jobView);
+            return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(ProfileAdapterEmployer.ViewHolderEmployer holder, int position) {
+        public void onBindViewHolder(ViewHolderEmployer holder, int position) {
             ProfileOptionModel obj = profileOptionsList.get(position);
             holder.txtOptionTitle.setText(obj.optionTitle);
             holder.optionIcon.setImageDrawable(getDrawableIcon(obj.optionType));
             holder.openPage.setOnClickListener(v -> {
                 int optionType = profileOptionsList.get(position).optionType;
-                ProfileOptionType option = ProfileOptionType.values()[optionType];
+                ProfileOptionTypeEmployer option = ProfileOptionTypeEmployer.values()[optionType];
                 switch (option) {
-                    case CONTACT_INFO:
-                        context.startActivity(new Intent(context, ContactInformationActivity.class));
+                    case ORG_NAME:
+                        context.startActivity(new Intent(context, Organization_Name.class));
                         break;
                     case SUMMARY:
                         context.startActivity(new Intent(context, ProfileSummaryActivity.class));
@@ -78,10 +72,10 @@ public class ProfileAdapterEmployer extends RecyclerView.Adapter<ProfileAdapterE
         }
 
         private Drawable getDrawableIcon(int optionType) {
-            ProfileOptionType option = ProfileOptionType.values()[optionType];
+            ProfileOptionTypeEmployer option = ProfileOptionTypeEmployer.values()[optionType];
             Drawable drawable;
             switch (option) {
-                case CONTACT_INFO:
+                case ORG_NAME:
                     drawable = context.getDrawable(R.drawable.applications_icon);
                     drawable.setTint(ContextCompat.getColor(context, R.color.purple));
                     return drawable;
