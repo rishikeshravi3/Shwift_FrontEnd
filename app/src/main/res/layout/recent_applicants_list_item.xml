@@ -33,7 +33,8 @@
                     android:id="@+id/recent_applicants_item_photo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/shwift_logo"/>
+                    android:src="@drawable/shwift_logo"
+                    android:scaleType="centerCrop"/>
 
             </com.google.android.material.card.MaterialCardView>
 

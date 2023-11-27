@@ -109,10 +109,10 @@ public class Sign_up_screen extends Activity {
         chip1.setOnClickListener(v->{
             boolean checked = chip1.isChecked();
             if(checked){
-                checkedChips.add("Tues");
+                checkedChips.add("Tue");
                 TextUtils.join(", ", checkedChips);
             }else{
-                checkedChips.remove("Tues");
+                checkedChips.remove("Tue");
             }
         });
         chip2.setOnClickListener(v->{
@@ -128,10 +128,10 @@ public class Sign_up_screen extends Activity {
         chip3.setOnClickListener(v->{
             boolean checked = chip3.isChecked();
             if(checked){
-                checkedChips.add("Thurs");
+                checkedChips.add("Thu");
                 TextUtils.join(", ", checkedChips);
             } else{
-                checkedChips.remove("Thurs");
+                checkedChips.remove("Thu");
             }
         });
         chip4.setOnClickListener(v->{
