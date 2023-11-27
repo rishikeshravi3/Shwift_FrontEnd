@@ -16,13 +16,18 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.ApplicantViewJobDescription;
+import com.example.myapplication.ApplicationStageOnClickActivity;
+import com.example.myapplication.Applications.ApplicationStageListAdapter;
 import com.example.myapplication.Applications.ApplicationStagesActivity;
+import com.example.myapplication.Applications.JobApplicationModel;
 import com.example.myapplication.Helper.Common;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileActivity;
@@ -142,7 +147,9 @@ public class JobListingActivity extends AppCompatActivity {
                         Gson g = new Gson();
                         String json = response.body().string();
                         recommendedJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recommendedJobs, 3);
+                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recommendedJobs, 3, (position, v) -> {
+
+                        });
                         recommendedJobsView.setAdapter(jobsAdapter);
                         if (recommendedJobs.size() == 0) {
                             recommendationLayout.setVisibility(View.GONE);
@@ -184,7 +191,14 @@ public class JobListingActivity extends AppCompatActivity {
                         Gson g = new Gson();
                         String json = response.body().string();
                         recentJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs, 1);
+                        JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs,1, (JobsAdapter.ClickListener) (position, v) -> {
+                            Intent intent = new Intent(JobListingActivity.this, ApplicantViewJobDescription.class);
+                            JobModel obj = recentJobs.get(position);
+                            Gson gson = new Gson();
+                            String jayson = gson.toJson(obj);
+                            intent.putExtra("jobData",jayson);
+                            startActivity(intent);
+                        });
                         recentJobsView.setAdapter(jobsAdapter);
                     } catch (Exception e) {
 
