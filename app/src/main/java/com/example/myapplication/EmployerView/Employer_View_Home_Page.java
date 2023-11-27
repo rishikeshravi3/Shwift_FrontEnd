@@ -147,8 +147,10 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                             UserApplicationModel obj = applicationList.get(position);
                             Intent intent = new Intent(Employer_View_Home_Page.this, Employee_Detailspage.class);
                             intent.putExtra("EmployeeEmail",obj.email_id);
+                            Gson gson = new Gson();
+                            String jsonBody = gson.toJson(obj);
+                            intent.putExtra("ApplicationData",jsonBody);
                             startActivity(intent);
-                                // start activity
                         });
                         applicationListView.setAdapter(adapter);
                         if (applicationList.size() == 0) {
@@ -159,7 +161,7 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                         Log.i("Employer Home", e.getMessage());
                     }
                 } else {
-                    Common.print(Employer_View_Home_Page.this, "Failed to get job list");
+                    Common.print(Employer_View_Home_Page.this, "Failed to get application list");
                 }
             }
 

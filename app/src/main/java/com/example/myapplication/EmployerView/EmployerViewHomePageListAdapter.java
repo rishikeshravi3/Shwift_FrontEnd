@@ -48,7 +48,6 @@ public class EmployerViewHomePageListAdapter extends RecyclerView.Adapter<Employ
         } else {
             holder.photo.setImageResource(R.drawable.person);
         }
-        holder.photo.setImageResource(R.drawable.shwift_logo);
         holder.role.setText(obj.job_title);
         holder.name.setText(obj.first_name + " " + obj.last_name);
         holder.txtEmail.setText(obj.email_id);
