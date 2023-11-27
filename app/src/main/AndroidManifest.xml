@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EmployerView.OrgDescription_Employer"
+            android:exported="false" />
+        <activity
             android:name=".EmployerView.Organization_Name"
             android:exported="false"
             android:label="@string/title_activity_organization_name"
@@ -127,13 +130,7 @@
             android:exported="true" />
         <activity
             android:name=".onboarding"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".create_New_Password"
             android:exported="false"

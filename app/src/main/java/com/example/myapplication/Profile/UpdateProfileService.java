@@ -27,7 +27,6 @@ public class UpdateProfileService {
         Dialog dialog = Common.progressDialog(context);
         dialog.show();
         UpdateProfileRequest request = updateProfileRequest;
-
         request.emailId = obj.email_id;
         Call<UpdateProfileResponse> call = apiInterface.getUpdateInfo(request);
         call.enqueue(new Callback<UpdateProfileResponse>() {
