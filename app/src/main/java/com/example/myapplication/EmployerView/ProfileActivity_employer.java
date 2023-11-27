@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Applications.ApplicationStagesActivity;
@@ -41,6 +42,7 @@ import retrofit2.Response;
 
 public class ProfileActivity_employer extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    ImageView userDp;
     APIInterface apiInterface;
     public static final String PREF_NAME = "MyPrefs";
     @Override
@@ -49,6 +51,7 @@ public class ProfileActivity_employer extends AppCompatActivity {
         setContentView(R.layout.activity_profile_employer);
         TextView name = findViewById(R.id.txtName_profile);
         ImageView EditProfile = findViewById(R.id.editIcon_profile);
+        userDp = findViewById(R.id.companyLogo);
         EditProfile.setOnClickListener(v->{
             Intent intent = new Intent(this, EmployerProfileDetailsActivity.class);
             startActivity(intent);
@@ -56,6 +59,9 @@ public class ProfileActivity_employer extends AppCompatActivity {
         apiInterface = APIClient.getClient().create(APIInterface.class);
         LoginModel obj = Common.getUserData(this);
         name.setText(obj.first_name + " " + obj.last_name);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
         getProfileDetails();
         bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
         bottomNavigationView.setSelectedItemId(R.id.profile_employer);
@@ -118,6 +124,10 @@ public class ProfileActivity_employer extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.profile);
+        LoginModel obj = Common.getUserData(this);
+        if (obj.user_dp.isEmpty() == false) {
+            Glide.with(this).load(obj.user_dp).into(userDp);
+        }
     }
 
     private void getProfileDetails() {
