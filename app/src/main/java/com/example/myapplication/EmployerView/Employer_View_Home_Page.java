@@ -1,24 +1,70 @@
 package com.example.myapplication.EmployerView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.example.myapplication.APIHelper.APIClient;
+import com.example.myapplication.APIHelper.APIInterface;
 import com.example.myapplication.Applications.ApplicationStagesActivity;
+import com.example.myapplication.Helper.Common;
+import com.example.myapplication.JobListing.JobListingActivity;
+import com.example.myapplication.JobListing.JobListingRequest;
+import com.example.myapplication.JobListing.JobModel;
+import com.example.myapplication.JobListing.JobsAdapter;
 import com.example.myapplication.JobListing.SavedJobsActivity;
+import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileActivity;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Employer_View_Home_Page extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    APIInterface apiInterface;
+    ArrayList<UserApplicationModel> applicationList = new ArrayList<>();
+    RecyclerView applicationListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_view_home_page);
+
+        TextView txtGreeting = findViewById(R.id.employer_view_home_page_txt_greeting);
+        TextView txtName = findViewById(R.id.employer_view_home_page_txt_name);
+
+        LoginModel obj = Common.getUserData(this);
+        txtName.setText(obj.first_name + " " + obj.last_name);
+
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if (hour > 6 && hour < 12) {
+            txtGreeting.setText(getResources().getText(R.string.good_morning));
+        } else if (hour >= 12 && hour <= 18) {
+            txtGreeting.setText(getResources().getText(R.string.good_afternoon));
+        } else {
+            txtGreeting.setText(getResources().getText(R.string.good_evening));
+        }
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        ImageView imageView = findViewById(R.id.employer_view_home_page_user_logo);
+
         EmployerViewHomePageListData[] listData=new EmployerViewHomePageListData[]{
                 new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon),
                 new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon),
@@ -28,12 +74,6 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                 new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon)
         };
 //        test data end
-
-        RecyclerView recyclerView=findViewById(R.id.employer_view_home_page_recycler_view);
-        EmployerViewHomePageListAdapter adapter=new EmployerViewHomePageListAdapter(listData);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
 
         bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_employer);
@@ -58,6 +98,67 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                 return true;
             }
             return false;
+        });
+
+        applicationListView = findViewById(R.id.employer_view_home_page_recycler_view);
+        applicationListView.setLayoutManager(new LinearLayoutManager(this));
+
+        getApplications();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Employer_View_Home_Page.this);
+                builder.setMessage(R.string.exit_message);
+                builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+                    finish();
+                    System.exit(0);
+                });
+                builder.setNegativeButton(R.string.no, (dialog, which) -> {
+
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    private void getApplications() {
+        LoginModel obj = Common.getUserData(this);
+        Dialog dialog = Common.progressDialog(this);
+        dialog.show();
+        JobListingRequest request = new JobListingRequest();
+        request.emailId = obj.email_id;
+        Call<ResponseBody> call = apiInterface.getJobList(request);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+
+//                if (response.isSuccessful()) {
+//                    try {
+//                        Gson g = new Gson();
+//                        String json = response.body().string();
+//                        applicationList = g.fromJson(json, new TypeToken<ArrayList<UserApplicationModel>>(){}.getType());
+//                        EmployerViewHomePageListAdapter adapter=new EmployerViewHomePageListAdapter(listData);
+//                        JobsAdapter jobsAdapter = new JobsAdapter(Employer_View_Home_Page.this, applicationList);
+//                        applicationListView.setAdapter(jobsAdapter);
+//                    } catch (Exception e) {
+//
+//                    }
+//                } else {
+//                    Common.print(JobListingActivity.this, "Failed to get job list");
+//                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
         });
     }
 }
