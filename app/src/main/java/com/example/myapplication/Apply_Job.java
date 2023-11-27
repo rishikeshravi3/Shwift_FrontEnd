@@ -8,10 +8,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.APIHelper.APIClient;
+import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.EmployerView.Employer_View_Home_Page;
+import com.example.myapplication.EmployerView.JobDetailsActivityPreview;
+import com.example.myapplication.EmployerView.JobDetailsModel;
+import com.example.myapplication.Helper.Common;
+import com.example.myapplication.JobListing.JobListingActivity;
+import com.example.myapplication.JobListing.JobModel;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +31,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Apply_Job extends Activity {
+    APIInterface apiInterface;
 
     private static final int PICK_PDF_REQUEST = 1;
 
@@ -30,12 +46,35 @@ public class Apply_Job extends Activity {
         setContentView(R.layout.activity_apply_job);
 
         MaterialTextView btnUploadCV = findViewById(R.id.btnUploadCV);
+        LoginModel obj = Common.getUserData(Apply_Job.this);
 
         btnUploadCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Open the file picker when the TextView is clicked
                 openFilePicker();
+            }
+        });
+
+        Button apply=findViewById(R.id.applyButton);
+
+        Gson gson = new Gson();
+        String jobData=getIntent().getStringExtra("jobData");
+        JobModel object = gson.fromJson(jobData, JobModel.class);
+
+        TextView applicantEmail=findViewById(R.id.editTextEmail);
+        applicantEmail.setText(obj.email_id);
+        TextView fullName=findViewById(R.id.editTextFullName);
+        fullName.setText(obj.first_name+" "+obj.last_name);
+        String applicantEmailText=applicantEmail.getText().toString();
+        String jobId=object.job_id;
+        String EmployerEmailText=object.recruiter_email_id;
+        String resumeUrl="";
+        int applicationStatus=1;
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postData(applicantEmailText,applicationStatus,jobId,resumeUrl,EmployerEmailText);
             }
         });
     }
@@ -118,5 +157,51 @@ public class Apply_Job extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void postData(String applicantEmailId, int applicationStatus, String jobId, String resumeUrl,
+                          String employerEmailId) {
+
+        // below line is for displaying our progress bar.
+        LoginModel obj = Common.getUserData(Apply_Job.this);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        // on below line we are creating a retrofit
+        // builder and passing our base url
+        // below line is to create an instance for our retrofit api class.
+        // passing data from our text fields to our modal class.
+        Apply_JobModel modal = new Apply_JobModel(obj.email_id,applicationStatus,jobId,resumeUrl,employerEmailId);
+
+        // calling a method to create a post and passing our modal class.
+        Call<Apply_JobModel> call = apiInterface.applyJob(modal);
+
+        // on below line we are executing our method.
+        call.enqueue(new Callback<Apply_JobModel>() {
+            @Override
+            public void onResponse(Call<Apply_JobModel> call, Response<Apply_JobModel> response) {
+                try {
+                    //JobDetailsModel responseFromAPI = response.body();
+                    // on below line we are getting our data from modal class and adding it to our string.
+                    String responseString = "Response Code : " + response.code();
+                    if(response.code()==201 || response.code() == 200){
+                        Toast.makeText(Apply_Job.this,"Application Posted Successfully",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Apply_Job.this, JobListingActivity.class);
+                        finish();
+                        startActivity(intent);
+                    }
+                    System.out.println(responseString);
+                } catch (Exception e) {
+                    Common.printShort(Apply_Job.this,"Api Error");
+                    e.printStackTrace();
+                }
+                // below line we are setting our
+                // string to our text view.
+            }
+
+            @Override
+            public void onFailure(Call<Apply_JobModel> call, Throwable t) {
+
+                t.printStackTrace();
+            }
+        });
     }
 }
