@@ -20,7 +20,7 @@
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/custom_uploiadimage_button"
             tools:ignore="SpeakableTextPresentCheck" />
 

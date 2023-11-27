@@ -3,7 +3,9 @@ package com.example.myapplication.EmployerView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -27,11 +29,14 @@ import com.example.myapplication.ApplicantViewJobDescription;
 import com.example.myapplication.EmployerView.ProfileActivity_employer;
 import com.example.myapplication.EmployerView.UpdateEmployerInfo;
 import com.example.myapplication.Helper.Common;
+import com.example.myapplication.Helper.Constants;
 import com.example.myapplication.Helper.UploadImageRequest;
 import com.example.myapplication.JobListing.JobListingActivity;
 import com.example.myapplication.JobListing.JobModel;
 import com.example.myapplication.JobListing.JobsAdapter;
 import com.example.myapplication.LoginModel;
+import com.example.myapplication.Profile.ProfileActivity;
+import com.example.myapplication.Profile.Profile_Details_Activity;
 import com.example.myapplication.Profile.UpdateProfileRequest;
 import com.example.myapplication.Profile.UpdateProfileService;
 import com.example.myapplication.R;
@@ -75,9 +80,17 @@ public class EmployerProfileDetailsActivity extends AppCompatActivity {
                 UpdateProfileRequest req = new UpdateProfileRequest();
                 req.col_name="employer_dp";
                 req.value = imageString;
-                UpdateEmployerInfo.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
+                UpdateProfileService.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
                     @Override
                     public void onUpdateSuccess() {
+                        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
+                        Gson gson = new Gson();
+                        LoginModel loginModel = Common.getUserData(EmployerProfileDetailsActivity.this);
+                        loginModel.user_dp = imageString;
+                        String json = gson.toJson(loginModel);
+                        sharedPreferences.edit().putString(Constants.KEY_PROFILE_DATA, json).apply();
+                        Intent intent = new Intent(EmployerProfileDetailsActivity.this, ProfileActivity_employer.class);
+                        startActivity(intent);
                     }
                     @Override
                     public void onUpdateFailure() {
