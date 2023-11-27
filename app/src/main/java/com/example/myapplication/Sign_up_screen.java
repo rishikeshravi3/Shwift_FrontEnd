@@ -197,11 +197,15 @@ public class Sign_up_screen extends Activity {
                     String Jobtype = "employee";
                     System.out.println(pswd);
                     if(pswd!=null){
-                    postData(FirstName,Jobtype, LastName, Email, pswd, Phone);
+                        String result = arrayListToString(checkedChips, ",");
+                        String TrimmedList = result.trim();
+                    postData(FirstName,Jobtype, LastName, Email, pswd, Phone,TrimmedList);
                     }
                 }
             }
         });
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,6 +229,16 @@ public class Sign_up_screen extends Activity {
 
 
 
+    }
+    private static String arrayListToString(ArrayList<String> list, String separator) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            result.append(list.get(i));
+            if (i < list.size() - 1) {
+                result.append(separator);
+            }
+        }
+        return result.toString();
     }
     private void openImagePicker() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
@@ -409,9 +423,9 @@ public class Sign_up_screen extends Activity {
         }
     }
 
-    private void postData(String name,String accType, String lastName, String emailId, String pSWD, String phoneNum) {
+    private void postData(String name,String accType, String lastName, String emailId, String pSWD, String phoneNum,String avail) {
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum,"","","","");
+        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum,"","","","",avail);
 
         // Execute the network operation using AsyncTask
         new PostDataTask().execute(modal);

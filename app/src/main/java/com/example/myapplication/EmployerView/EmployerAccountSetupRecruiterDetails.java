@@ -256,7 +256,7 @@ public class EmployerAccountSetupRecruiterDetails extends AppCompatActivity {
 
     private void postData(String name,String accType, String lastName, String emailId, String pSWD, String phoneNum,String orgName, String orgDesc) {
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum,"",orgName,"12345",orgDesc);
+        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum,"",orgName,"12345",orgDesc,"");
 
         // Execute the network operation using AsyncTask
         new  PostDataTask1().execute(modal);
