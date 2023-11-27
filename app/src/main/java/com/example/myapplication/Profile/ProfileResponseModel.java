@@ -7,7 +7,7 @@ public class ProfileResponseModel {
     public String emp_expertise;
     public String employee_id;
     public int rating;
-    public Object employee_dp;
+    public String employee_dp;
     public String first_name;
     public String last_name;
     public String curr_position;

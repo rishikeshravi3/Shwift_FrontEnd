@@ -3,8 +3,12 @@ package com.example.myapplication.Helper;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +18,8 @@ import com.example.myapplication.LoginModel;
 import com.example.myapplication.Profile.ProfileResponseModel;
 import com.example.myapplication.R;
 import com.google.gson.Gson;
+
+import java.io.ByteArrayOutputStream;
 
 public class Common {
     public static void print(Context ctx, String message) {
@@ -58,5 +64,23 @@ public class Common {
         Gson gson = new Gson();
         ProfileResponseEmployer profileData = gson.fromJson(jsonStr, ProfileResponseEmployer.class);
         return profileData;
+    }
+
+    public static String bitmapToBase64(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        return "data:" + "image/png" + ";base64," + Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
+    public static String drawableToBase64(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            return bitmapToBase64(bitmap);
+        } else {
+            // Handle other types of drawables if needed
+            return null;
+        }
     }
 }

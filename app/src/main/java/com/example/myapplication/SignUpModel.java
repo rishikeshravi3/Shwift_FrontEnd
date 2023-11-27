@@ -11,8 +11,7 @@ public class SignUpModel{
     public String orgNum;
     public String orgDescription;
     public String profileDp;
-
-
+    public String availability;
 
 
 

@@ -6,4 +6,5 @@ public class UserApplicationModel {
     public String phone_num;
     public String employee_dp;
     public String job_title;
+//    public String availability;
 }

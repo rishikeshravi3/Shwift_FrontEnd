@@ -2,6 +2,7 @@ package com.example.myapplication.Profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,23 +17,45 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.myapplication.APIHelper.APIClient;
+import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.ApplicantViewJobDescription;
+import com.example.myapplication.EmployerView.ProfileActivity_employer;
+import com.example.myapplication.EmployerView.UpdateEmployerInfo;
 import com.example.myapplication.Helper.Common;
+import com.example.myapplication.Helper.UploadImageRequest;
+import com.example.myapplication.JobListing.JobListingActivity;
+import com.example.myapplication.JobListing.JobModel;
+import com.example.myapplication.JobListing.JobsAdapter;
 import com.example.myapplication.LoginModel;
 import com.example.myapplication.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Profile_Details_Activity extends AppCompatActivity {
-    private ImageButton imageView;
+    private ImageView imageView;
 
     private static final int PICK_IMAGE = 1;
+
+    String imageString = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_details);
-        imageView = findViewById(R.id.imageView1);
+        imageView = findViewById(R.id.userDp);
         EditText FirstName = findViewById(R.id.FirstName_profile);
         LoginModel obj = Common.getUserData(this);
         FirstName.setText(obj.first_name);
@@ -41,15 +64,32 @@ public class Profile_Details_Activity extends AppCompatActivity {
         EditText CurrentPosition = findViewById(R.id.Current_position_profile);
         Button save = findViewById(R.id.profileDetails_savebtn);
         ProfileResponseModel profileData = Common.getProfileData(this);
-        if(profileData!=null) {
+        if (profileData != null) {
             CurrentPosition.setText(profileData.curr_position);
+        }
+        if (profileData != null) {
+            Glide.with(this).load(profileData.employee_dp).into(imageView);
         }
 
         save.setOnClickListener(v -> {
-            UpdateProfileRequest req = new UpdateProfileRequest();
-            req.col_name="curr_position";
-            req.value = CurrentPosition.getText().toString().trim();
-            UpdateProfileService.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
+            if (imageString != null && imageString.isEmpty() == false) {
+                UpdateProfileRequest req = new UpdateProfileRequest();
+                req.col_name="employee_dp";
+                req.value = imageString;
+                UpdateProfileService.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
+                    @Override
+                    public void onUpdateSuccess() {
+                    }
+                    @Override
+                    public void onUpdateFailure() {
+                    }
+                });
+            }
+
+            UpdateProfileRequest request = new UpdateProfileRequest();
+            request.col_name="curr_position";
+            request.value = CurrentPosition.getText().toString().trim();
+            UpdateProfileService.Service(this, request, new UpdateProfileService.UpdateProfileCallback() {
                 @Override
                 public void onUpdateSuccess() {
                     // Update successful, start the new activity
@@ -74,29 +114,58 @@ public class Profile_Details_Activity extends AppCompatActivity {
         });
 
     }
+
     private void openImagePicker() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
-            // Get the selected image URI
-            // Update the ImageView with the selected image
             Uri selectedImageUri = data.getData();
-
             Bitmap selectedBitmap = getBitmapFromUri(selectedImageUri);
-
             // Create a circular bitmap
-            Bitmap circularBitmap = getCircularBitmap(selectedBitmap);
+//            Bitmap circularBitmap = getCircularBitmap(selectedBitmap);
 
-            // Update the ImageView with the circular image
-            imageView.setImageBitmap(circularBitmap);
+            imageView.setImageBitmap(selectedBitmap);
+            APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+            UploadImageRequest imageRequest = new UploadImageRequest();
+            imageRequest.base64Image = Common.drawableToBase64(imageView.getDrawable());
+            if (imageRequest.base64Image != null) {
+                Dialog dialog = Common.progressDialog(this);
+                dialog.show();
+                Call<ResponseBody> call = apiInterface.uploadImage(imageRequest);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (dialog != null && dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
 
-            imageView.setImageBitmap(circularBitmap);
-            Toast.makeText(this,"Profile Image Updated",Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+                            try {
+                                imageString = response.body().string();
+                            } catch (Exception e) {
+
+                            }
+                        } else {
+                            Common.print(Profile_Details_Activity.this, "Failed to upload image");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        if (dialog != null && dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+            }
+
+//            Toast.makeText(this, "Profile Image Updated", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -110,6 +179,7 @@ public class Profile_Details_Activity extends AppCompatActivity {
             return null;
         }
     }
+
     private Bitmap getCircularBitmap(Bitmap bitmap) {
         // Create a circular bitmap using the original bitmap
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),

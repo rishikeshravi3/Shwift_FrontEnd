@@ -32,8 +32,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.ViewHolder> {
     int activityType; // 1 - JobListing, 2 - SavedJobs, 3 - RecommendedJobs
     private static ClickListener clickListener;
 
-    public JobsAdapter(Context ctx, List<JobModel> jobs, int actType, ClickListener clickListener)
-    {
+    public JobsAdapter(Context ctx, List<JobModel> jobs, int actType, ClickListener clickListener) {
         context = ctx;
         jobList = jobs;
         activityType = actType;

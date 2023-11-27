@@ -35,25 +35,55 @@
 
         </LinearLayout>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/userDpLayout"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/light_gray"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@id/HeaderLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        app:cardCornerRadius="60dp">
 
-        <ImageButton
-            android:id="@+id/imageView1"
-            android:layout_width="173dp"
-            android:layout_height="131dp"
-            android:layout_below="@id/HeaderLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="17dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/custom_uploiadimage_button"
-            tools:ignore="SpeakableTextPresentCheck" />
+        <ImageView
+            android:id="@+id/userDp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/person" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/editImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/edit_icon"
+        android:layout_below="@id/userDpLayout"
+        android:layout_centerHorizontal="true"
+        android:translationX="35dp"
+        android:translationY="-20dp"/>
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/imageView1"-->
+<!--            android:layout_width="173dp"-->
+<!--            android:layout_height="131dp"-->
+<!--            android:layout_below="@id/HeaderLayout"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="17dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:src="@drawable/custom_uploiadimage_button"-->
+<!--            tools:ignore="SpeakableTextPresentCheck" />-->
 
         <TextView
             android:id="@+id/txt_firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_below="@id/imageView1"
+            android:layout_below="@id/editImage"
             android:text="First Name"
             android:textColor="@color/gray"
             android:textSize="16sp" />
@@ -102,18 +132,6 @@
             />
 
 
-
-
-
-        <!--        <com.google.android.material.textfield.TextInputLayout-->
-        <!--            android:id="@+id/GenderInputLayout"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@id/PhoneNumber_signup"-->
-        <!--            android:layout_marginTop="17dp"-->
-        <!--            app:boxBackgroundMode="none"-->
-        <!--            app:startIconTint="#ACACAC">-->
-
         <TextView
             android:id="@+id/txt_CurrentPosition"
             android:layout_width="wrap_content"
@@ -149,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="40dp"
-            android:layout_below="@id/Current_position_profile"
+            android:layout_alignParentBottom="true"
             android:text="Save"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             />

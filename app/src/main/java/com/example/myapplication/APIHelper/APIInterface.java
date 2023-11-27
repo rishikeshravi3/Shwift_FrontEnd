@@ -2,6 +2,7 @@ package com.example.myapplication.APIHelper;
 
 import com.example.myapplication.EmployerView.ProfileRequestEmployer;
 import com.example.myapplication.EmployerView.ProfileResponseEmployer;
+import com.example.myapplication.Helper.UploadImageRequest;
 import com.example.myapplication.JobListing.JobListingRequest;
 import com.example.myapplication.JobListing.SaveJobModel;
 import com.example.myapplication.LoginModel;
@@ -71,4 +72,7 @@ APIInterface {
 
     @POST("/shwift/updateEmployerInfo")
     Call<UpdateProfileResponse> getUpdateEmployerInfo(@Body UpdateProfileRequest updateProfileRequest);
+
+    @POST("/shwift/uploadImage")
+    Call<ResponseBody> uploadImage(@Body UploadImageRequest input);
 }

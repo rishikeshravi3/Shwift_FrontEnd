@@ -29,7 +29,7 @@ public class UpdateEmployerInfo {
             Dialog dialog = Common.progressDialog(context);
             dialog.show();
             UpdateProfileRequest request = updateProfileRequest;
-            String email = "rangwala@hamza.com";
+            String email = obj.email_id;
             request.emailId = email;
             Call<UpdateProfileResponse> call = apiInterface.getUpdateEmployerInfo(request);
             call.enqueue(new Callback<UpdateProfileResponse>() {
@@ -41,18 +41,6 @@ public class UpdateEmployerInfo {
 
                     if (response.isSuccessful()) {
                         try {
-                            // Uncomment and modify the code below if needed
-                            // UpdateProfileResponse json = response.body();
-                            // Gson gson = new Gson();
-                            // String jsonStr = gson.toJson(json);
-                            // SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
-                            // SharedPreferences.Editor editor = sharedPreferences.edit();
-                            // editor.putString(Constants.KEY_PROFILE_DATA, jsonStr);
-                            // editor.apply();
-                            // recentJobs = g.fromJson(json, new TypeToken<ArrayList<JobModel>>(){}.getType());
-                            // JobsAdapter jobsAdapter = new JobsAdapter(JobListingActivity.this, recentJobs);
-                            // recentJobsView.setAdapter(jobsAdapter);
-                            // recommendedJobsView.setAdapter(jobsAdapter);
                             callback.onUpdateSuccess();
                             Toast.makeText(context, "Data Saved Successfully", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
@@ -61,7 +49,7 @@ public class UpdateEmployerInfo {
                         }
                     } else {
                         System.out.println("error");
-                        Common.print(context, "Failed to get Updated List");
+//                        Common.print(context, "Failed to update profile");
                         callback.onUpdateFailure();
                     }
                 }

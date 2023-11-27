@@ -79,7 +79,17 @@
             android:layout_marginHorizontal="30dp"/>
 
         <TextView
-            android:id="@+id/recent_applicants_item_txtLocation"
+            android:id="@+id/txtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/gray"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/california_united_sates"/>
+
+        <TextView
+            android:id="@+id/txtPhoneNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,6 +44,8 @@ public class Employer_View_Home_Page extends AppCompatActivity {
     APIInterface apiInterface;
     ArrayList<UserApplicationModel> applicationList = new ArrayList<>();
     RecyclerView applicationListView;
+    TextView txtNoData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,16 +68,6 @@ public class Employer_View_Home_Page extends AppCompatActivity {
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
         ImageView imageView = findViewById(R.id.employer_view_home_page_user_logo);
-
-        EmployerViewHomePageListData[] listData=new EmployerViewHomePageListData[]{
-                new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon),
-                new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon),
-                new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon),
-                new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon),
-                new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon),
-                new EmployerViewHomePageListData("Project Manager","Shaurya Guliani","Delhi, India","5 days a week","Full Time", "Remote", R.drawable.email_icon)
-        };
-//        test data end
 
         bottomNavigationView = findViewById(R.id.employer_view_home_page_bottom_Navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_employer);
@@ -100,6 +94,7 @@ public class Employer_View_Home_Page extends AppCompatActivity {
             return false;
         });
 
+        txtNoData = findViewById(R.id.txtNoData);
         applicationListView = findViewById(R.id.employer_view_home_page_recycler_view);
         applicationListView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -129,7 +124,7 @@ public class Employer_View_Home_Page extends AppCompatActivity {
         dialog.show();
         JobListingRequest request = new JobListingRequest();
         request.emailId = obj.email_id;
-        Call<ResponseBody> call = apiInterface.getJobList(request);
+        Call<ResponseBody> call = apiInterface.fetchAllApplications(request);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -137,20 +132,25 @@ public class Employer_View_Home_Page extends AppCompatActivity {
                     dialog.dismiss();
                 }
 
-//                if (response.isSuccessful()) {
-//                    try {
-//                        Gson g = new Gson();
-//                        String json = response.body().string();
-//                        applicationList = g.fromJson(json, new TypeToken<ArrayList<UserApplicationModel>>(){}.getType());
-//                        EmployerViewHomePageListAdapter adapter=new EmployerViewHomePageListAdapter(listData);
-//                        JobsAdapter jobsAdapter = new JobsAdapter(Employer_View_Home_Page.this, applicationList);
-//                        applicationListView.setAdapter(jobsAdapter);
-//                    } catch (Exception e) {
-//
-//                    }
-//                } else {
-//                    Common.print(JobListingActivity.this, "Failed to get job list");
-//                }
+                if (response.isSuccessful()) {
+                    try {
+                        Gson g = new Gson();
+                        String json = response.body().string();
+                        applicationList = g.fromJson(json, new TypeToken<ArrayList<UserApplicationModel>>(){}.getType());
+                        EmployerViewHomePageListAdapter adapter = new EmployerViewHomePageListAdapter(Employer_View_Home_Page.this, applicationList , (position, v) -> {
+
+                        });
+                        applicationListView.setAdapter(adapter);
+                        if (applicationList.size() == 0) {
+                            applicationListView.setVisibility(View.GONE);
+                            txtNoData.setVisibility(View.VISIBLE);
+                        }
+                    } catch (Exception e) {
+                        Log.i("Employer Home", e.getMessage());
+                    }
+                } else {
+                    Common.print(Employer_View_Home_Page.this, "Failed to get job list");
+                }
             }
 
             @Override
