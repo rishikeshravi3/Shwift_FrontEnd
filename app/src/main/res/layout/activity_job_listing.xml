@@ -80,20 +80,22 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/layout_bg">
 
-                <ImageView android:layout_width="24dp"
+                <ImageView
+                    android:id="@+id/searchBtn"
+                    android:layout_width="24dp"
                     android:layout_height="18dp"
                     android:src="@drawable/search"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"/>
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/editSearch"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@null"
                     android:layout_marginHorizontal="10dp"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:hint="@string/search_for_a_job_or_company"/>
 
                 <ImageView
