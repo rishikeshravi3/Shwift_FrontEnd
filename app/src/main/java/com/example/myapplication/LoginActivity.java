@@ -56,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
 //            Pswd = "dcba";
 //             Mail = "johndoe@abc.com";
 //             Pswd = "abcabc";
-//            Mail = "rishitestss@abc.com";
-//            Pswd = "abc";
+            Mail = "rishitestss@abc.com";
+            Pswd = "abc";
             if (Mail.isEmpty() || Pswd.isEmpty()) {
                 Toast.makeText(this, "Both Fields are required", Toast.LENGTH_SHORT).show();
             } else {
