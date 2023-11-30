@@ -15,8 +15,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +56,7 @@ public class JobListingActivity extends AppCompatActivity {
     RecyclerView recommendedJobsView, recentJobsView;
     LinearLayout recommendationLayout;
     ImageView userDp;
+    String searchText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +117,28 @@ public class JobListingActivity extends AppCompatActivity {
 
         getRecommendedJobs();
         getJobList();
+
+        EditText editSearch = findViewById(R.id.editSearch);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchText = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        ImageView searchBtn = findViewById(R.id.searchBtn)     ;
+        searchBtn.setOnClickListener(v -> {
+            getJobList();
+        });
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
@@ -188,6 +214,7 @@ public class JobListingActivity extends AppCompatActivity {
         dialog.show();
         JobListingRequest request = new JobListingRequest();
         request.emailId = obj.email_id;
+        request.searchText = searchText;
         Call<ResponseBody> call = apiInterface.getJobList(request);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
