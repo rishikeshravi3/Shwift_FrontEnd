@@ -20,4 +20,5 @@ public class JobApplicationModel {
     public Date app_date;
     public int application_status;
     public String employer_dp;
+    public String org_name;
 }

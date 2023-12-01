@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
@@ -35,6 +39,7 @@ public class ApplicationStagesActivity extends AppCompatActivity {
     APIInterface apiInterface;
     RecyclerView applicationsView;
     ArrayList<JobApplicationModel> applicationList = new ArrayList<>();
+    String searchText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,28 @@ public class ApplicationStagesActivity extends AppCompatActivity {
         applicationsView.setLayoutManager(new LinearLayoutManager(this));
         getApplications();
 
+        EditText editSearch = findViewById(R.id.editSearch);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchText = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        ImageView searchBtn = findViewById(R.id.searchBtn)     ;
+        searchBtn.setOnClickListener(v -> {
+            getApplications();
+        });
+
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -90,6 +117,7 @@ public class ApplicationStagesActivity extends AppCompatActivity {
         dialog.show();
         JobListingRequest request = new JobListingRequest();
         request.emailId = obj.email_id;
+        request.searchText = searchText;
         Call<ResponseBody> call = apiInterface.getApplicationsByEmail(request);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -107,7 +135,7 @@ public class ApplicationStagesActivity extends AppCompatActivity {
                             Intent intent = new Intent(ApplicationStagesActivity.this, ApplicationStageOnClickActivity.class);
                             JobApplicationModel obj = applicationList.get(position);
                             intent.putExtra("role", obj.job_title);
-                            intent.putExtra("company", obj.recruiter_name);
+                            intent.putExtra("company", obj.org_name);
                             if (obj.application_status == 1) {
                                 intent.putExtra("status", "Application Sent");
                             } else if (obj.application_status == 2) {

@@ -44,7 +44,7 @@ public class ApplicationStageListAdapter extends RecyclerView.Adapter<Applicatio
         JobApplicationModel obj = applicationList.get(position);
         holder.logo.setImageResource(R.drawable.shwift_logo);
         holder.role.setText(obj.job_title);
-        holder.company.setText(obj.recruiter_name);
+        holder.company.setText(obj.org_name);
         if (obj.application_status == 1) {
             holder.status.setText("Application Sent");
         } else if (obj.application_status == 2) {

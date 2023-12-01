@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/application_stages_heading">
 
         <ImageView
-            android:id="@+id/application_stages_search_bar_magnifying_glass_icon"
+            android:id="@+id/searchBtn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="9dp"
@@ -55,7 +55,7 @@
 
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/editSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
@@ -67,7 +67,7 @@
             android:inputType="text"
             android:textAppearance="@style/application_stages_search_bar_tab_hint"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/application_stages_search_bar_magnifying_glass_icon"
+            app:layout_constraintStart_toEndOf="@id/searchBtn"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="Autofill,TouchTargetSizeCheck,TextContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>

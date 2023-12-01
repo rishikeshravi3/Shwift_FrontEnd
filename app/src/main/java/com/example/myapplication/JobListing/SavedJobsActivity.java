@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
@@ -33,6 +37,7 @@ public class SavedJobsActivity extends AppCompatActivity {
     RecyclerView savedJobsView;
     APIInterface apiInterface;
     ArrayList<JobModel> savedJobs = new ArrayList<>();
+    String searchText = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +75,28 @@ public class SavedJobsActivity extends AppCompatActivity {
 
         getSavedJobs();
 
+        EditText editSearch = findViewById(R.id.editSearch);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchText = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        ImageView searchBtn = findViewById(R.id.searchBtn);
+        searchBtn.setOnClickListener(v -> {
+            getSavedJobs();
+        });
+
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -87,6 +114,7 @@ public class SavedJobsActivity extends AppCompatActivity {
         dialog.show();
         JobListingRequest request = new JobListingRequest();
         request.emailId = obj.email_id;
+        request.searchText = searchText;
         Call<ResponseBody> call = apiInterface.getSavedJobs(request);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
