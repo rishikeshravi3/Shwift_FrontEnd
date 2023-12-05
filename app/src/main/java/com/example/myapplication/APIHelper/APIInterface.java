@@ -1,5 +1,6 @@
 package com.example.myapplication.APIHelper;
 
+import com.example.myapplication.Applications.ResponseAceptRjctModel;
 import com.example.myapplication.Apply_JobModel;
 import com.example.myapplication.EmployerView.ProfileRequestEmployer;
 import com.example.myapplication.EmployerView.ProfileResponseEmployer;
@@ -82,4 +83,7 @@ APIInterface {
 
     @POST("/shwift/uploadPdf")
     Call<ResponseBody> uploadPdf(@Body UploadPdfRequest input);
+
+    @POST("/shwift/updateApplicationStatus")
+    Call<ResponseBody> acceptRejectFunc(@Body ResponseAceptRjctModel responseAcceptRejectModel);
 }
