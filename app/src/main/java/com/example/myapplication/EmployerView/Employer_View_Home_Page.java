@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,6 +50,7 @@ public class Employer_View_Home_Page extends AppCompatActivity {
     RecyclerView applicationListView;
     TextView txtNoData;
     ImageView userDp;
+    String searchText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +109,33 @@ public class Employer_View_Home_Page extends AppCompatActivity {
         applicationListView.setLayoutManager(new LinearLayoutManager(this));
 
         getApplications();
+
+        EditText editSearch = findViewById(R.id.employer_view_home_page_pasword);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchText=s.toString().trim();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        ImageView searchbt=findViewById(R.id.searchImage);
+        searchbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getApplications();
+            }
+        });
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -130,6 +161,7 @@ public class Employer_View_Home_Page extends AppCompatActivity {
         dialog.show();
         JobListingRequest request = new JobListingRequest();
         request.emailId = obj.email_id;
+        request.searchText=searchText;
         Call<ResponseBody> call = apiInterface.fetchAllApplications(request);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
