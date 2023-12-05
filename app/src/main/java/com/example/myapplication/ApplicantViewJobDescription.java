@@ -152,14 +152,19 @@ public class ApplicantViewJobDescription extends AppCompatActivity {
                 popupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
 
                 Button CVapply=popupView.findViewById(R.id.buttonApplyCV);
+                Button applyProfile=popupView.findViewById(R.id.buttonApplyProfile);
                 CVapply.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent=new Intent(ApplicantViewJobDescription.this, Apply_Job.class);
                         intent.putExtra("jobData",jobData);
                         startActivity(intent);
-
                     }
+                });
+                applyProfile.setOnClickListener(v1 -> {
+                    Intent intent=new Intent(ApplicantViewJobDescription.this, ViewApplicantProfile.class);
+                    intent.putExtra("jobData",jobData);
+                    startActivity(intent);
                 });
             }
         });

@@ -206,6 +206,7 @@ public class Apply_Job extends Activity {
                     if(response.code()==201 || response.code() == 200){
                         Toast.makeText(Apply_Job.this,"Application Posted Successfully",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Apply_Job.this, JobListingActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         finish();
                         startActivity(intent);
                     }

@@ -101,9 +101,7 @@ public class Profile_Details_Activity extends AppCompatActivity {
             UpdateProfileService.Service(this, request, new UpdateProfileService.UpdateProfileCallback() {
                 @Override
                 public void onUpdateSuccess() {
-                    // Update successful, start the new activity
-                    Intent intent = new Intent(Profile_Details_Activity.this, ProfileActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
 
                 @Override

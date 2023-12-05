@@ -22,8 +22,8 @@
 
     <View
         android:id="@+id/line"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:background="#BEBEBE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,33 +34,32 @@
 
     <Button
         android:id="@+id/buttonApplyCV"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginTop="100dp"
         android:paddingLeft="24dp"
         android:paddingTop="10dp"
         android:paddingRight="24dp"
         android:paddingBottom="10dp"
         android:text="Apply with CV"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.407" />
+
+    <Button
+        android:id="@+id/buttonApplyProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:paddingLeft="24dp"
+        android:paddingTop="10dp"
+        android:paddingRight="24dp"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="30dp"
+        android:text="Apply with Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp"
-        app:layout_constraintStart_toStartOf="parent" />
-
-<!--    <Button-->
-<!--        android:id="@+id/buttonApplyProfile"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Apply with Profile"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:paddingRight="24dp"-->
-<!--        android:paddingLeft="24dp"-->
-<!--        android:paddingBottom="10dp"-->
-<!--        android:paddingTop="10dp"-->
-<!--        android:layout_marginTop="100dp"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:layout_marginRight="13dp" />-->
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

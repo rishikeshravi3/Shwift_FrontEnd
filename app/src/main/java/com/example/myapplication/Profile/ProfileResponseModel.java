@@ -16,4 +16,6 @@ public class ProfileResponseModel {
     public String emp_skills;
     public String emp_workex;
     public String emp_education;
+    public String email_id;
+    public String phone_num;
 }

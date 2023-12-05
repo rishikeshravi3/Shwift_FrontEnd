@@ -18,30 +18,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".EmployerView.ViewApplicantProfile"
-            android:exported="false" />
+            android:name=".ViewApplicantProfile"
+            android:exported="false"/>
         <activity
             android:name=".EmployerView.Employee_Detailspage"
             android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".EmployerView.EmployerProfileDetailsActivity"
             android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-
         </activity>
         <activity
             android:name=".EmployerView.OrgDescription_Employer"

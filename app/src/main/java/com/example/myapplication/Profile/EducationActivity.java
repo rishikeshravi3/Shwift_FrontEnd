@@ -30,9 +30,7 @@ public class EducationActivity extends AppCompatActivity {
             UpdateProfileService.Service(this, req, new UpdateProfileService.UpdateProfileCallback() {
                 @Override
                 public void onUpdateSuccess() {
-                    // Update successful, start the new activity
-                    Intent intent = new Intent(EducationActivity.this, ProfileActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
 
                 @Override
