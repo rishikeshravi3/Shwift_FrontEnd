@@ -14,16 +14,19 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.APIHelper.APIClient;
 import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.Applications.ResponseAceptRjctModel;
 import com.example.myapplication.Helper.Common;
 import com.example.myapplication.Helper.Constants;
 import com.example.myapplication.LoginModel;
@@ -33,6 +36,7 @@ import com.example.myapplication.R;
 import com.google.android.material.card.MaterialCardView;
 import com.google.gson.Gson;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,9 +56,17 @@ public class Employee_Detailspage extends AppCompatActivity {
 //        TextView Education = findViewById(R.id.textViewEmployeeEducation);
 //        TextView Skills = findViewById(R.id.textViewEmployeeSkills);
 //        TextView Summary = findViewById(R.id.bodySummary);
+
+        Button Accept = findViewById(R.id.buttonAccept);
+        Button Reject = findViewById(R.id.buttonReject);
         apiInterface = APIClient.getClient().create(APIInterface.class);
         LoginModel objUser = Common.getUserData(this);
 //        name.setText(obj.first_name + " " + obj.last_name);
+
+
+
+
+
 
         Button btnOpenResume = findViewById(R.id.btnOpenResume);
         btnOpenResume.setOnClickListener(v -> {
@@ -104,6 +116,13 @@ public class Employee_Detailspage extends AppCompatActivity {
         } else {
             availability.setText("Availability: " + obj.availability);
         }
+
+        Accept.setOnClickListener(v->{
+            updateApplicationStatus(2,obj.email_id,obj.job_id);
+        });
+        Reject.setOnClickListener(v->{
+            updateApplicationStatus(3,obj.email_id,obj.job_id);
+        });
 
         getProfileDetails(res);
 
@@ -204,6 +223,54 @@ public class Employee_Detailspage extends AppCompatActivity {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
+            }
+        });
+    }
+
+
+    private void updateApplicationStatus(int  applicationStatus,String employeeEmailid,String jobId) {
+
+        // below line is for displaying our progress bar.
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        // on below line we are creating a retrofit
+        // builder and passing our base url
+        // below line is to create an instance for our retrofit api class.
+        // passing data from our text fields to our modal class.
+        LoginModel obj = Common.getUserData(Employee_Detailspage.this);
+        ResponseAceptRjctModel modal = new ResponseAceptRjctModel(obj.email_id,employeeEmailid,jobId,applicationStatus);
+
+        // calling a method to create a post and passing our modal class.
+        Call<ResponseBody> call = apiInterface.acceptRejectFunc(modal);
+
+        // on below line we are executing our method.
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    //JobDetailsModel responseFromAPI = response.body();
+                    // on below line we are getting our data from modal class and adding it to our string.
+                    String responseString = "Response Code : " + response.code();
+                    Log.e("HAMZ",response.toString());
+                    if(response.code()==200){
+
+                        Toast.makeText(Employee_Detailspage.this,"Successful",Toast.LENGTH_SHORT).show();
+                        finish();
+                        //Intent intent = new Intent(JobDetailsActivityPreview.this,Employer_View_Home_Page.class);
+                        //startActivity(intent);
+                    }
+                    System.out.println(responseString);
+                } catch (Exception e) {
+                    Common.printShort(Employee_Detailspage.this,"Api Error");
+                    e.printStackTrace();
+                }
+                // below line we are setting our
+                // string to our text view.
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                t.printStackTrace();
             }
         });
     }
