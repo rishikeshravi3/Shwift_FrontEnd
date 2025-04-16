@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/employer_account_setup_recruiter_details_back_arrow"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_arrow"
+            tools:ignore="ContentDescription" />
+
+
+        <ImageButton
+            android:id="@+id/employer_account_setup_recruiter_details_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/employer_account_setup_recruiter_details_image_upload"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_employer_account_setup_recruiter_details_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/employer_account_setup_recruiter_details_image"
+            android:background="@drawable/chip_background"
+            android:hint="@string/activity_employer_account_setup_recruiter_details_first_name_text"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC"
+            />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_employer_account_setup_recruiter_details_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/activity_employer_account_setup_recruiter_details_first_name"
+            android:background="@drawable/chip_background"
+            android:hint="@string/activity_employer_account_setup_recruiter_details_last_name_text"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC"
+            />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_employer_account_setup_recruiter_details_organization_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/activity_employer_account_setup_recruiter_details_last_name"
+            android:background="@drawable/chip_background"
+            android:drawableRight="@drawable/custom_email_icon"
+            android:hint="@string/activity_employer_account_setup_recruiter_details_organization_email_text"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC"
+            />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_employer_account_setup_recruiter_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/activity_employer_account_setup_recruiter_details_organization_email"
+            android:background="@drawable/chip_background"
+            android:drawableRight="@drawable/custom_phone_icon"
+            android:hint="@string/activity_employer_account_setup_recruiter_details_organization_phone_text"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC"
+            />
+
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/GenderInputLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/activity_employer_account_setup_recruiter_phone"-->
+        <!--            android:layout_marginTop="17dp"-->
+        <!--            app:boxBackgroundMode="none"-->
+        <!--            app:startIconTint="#ACACAC">-->
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_employer_account_setup_recruiter_details_linkedin_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_below="@id/activity_employer_account_setup_recruiter_phone"
+            android:background="@drawable/chip_background"
+            android:drawableEnd="@drawable/activity_employer_account_setup_recruiter_details_linkedin_icon_xml"
+            android:hint="@string/activity_employer_account_setup_recruiter_details_linkedin_url_text"
+            android:inputType="textWebEmailAddress"
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:textColorHint="#ACACAC" />
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <Button
+            android:id="@+id/activity_employer_account_setup_recruiter_details_button"
+            android:background="@drawable/custom_background_button"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/activity_employer_account_setup_recruiter_details_linkedin_url"
+            android:text="Continue"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+
+    </RelativeLayout>
+</ScrollView>

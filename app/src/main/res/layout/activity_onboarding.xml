@@ -64,7 +64,7 @@
         android:layout_marginTop="515dp"
         android:gravity="center_horizontal|top"
         android:text="@string/onboarding_get_shift_button_text"
-        android:textAppearance="@style/onboarding_get_shift_button_text"
+        android:textAppearance="@style/button_text_white_20sp_style"
         tools:ignore="TextSizeCheck" />
 
     <ImageView

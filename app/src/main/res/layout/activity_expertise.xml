@@ -1,171 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".expertise_activity">
+    android:fillViewport="true"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/what_is_you"
         android:layout_width="321dp"
         android:layout_height="34dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center_horizontal|top"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
         android:text="@string/what_is_you"
-        android:textAppearance="@style/what_is_you"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
+        android:textAppearance="@style/what_is_you" />
 
     <TextView
         android:id="@+id/please_sele"
         android:layout_width="314dp"
         android:layout_height="30dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center_horizontal|top"
+        android:layout_below="@+id/what_is_you"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="26dp"
+        android:gravity="center"
         android:lineSpacingExtra="12sp"
         android:text="@string/please_sele"
-        android:textAppearance="@style/please_sele"
-        android:translationY="-5.92sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203" />
+        android:textAppearance="@style/please_sele" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip"
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/please_sele"
+        android:layout_marginTop="27dp"
+        android:checkable="true"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Accounting and Finance"
+        android:textColor="#585858"
+        app:checkedIcon="@drawable/ic_checkbox"
+        app:checkedIconVisible="true"
+        app:chipIconVisible="false" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip1"
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chip"
+        android:layout_marginTop="27dp"
+        android:checkable="true"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Engineering"
+        android:textColor="#585858"
+        app:checkedIcon="@drawable/ic_checkbox"
+        app:checkedIconVisible="true"
+        app:chipIconVisible="false" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip2"
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chip1"
+        android:layout_marginTop="27dp"
+        android:checkable="true"
+        android:checked="false"
+        android:gravity="center"
+        android:text="IT and Software"
+        android:textColor="#585858"
+        app:checkedIcon="@drawable/ic_checkbox"
+        app:checkedIconVisible="true"
+        app:chipIconVisible="false" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip3"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="200dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="288dp"
-        android:layout_height="58dp"
-        android:text=" Accounting and finance"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288" />
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chip2"
+        android:layout_marginTop="27dp"
+        android:checkable="true"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Media and Design"
+        android:textColor="#585858"
+        app:checkedIcon="@drawable/ic_checkbox"
+        app:checkedIconVisible="true"
+        app:chipIconVisible="false" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip4"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777" />
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        android:text=" Engineering"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777" />
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chip3"
+        android:layout_marginTop="27dp"
+        android:checkable="true"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Engineering"
+        android:textColor="#585858"
+        app:checkedIcon="@drawable/ic_checkbox"
+        app:checkedIconVisible="true"
+        app:chipIconVisible="false" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip5"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        android:text=" IT and Software"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip6"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
-        android:text="Media and Design"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip7"
-        android:layout_width="317dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chip4"
+        android:layout_marginTop="27dp"
+        android:checkable="true"
+        android:checked="false"
+        android:gravity="center"
         android:text="Sales and Marketing"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
-
+        android:textColor="#585858"
+        app:checkedIcon="@drawable/ic_checkbox"
+        app:checkedIconVisible="true"
+        app:chipIconVisible="false" />
     <Button
         android:id="@+id/expertcontinuebtn"
-        android:layout_width="349dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
         android:text="Continue"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

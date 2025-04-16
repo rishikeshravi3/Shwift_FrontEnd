@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ApplicationStageOnClickActivity">
+
+    <ImageView
+        android:id="@+id/application_stage_on_click_back_arrow"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:srcCompat="@drawable/back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="46dp"
+        android:layout_marginLeft="27dp"/>
+    <TextView
+        android:id="@+id/application_stage_on_click_heading"
+        android:layout_width="236dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/application_stage_on_click_back_arrow"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="37dp"
+        android:text="@string/application_stage_on_click_heading_text"
+        android:textAppearance="@style/application_stages_heading_style"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/application_stage_on_click_card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_heading"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/application_stage_on_click_detail_card_border"
+        >
+
+        <ImageView
+            android:id="@+id/application_stage_on_click_card_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="14dp"
+            android:padding="15dp"
+            android:background="@drawable/application_stage_item_image_border"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/application_stage_on_click_card_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_card_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="TextView"
+            android:layout_marginTop="21dp"
+            android:textAppearance="@style/application_stage_item_role_style"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/application_stage_on_click_card_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_card_role"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="TextView"
+            android:textAppearance="@style/application_stage_on_click_detail_card_company"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"/>
+        <View
+            android:id="@+id/application_stage_on_click_card_line"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#BEBEBE"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_card_company"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:id="@+id/application_stage_on_click_card_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_card_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAppearance="@style/application_stages_search_bar_tab_hint"/>
+
+        <TextView
+            android:id="@+id/application_stage_on_click_card_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_card_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/application_stage_on_click_detail_card_salary"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/application_stage_on_click_card_salary">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:strokeColor="@color/light_gray"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/txtPositionType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/full_time"
+                    android:textSize="12sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                app:strokeColor="@color/light_gray"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/txtOnSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/remote"
+                    android:textSize="12sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/application_stage_on_click_line"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#BEBEBE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_card_layout"
+        android:layout_marginTop="68dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginRight="41dp"/>
+
+    <TextView
+        android:id="@+id/application_stage_on_click_your_status_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/application_stage_on_click_your_status_text"
+        app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textStyle="bold"
+        android:textAppearance="@style/application_stage_on_click_your_status_style"/>
+
+    <TextView
+        android:id="@+id/application_stage_on_click_your_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="textView"
+        android:textAlignment="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/application_stage_on_click_your_status_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textStyle="bold"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

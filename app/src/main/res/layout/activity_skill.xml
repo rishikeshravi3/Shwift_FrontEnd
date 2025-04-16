@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Profile.ProfileSummaryActivity">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginTop="20dp">
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:src="@drawable/back_arrow"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="Skills"
+        android:layout_gravity="end|bottom"
+        android:layout_weight="1"/>
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="358dp"
+      android:layout_height="335dp"
+      android:layout_marginHorizontal="30dp"
+      android:layout_marginTop="20dp"
+      android:layout_weight="1"
+      android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtSummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="Skills"
+        android:textColor="@color/gray"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/layout_bg"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="10dp">
+
+      <EditText
+          android:id="@+id/editSkill"
+          android:layout_width="317dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="top|center"
+          android:layout_marginHorizontal="10dp"
+          android:layout_weight="1"
+          android:background="@null"
+          android:gravity="top"
+          android:hint="Type Here"
+          android:inputType="text"
+          android:maxLength="10"
+          android:minHeight="48dp"
+          android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/chipContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp">
+      <!-- This FlexboxLayout will act as a container for the dynamically added chips -->
+    </com.google.android.flexbox.FlexboxLayout>
+
+  </LinearLayout>
+
+  <Button
+      android:id="@+id/button_save_skill"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:background="@drawable/rounded_rectangle"
+      android:text="@string/save"
+      android:textSize="20sp"
+      android:layout_marginHorizontal="30dp"
+      android:layout_marginVertical="20dp"/>
+
+</LinearLayout>

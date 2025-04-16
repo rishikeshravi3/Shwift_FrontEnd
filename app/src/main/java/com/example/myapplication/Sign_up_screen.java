@@ -1,18 +1,24 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -21,24 +27,35 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListPopupWindow;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
+import com.example.myapplication.APIHelper.APIClient;
+import com.example.myapplication.APIHelper.APIInterface;
+import com.example.myapplication.EmployerView.Employer_Account_Setup_Company_details;
+import com.example.myapplication.JobListing.JobListingActivity;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import android.text.TextUtils;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 // MainActivity.java
 public class Sign_up_screen extends Activity {
@@ -49,15 +66,104 @@ public class Sign_up_screen extends Activity {
     private ImageButton imageView;
     private Button uploadButton;
     private AutoCompleteTextView genderEditText;
+    APIInterface apiInterface;
+    private static final String PREF_NAME = "MyPrefs";
+    private static final String KEY_EMAIL = "emailKey";
+    private  static  final String KEY_PHONE = "phoneKey";
+    ArrayList<String> checkedChips = new ArrayList<>();
+
+    private Intent intent;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
+        SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString(KEY_EMAIL, "");
         imageView = findViewById(R.id.imageView);
-        Button Toasttemp = findViewById(R.id.signup_screen__continue_btn);
+        TextInputEditText FName = findViewById(R.id.FirstName_signup);
+        TextInputEditText LName = findViewById(R.id.MiddleLastName_signup);
+        TextInputEditText mail = findViewById(R.id.Email_signup);
+        TextInputEditText PhoneNo = findViewById(R.id.PhoneNumber_signup);
+        Button Continue = findViewById(R.id.signup_screen__continue_btn);
         genderEditText = findViewById(R.id.Gender_signup);
+        mail.setText(savedEmail);
+        Chip chip = findViewById(R.id.chip_mon); // Replace with the actual ID of your Chip
+        Chip chip1 = findViewById(R.id.chip_tues);
+        Chip chip2 = findViewById(R.id.chip_wed);
+        Chip chip3 = findViewById(R.id.chip_thurs);
+        Chip chip4 = findViewById(R.id.chip_fri);
+        Chip chip5 = findViewById(R.id.chip_sat);
+        Chip chip6 = findViewById(R.id.chip_sun);
+        chip.setOnClickListener(v->{
+            boolean checked = chip.isChecked();
+            if(checked){
+                checkedChips.add("Mon");
+                TextUtils.join(", ", checkedChips);
+                Log.i("Hamz",checkedChips.toString());
+            }else{
+                checkedChips.remove("Mon");
+            }
+        });
+        chip1.setOnClickListener(v->{
+            boolean checked = chip1.isChecked();
+            if(checked){
+                checkedChips.add("Tue");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Tue");
+            }
+        });
+        chip2.setOnClickListener(v->{
+            boolean checked = chip2.isChecked();
+            if(checked){
+                checkedChips.add("Wed");
+                TextUtils.join(", ", checkedChips);
+            }
+            else{
+                checkedChips.remove("Wed");
+            }
+        });
+        chip3.setOnClickListener(v->{
+            boolean checked = chip3.isChecked();
+            if(checked){
+                checkedChips.add("Thu");
+                TextUtils.join(", ", checkedChips);
+            } else{
+                checkedChips.remove("Thu");
+            }
+        });
+        chip4.setOnClickListener(v->{
+            boolean checked = chip4.isChecked();
+            if(checked){
+                checkedChips.add("Fri");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Fri");
+            }
+        });
+        chip5.setOnClickListener(v->{
+            boolean checked = chip5.isChecked();
+            if(checked){
+                checkedChips.add("Sat");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Sat");
+            }
+        });
+        chip6.setOnClickListener(v->{
+            boolean checked = chip6.isChecked();
+            if(checked){
+                checkedChips.add("Sun");
+                TextUtils.join(", ", checkedChips);
+            }else{
+                checkedChips.remove("Sun");
+            }
+        });
+
+        // Set up the check change listener for the first ChipGroup
+
         genderEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, android.view.MotionEvent event) {
@@ -69,10 +175,37 @@ public class Sign_up_screen extends Activity {
                 return false;
             }
         });
+        Continue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String FirstName =FName.getText().toString();
+                String LastName =LName.getText().toString();
+                String Email =mail.getText().toString();
+                String Phone =PhoneNo.getText().toString();
+                SharedPreferences sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(KEY_PHONE,Phone);
+                editor.apply();
 
-        Toasttemp.setOnClickListener(v->{
-            Toast.makeText(this, "Implementation in Progress...", Toast.LENGTH_LONG).show();
+                if (FirstName.isEmpty() || LastName.isEmpty() || Email.isEmpty() || Phone.isEmpty()) {
+                    // Show an error message or toast indicating that all fields are required
+                    Toast.makeText(Sign_up_screen.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                    return; // Stop further execution
+                }else {
+                    Intent intent = getIntent();
+                    String pswd = intent.getStringExtra("PasswordKey");
+                    String Jobtype = "employee";
+                    System.out.println(pswd);
+                    if(pswd!=null){
+                        String result = arrayListToString(checkedChips, ",");
+                        String TrimmedList = result.trim();
+                    postData(FirstName,Jobtype, LastName, Email, pswd, Phone,TrimmedList);
+                    }
+                }
+            }
         });
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,14 +226,27 @@ public class Sign_up_screen extends Activity {
                 return false;
             }
         });
-    }
 
+
+
+    }
+    private static String arrayListToString(ArrayList<String> list, String separator) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            result.append(list.get(i));
+            if (i < list.size() - 1) {
+                result.append(separator);
+            }
+        }
+        return result.toString();
+    }
     private void openImagePicker() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
     private void showDatePickerDialog() {
         Calendar newCalendar = Calendar.getInstance();
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -115,8 +261,13 @@ public class Sign_up_screen extends Activity {
                 newCalendar.get(Calendar.MONTH),
                 newCalendar.get(Calendar.DAY_OF_MONTH)
         );
+
+        // Set max date to prevent selecting dates forward from the current date
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
         datePickerDialog.show();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -125,17 +276,36 @@ public class Sign_up_screen extends Activity {
             // Get the selected image URI
             // Update the ImageView with the selected image
             Uri selectedImageUri = data.getData();
-
+            //String imagePath = saveImageToLocal(selectedImageUri);
             Bitmap selectedBitmap = getBitmapFromUri(selectedImageUri);
 
             // Create a circular bitmap
             Bitmap circularBitmap = getCircularBitmap(selectedBitmap);
-
+            String imagePath = saveImageToLocal(selectedImageUri);
+            Intent intent = new Intent(this, JobListingActivity.class);
+            intent.putExtra("imagePath", imagePath);
             // Update the ImageView with the circular image
             imageView.setImageBitmap(circularBitmap);
-
-            imageView.setImageBitmap(circularBitmap);
             Toast.makeText(this,"Profile Image Updated",Toast.LENGTH_SHORT).show();
+        }
+    }
+    private String saveImageToLocal(Uri imageUri) {
+        try {
+            // Use ContentResolver to get a bitmap from the URI
+            Bitmap selectedBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+            // Save the bitmap to a file in local storage
+            String fileName = "profile_image.jpg";
+            File file = new File(getFilesDir(), fileName);
+            FileOutputStream fos = new FileOutputStream(file);
+            selectedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+
+            // Return the path of the saved image
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
     private void showGenderOptionsPopup() {
@@ -198,4 +368,68 @@ public class Sign_up_screen extends Activity {
 
         return output;
     }
+
+    private class PostDataTask extends AsyncTask<SignUpModel, Void, Response<SignUpModel>> {
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Show loader or progress dialog
+            progressDialog = ProgressDialog.show(Sign_up_screen.this, "Please wait", "Sending data...", true, false);
+        }
+
+        @Override
+        protected Response<SignUpModel> doInBackground(SignUpModel... signUpModels) {
+            // Execute the network operation in the background
+            Call<SignUpModel> call = apiInterface.createPost(signUpModels[0]);
+            try {
+                return call.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Response<SignUpModel> response) {
+            super.onPostExecute(response);
+            // Dismiss the loader or progress dialog
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+
+            if (response != null) {
+                try {
+                    if (response.isSuccessful()) {
+                        // Show the popup only if the status code is 200
+                         intent = new Intent(Sign_up_screen.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        // If the status code is not 200, handle the error or show an appropriate message
+                        Toast.makeText(Sign_up_screen.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                    // on below line we are getting our data from modal class and adding it to our string.
+                    String responseString = "Response Code : " + response.code();
+                    System.out.println(responseString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // Handle the case where the response is null or an exception occurred
+                Toast.makeText(Sign_up_screen.this, "Error occurred", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void postData(String name,String accType, String lastName, String emailId, String pSWD, String phoneNum,String avail) {
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        SignUpModel modal = new SignUpModel(name, lastName, emailId, pSWD, accType, phoneNum,"","","","",avail);
+
+        // Execute the network operation using AsyncTask
+        new PostDataTask().execute(modal);
+    }
 }
+
+

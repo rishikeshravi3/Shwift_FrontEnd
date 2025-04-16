@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,14 +15,93 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Apply_Job"
+            android:name=".ViewApplicantProfile"
             android:exported="false"/>
         <activity
+            android:name=".EmployerView.Employee_Detailspage"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".EmployerView.EmployerProfileDetailsActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".EmployerView.OrgDescription_Employer"
+            android:exported="false" />
+        <activity
+            android:name=".EmployerView.Organization_Name"
+            android:exported="false"
+            android:label="@string/title_activity_organization_name"
+            android:theme="@style/Theme.MyApplication" />
+        <activity
+            android:name=".EmployerView.ProfileActivity_employer"
+            android:exported="false" />
+        <activity
+            android:name=".EmployerView.ApplicationEmployerList"
+            android:exported="false" />
+        <activity
+            android:name=".EmployerView.JobDetailsActivityPreview"
+            android:exported="true" />
+        <activity
+            android:name=".EmployerView.JobDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmployerView.Employer_View_Home_Page"
+            android:exported="true" />
+        <activity
+            android:name=".EmployerView.EmployerAccountSetupRecruiterDetails"
+            android:exported="false" />
+        <activity
+            android:name=".EmployerView.Employer_Account_Setup_Company_details"
+            android:exported="true" />
+        <activity
+            android:name=".Profile.ProjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.EducationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.WorkExperienceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.Profile_Details_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.SkillActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ApplicationStageOnClickActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Apply_Job"
+            android:exported="false" />
+        <activity
             android:name=".Filter"
-            android:exported="false">
-            </activity>
+            android:exported="false" />
+        <activity
+            android:name=".Profile.ProfileSummaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.ContactInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JobListing.SavedJobsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Applications.ApplicationStagesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ApplicantViewJobDescription"
+            android:exported="false" />
+        <activity
+            android:name=".JobListing.JobListingActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -27,17 +109,21 @@
 
         <activity
             android:name=".Sign_up_screen"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".account_setup_user_info"
             android:exported="false" />
         <activity
             android:name=".expertise_activity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>-
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".AccountSetupHome"
             android:exported="false" />
@@ -56,10 +142,10 @@
         <activity
             android:name=".onboarding"
             android:exported="true">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+<!--            <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
         </activity>
         <activity
             android:name=".create_New_Password"

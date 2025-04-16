@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_employer"
+        android:title="@string/home"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/addListing_employer"
+        android:title="Add Listing"
+        android:icon="@drawable/bookmark"/>
+
+    <item
+        android:id="@+id/myListing_employer"
+        android:title="My Listing"
+        android:icon="@drawable/applications_icon"/>
+
+    <item
+        android:id="@+id/profile_employer"
+        android:title="Profile"
+        android:icon="@drawable/profile_icon"/>
+</menu>

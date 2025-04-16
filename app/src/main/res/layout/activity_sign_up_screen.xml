@@ -20,7 +20,7 @@
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/custom_uploiadimage_button"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -130,17 +130,86 @@
                 android:paddingStart="16dp"
                 android:popupBackground="@android:color/white"
                 android:textColorHint="#ACACAC" />
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-    <Button
+        <TextView
+            android:id="@+id/please_sele_avail"
+            android:layout_width="314dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/Gender_signup"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="26dp"
+            android:gravity="center"
+            android:lineSpacingExtra="12sp"
+            android:text="Please Select Your Availability"
+            android:textAppearance="@style/please_sele"
+            android:textStyle="bold" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/please_sele_avail"
+            android:layout_marginTop="16dp">
+
+            <!-- Add your 4 chips here -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_mon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Mon" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Tues" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_wed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Wed" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_thurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Thurs" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Fri" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Sat" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Sun" />
+        </com.google.android.material.chip.ChipGroup>
+        <Button
         android:id="@+id/signup_screen__continue_btn"
         android:background="@drawable/custom_background_button"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/Gender_signup"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/chipGroupRow1"
         android:text="Continue"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />

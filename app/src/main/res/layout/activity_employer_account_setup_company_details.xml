@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmployerView.Employer_Account_Setup_Company_details">
+
+    <ImageView
+        android:id="@+id/employer_account_setup_company_details_back_arrow"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="46dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_arrow"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/employer_account_setup_company_details_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/employer_account_setup_company_details_heading_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/employer_account_setup_company_details_back_arrow"
+        android:layout_marginTop="13dp"
+        android:textAppearance="@style/employer_account_setup_company_details_heading_style"/>
+
+    <TextView
+        android:id="@+id/employer_account_setup_company_details_fill_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/employer_account_setup_company_details_fill_details_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/employer_account_setup_company_details_heading"
+        android:layout_marginTop="4dp"
+        android:textAppearance="@style/i_want_to_f"/>
+
+    <EditText
+        android:id="@+id/employer_account_setup_company_details_organization_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/employer_account_setup_company_details_organization_name_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/employer_account_setup_company_details_fill_details"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:textAppearance="@style/choose_whet"
+        android:background="@drawable/employer_account_setup_edit_text_borders"
+        />
+
+    <EditText
+        android:id="@+id/employer_account_setup_company_details_organization_strength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/employer_account_setup_company_details_organization_strength_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/employer_account_setup_company_details_organization_name"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:textAppearance="@style/choose_whet"
+        android:background="@drawable/employer_account_setup_edit_text_borders"
+        />
+
+
+    <EditText
+        android:id="@+id/employer_account_setup_company_details_company_description"
+        android:layout_width="363dp"
+        android:layout_height="331dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="23dp"
+        android:background="@drawable/employer_account_setup_edit_text_borders"
+        android:gravity="top"
+        android:hint="@string/employer_account_setup_company_details_company_description_hint"
+        android:inputType="textMultiLine"
+        android:paddingLeft="17dp"
+        android:paddingTop="9dp"
+        android:paddingRight="17dp"
+        android:paddingBottom="9dp"
+        android:textAppearance="@style/choose_whet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_account_setup_company_details_organization_strength" />
+
+    <Button
+        android:id="@+id/employer_account_setup_company_details_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="22dp"
+        android:text="@string/continueBtn"
+        android:textAppearance="@style/button_text_white_20sp_style"
+        tools:ignore="VisualLintButtonSize" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
