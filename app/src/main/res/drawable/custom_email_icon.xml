@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/custom_file_icon.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:drawable/ic_dialog_email" android:right="16dp"/>
+</layer-list>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +14,64 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".Apply_Job"
+            android:exported="false"/>
+        <activity
+            android:name=".Filter"
+            android:exported="false">
+            </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".passwordReset_Mode_Selection" />
+
+        <activity
+            android:name=".Sign_up_screen"
+            android:exported="false">
         </activity>
+        <activity
+            android:name=".account_setup_user_info"
+            android:exported="false" />
+        <activity
+            android:name=".expertise_activity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountSetupHome"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:theme="@style/Theme.MyApplication" />
+        <activity
+            android:name=".onboarding_info_3"
+            android:exported="false" />
+        <activity
+            android:name=".onboarding_info_2"
+            android:exported="true" />
+        <activity
+            android:name=".onboarding_info_1"
+            android:exported="true" />
+        <activity
+            android:name=".onboarding"
+            android:exported="true">
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+        </activity>
+        <activity
+            android:name=".create_New_Password"
+            android:exported="false"
+            android:parentActivityName=".passwordReset_Mode_Selection" />
+        <activity
+            android:name=".passwordReset_OTP_Validation"
+            android:exported="false"
+            android:parentActivityName=".passwordReset_Mode_Selection" />
+        <activity
+            android:name=".passwordReset_Mode_Selection"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+
+        <ImageButton
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/custom_uploiadimage_button"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/FirstName_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@id/imageView"
+        android:background="@drawable/chip_background"
+        android:hint="First Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:textColorHint="#ACACAC"
+        />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/MiddleLastName_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@id/FirstName_signup"
+        android:background="@drawable/chip_background"
+        android:hint="Middle or Last Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:textColorHint="#ACACAC"
+        />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Dob_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_below="@id/MiddleLastName_signup"
+                android:drawableRight="@drawable/custom_calendar_icon"
+                android:background="@drawable/chip_background"
+                android:hint="Date of Birth"
+                android:inputType="none"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:textColorHint="#ACACAC"
+                />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Email_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@id/Dob_signup"
+        android:background="@drawable/chip_background"
+        android:drawableRight="@drawable/custom_email_icon"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:textColorHint="#ACACAC"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/PhoneNumber_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@id/Email_signup"
+        android:background="@drawable/chip_background"
+        android:drawableRight="@drawable/custom_phone_icon"
+        android:hint="Phone Number"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:textColorHint="#ACACAC"
+        />
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/GenderInputLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/PhoneNumber_signup"-->
+<!--            android:layout_marginTop="17dp"-->
+<!--            app:boxBackgroundMode="none"-->
+<!--            app:startIconTint="#ACACAC">-->
+
+            <AutoCompleteTextView
+                android:id="@+id/Gender_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_below="@id/PhoneNumber_signup"
+                android:background="@drawable/chip_background"
+                android:drawableEnd="@drawable/custom_arrow_icon"
+                android:dropDownVerticalOffset="2dp"
+                android:hint="Gender"
+                android:focusable="false"
+                android:clickable="false"
+                android:onClick="@null"
+                android:cursorVisible="false"
+                android:inputType="none"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:popupBackground="@android:color/white"
+                android:textColorHint="#ACACAC" />
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+    <Button
+        android:id="@+id/signup_screen__continue_btn"
+        android:background="@drawable/custom_background_button"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/Gender_signup"
+        android:text="Continue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    </RelativeLayout>
+</ScrollView>

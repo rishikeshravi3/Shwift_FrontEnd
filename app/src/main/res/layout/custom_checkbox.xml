@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip3"
+        android:layout_width="306dp"
+        android:layout_height="57dp"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="55dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="288dp"
+        android:layout_height="58dp"
+        android:text="CheckBox"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="55dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

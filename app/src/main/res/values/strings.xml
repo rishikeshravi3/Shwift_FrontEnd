@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Shwift</string>
+    <string name="hire_me">Shwift</string>
+    <string name="choose_your">Choose your job type</string>
+    <string name="choose_whet">Choose whether you are looking for a job or you are an organization/company that need employees</string>
+    <string name="find_a_job">Find a job</string>
+    <string name="i_want_to_f">I want to find a job for me</string>
+    <string name="find_a_employee">Find an employee</string>
+    <string name="i_want_to_find_employees">I want to find employees</string>
+    <string name="what_is_you">What is your Expertise?</string>
+    <string name="please_sele">Please select the field of expertise (upto 3)</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account_sign_in">Already have an account? <b><font color='#6D23B6'>Login</font></b></string>
+    <string name="login_to_your_account">Login to Your Account</string>
+    <string name="don_t_have_account_sign_up">Don’t have an account? <b><font color='#6D23B6'>Sign up</font></b></string>
+    <string name="select_email">An email will be sent to the email-id mentioned below</string>
+    <string name="user_email">testMail@doomain.com</string>
+    <string name="sendOTP">Send OTP</string>
+    <string name="code_has_been">Please enter the code that was sent to the specified e-mail.</string>
+    <string name="resend_code">Resend the code in 50 s</string>
+    <string name="verifyOTP">Verify OTP</string>
+    <string name="createNewPass_TxtView">New password</string>
+    <string name="renterNewPass_TxtView">Re-enter password</string>
+    <string name="continueBtn">Continue</string>
+    <string name="passwordResetMsg">Password Reset Message</string>
+    <string name="onboarding_logo_tagline">A Swift Solution to your Shift</string>
+    <string name="onboarding_get_shift_line">Get Your Shift Now</string>
+    <string name="onboarding_get_shift_button_text">Get Shift</string>
+    <string name="onboarding_info_1_heading">Get Shift By The Hour!</string>
+    <string name="onboarding_info_1_text">Work daily shifts get paid based on the number of hours you put in</string>
+    <string name="onboarding_info_next">Next</string>
+    <string name="onboarding_info_2_heading">Create The Perfect Profile!</string>
+    <string name="onboarding_info_2_text">Use the built in profile builder to highlight your skills and abilities</string>
+    <string name="onboarding_info_3_heading">Explore Your Potential!</string>
+    <string name="onboarding_info_3_text">Start your professional journey with Shwift and discover your inner self</string>
 </resources>

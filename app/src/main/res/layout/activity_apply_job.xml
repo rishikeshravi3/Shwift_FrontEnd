@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/applyjobTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Apply Job"
+        android:textColor="#141414"
+        android:textSize="34sp" />
+
+
+    <TextView
+        android:id="@+id/textViewFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/applyjobTitle"
+        android:text="Full Name"
+        android:textSize="16sp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewFullName"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/chip_background"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#ACACAC"
+        android:paddingStart="16dp"
+        />
+
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="16sp"
+        android:layout_below="@id/editTextFullName"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewEmail"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/chip_background"
+        android:drawableRight="@drawable/custom_email_icon"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:textColorHint="#ACACAC" />
+
+    <TextView
+        android:id="@+id/textViewUploadCV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload CV/Resume"
+        android:textSize="16sp"
+        android:layout_below="@id/editTextEmail"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/btnUploadCV"
+        android:layout_width="383dp"
+        android:layout_height="111dp"
+        android:layout_below="@id/textViewUploadCV"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/chip_background"
+        android:drawableTop="@drawable/custom_icon_file"
+        android:gravity="center"
+        android:hint="Browse File"
+        android:minHeight="48dp"
+        android:paddingStart="16dp"
+        android:textColorHint="#ACACAC" />
+
+<!--    <Button-->
+
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+
+
+<!--        android:layout_marginBottom="16dp"/>-->
+
+    <TextView
+        android:id="@+id/textViewCoverLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cover Letter (Optional)"
+        android:textSize="16sp"
+        android:layout_below="@id/btnUploadCV"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextCoverLetter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCoverLetter"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/chip_background"
+        android:gravity="start"
+        android:hint="Motivation Letter..."
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:minHeight="48dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:textColorHint="#ACACAC" />
+
+    <Button
+        android:id="@+id/applyButton"
+        android:background="@drawable/custom_background_button"
+        android:textColor="@color/white"
+        android:layout_width="382dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextCoverLetter"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="5dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Apply"
+        />
+
+
+</RelativeLayout>
+</ScrollView>
